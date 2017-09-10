@@ -141,6 +141,32 @@ var nav = function(server) {
                 cb(err,body);
             });
         },
+        
+        //获取用户微信来源
+        get_latest_wx_source: function(platform_id,openid,cb) {
+            var url = host + "source/get_latest?platform_id=" + platform_id + "&openid=" + openid;
+            uu_request.get(url, function(err, response, body) {
+                if (!err && response.statusCode === 200) {
+                    var info = JSON.parse(body);
+
+                    var rows = [];
+                    if (info.success) {
+                        rows = info.rows;
+                    }
+                    cb(err,rows);
+                } else {
+                    cb(true,{message:"网络错误"});
+                }
+            });
+        },
+
+        add_wx_source: function(platform_id,openid,source_code,source_name,cb) {
+            var url = host + "source/add_source";
+            var data = {platform_id:platform_id,openid:openid,source_code:source_code,source_name:source_name};
+            uu_request.request(url, data, function(err, response, body) {
+                cb(err,body);
+            });
+        },
     };
 };
 

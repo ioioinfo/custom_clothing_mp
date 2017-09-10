@@ -23,6 +23,7 @@ sys_option.desc = "custom clothing mp service";
 
 //微信公众号编号
 sys_option.platform_id = "hrbs_service";
+sys_option.wx_token = "uuinfo_weixin";
 
 //cookie
 sys_option.cookie_options = {ttl:10*365*24*60*60*1000};
