@@ -30,6 +30,7 @@ exports.register = function(server, options, next){
     load_module('drp_api', './drp_api.js');
     load_module('fsm', './fsm.js');
     load_module('notify', './notify.js');
+    load_module('base', './base.js');
   
     next();
 }

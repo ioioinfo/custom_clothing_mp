@@ -22,7 +22,7 @@ sys_option.product_name = "custom_clothing_mp";
 sys_option.desc = "custom clothing mp service";
 
 //微信公众号编号
-sys_option.platform_id = "clothing_service";
+sys_option.platform_id = "hrbs_service";
 
 //cookie
 sys_option.cookie_options = {ttl:10*365*24*60*60*1000};
