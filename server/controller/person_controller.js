@@ -134,75 +134,29 @@ exports.register = function(server, options, next) {
             }
         },
 
-        //绑定用户合同信息
+        //刷新用户微信信息
         {
             method: 'POST',
-            path: '/bind_person_contract',
+            path: '/refresh_person_wx',
             handler: function(request, reply) {
-                var openid = request.payload.openid;
-                if (!openid) {
-                    return reply({"success":false,"message":"param openid is null"});
-                }
-
-                var username = request.payload.username;
-                var person_name = request.payload.person_name;
-                var mobile = request.payload.mobile;
-                //合同编号
-                var hetongbianhao = request.payload.hetongbianhao;
-                //数据来源
-                var data_source = "扫描业务员二维码";
-
-                if (!username) {
-                    return reply({"success":false,"message":"param username is null"});
-                }
-                if (!person_name) {
-                    return reply({"success":false,"message":"param person_name is null"});
-                }
-                if (!mobile) {
-                    return reply({"success":false,"message":"param mobile is null"});
-                }
-                if (!hetongbianhao) {
-                    return reply({"success":false,"message":"param hetongbianhao is null"});
-                }
-
-                //查询签单信息
-                api.search_dingche_info(hetongbianhao,function(err,rows) {
-                    if (err) {
-                        return reply({"success":false,"message":"网络错误"});
+                page_get_openid(request, function(openid) {
+                    if (!openid) {
+                        return reply({"success":false,"message":"param openid is null"});
                     }
-                    if (!rows || rows.length == 0) {
-                        return reply({"success":false,"message":"未找到签单信息"});
-                    }
-
-                    var row = rows[0];
-                    //判断签单人手机号
-                    if (row.mobile != mobile) {
-                        return reply({"success":false,"message":"签单人手机号不一致，请修改。"});
-                    }
-
-                    //合同名称
-                    var name = "弘仁购车合同";
-                    //签单日期
-                    var signed_date = row.the_date;
-
-                    person.save_person(username,person_name,mobile,data_source,function(err,content) {
+                    //获取微信用户信息
+                    wx_api.get_user_info(platform_id,openid, function(err,info) {
                         if (err) {
-                            return reply({"success":false,"message":"save person error"});
+                            return reply({"success":false,"message":"error"});
                         }
-                        var person_id = content.person_id;
-
-                        //绑定客户微信信息
-                        person.bind_person_wx(person_id,platform_id,openid,function(err,content) {
-
-                        });
-
-                        //发送微信消息
-                        notify.contract_status_changed(person_id,signed_date,function(err,content) {
-
-                        });
-
-                        //保存合同
-                        person.save_contract(person_id,hetongbianhao,name,signed_date,function(err,content) {
+                        var nickname = info.nickname;
+                        var sex = info.sex;
+                        var headimgurl = info.headimgurl;
+                        var unionid = info.unionid;
+                        
+                        //更新用户微信信息
+                        person.save_wx(platform_id,openid,nickname,sex,headimgurl,unionid,scene, function(err,result) {
+                            //调用drp接口更新用户信息
+                            
                             return reply({"success":true,"message":"ok"});
                         });
                     });
