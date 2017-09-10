@@ -1,0 +1,49 @@
+.flashWrap{
+    overflow: hidden;
+    position: relative;
+}
+.imgul{
+    overflow: hidden;
+}
+.imgul li{
+    width: 100%;
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+
+}
+.imgul li a{
+    display: block;
+    overflow: hidden;
+    width: 100%;
+}
+.imgul li img{
+    width: 100%;
+    z-index: 99;
+}
+
+.pointul{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+    text-align: center;
+    z-index: 11
+}
+.pointul span{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    z-index: 999;
+    margin: 0 5px;
+}
+.pointul span.on{
+  background: #fff;
+  border: 1px solid red;
+}
