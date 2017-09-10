@@ -19,22 +19,19 @@ var moment = require('moment');
 var eventproxy = require('eventproxy');
 
 const util = require('util');
+const sys_option = require('../config/sys_option');
 const uu_request = require('../utils/uu_request');
 const wx_reply = require('../utils/wx_reply');
 
-var moduel_prefix = '4s_mp_web_wx';
+var moduel_prefix = sys_option.product_name + '_wx';
 
 exports.register = function(server, options, next) {
-    var service_info = "4s mp web";
+    var service_info = sys_option.desc;
     var host = "http://4s.ioioinfo.com/";
-    var cookie_options = {ttl:10*365*24*60*60*1000};
-    var cookie_key = "hrbyd_openid";
     
     var wx_api = server.plugins.services.wx_api;
     var person = server.plugins.services.person;
     var fsm = server.plugins.services.fsm;
-    
-    var platform_id = "hrbs_service";
     
     //签名验证
     var check_signature = function(signature,token,timestamp,nonce) {

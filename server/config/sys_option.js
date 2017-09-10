@@ -12,29 +12,20 @@
  │                                                              │
  └──────────────────────────────────────────────────────────────┘
 */
- 
-var _ = require('lodash');
-var moment = require('moment');
-var eventproxy = require('eventproxy');
-const sys_option = require('../config/sys_option');
 
-var moduel_prefix = sys_option.product_name + '_index';
+// 系统配置
+var sys_option = {};
 
-exports.register = function(server, options, next) {
-    server.route([
-        {
-            method: 'GET',
-            path: '/desc',
-            handler: function(request, reply) {
-                return reply({"success":true,"message":"ok","desc":sys_option.desc,"server":server.info.uri});
-            },
-        },
-        
-    ]);
+//软件名称
+sys_option.product_name = "custom_clothing_mp";
 
-    next();
-}
+sys_option.desc = "custom clothing mp service";
 
-exports.register.attributes = {
-    name: moduel_prefix
-};
+//微信公众号编号
+sys_option.platform_id = "clothing_service";
+
+//cookie
+sys_option.cookie_options = {ttl:10*365*24*60*60*1000};
+sys_option.cookie_key = sys_option.platform_id + "_clothing_mp_cookie";
+
+module.exports = sys_option;

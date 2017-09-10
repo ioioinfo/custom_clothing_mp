@@ -16,10 +16,10 @@
 var _ = require('lodash');
 var moment = require('moment');
 var eventproxy = require('eventproxy');
-
+const sys_option = require('../config/sys_option');
 const uu_request = require('../utils/uu_request');
 
-var moduel_prefix = '4s_mp_web_person';
+var moduel_prefix = sys_option.product_name + '_person';
 
 exports.register = function(server, options, next) {
     var byd_api = server.plugins.services.byd_api;
@@ -28,11 +28,6 @@ exports.register = function(server, options, next) {
     var api = server.plugins.services["4s_api"];
     var notify = server.plugins.services.notify;
 
-    var cookie_options = {ttl:10*365*24*60*60*1000};
-    var cookie_key = "4s_mp_cookie";
-
-    var platform_id = "hrbs_service";
-
     //页面获取微信id
     var page_get_openid = function(request,cb) {
         var state;
@@ -40,8 +35,8 @@ exports.register = function(server, options, next) {
 
         if (request.state && request.state.cookie) {
             state = request.state.cookie;
-            if (state[cookie_key]) {
-                openid = state[cookie_key];
+            if (state[sys_option.cookie_key]) {
+                openid = state[sys_option.cookie_key];
             }
         }
         if (openid) {

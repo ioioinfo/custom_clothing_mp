@@ -16,18 +16,14 @@
 var _ = require('lodash');
 var moment = require('moment');
 var eventproxy = require('eventproxy');
+const sys_option = require('../config/sys_option');
 
-var moduel_prefix = 'custom_clothing_mp_main';
+var moduel_prefix = sys_option.product_name + '_main';
 
 exports.register = function(server, options, next) {
     var wx_api = server.plugins.services.wx_api;
     var person = server.plugins.services.person;
     var api = server.plugins.services.clothing_api;
-
-    var platform_id = "clothing_service";
-
-    var cookie_options = {ttl:10*365*24*60*60*1000};
-    var cookie_key = platform_id + "_clothing_mp_cookie";
 
     //页面获取微信id
     var page_get_openid = function(request,cb) {
@@ -40,8 +36,8 @@ exports.register = function(server, options, next) {
         } else {
             if (request.state && request.state.cookie) {
                 state = request.state.cookie;
-                if (state[cookie_key]) {
-                    openid = state[cookie_key];
+                if (state[sys_option.cookie_key]) {
+                    openid = state[sys_option.cookie_key];
                 }
             }
             if (openid) {
@@ -102,8 +98,8 @@ exports.register = function(server, options, next) {
                     if (!cookie) {
                         cookie = {};
                     }
-                    cookie[cookie_key] = openid;
-                    return reply.view("index").state('cookie', cookie, cookie_options);;
+                    cookie[sys_option.cookie_key] = openid;
+                    return reply.view("index").state('cookie', cookie, sys_option.cookie_options);;
                 });
             },
         },
