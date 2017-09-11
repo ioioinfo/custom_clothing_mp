@@ -1,0 +1,84 @@
+*,p{
+  padding: 0;
+  margin: 0;
+}
+html,body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background: #f0f0f0;
+}
+.person_center_head{
+  width: 100%;
+  height: 194px;
+  text-align: center;
+  background: -webkit-linear-gradient(-35deg, #DC6463 0%, #3D4A7D 100%); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(-35deg, #DC6463 0%, #3D4A7D 100%); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(-35deg, #DC6463 0%, #3D4A7D 100%); /* Firefox 3.6 - 15 */
+  background: linear-gradient(-35deg, #DC6463 0%, #3D4A7D 100%); /* 标准的语法（必须放在最后） */
+}
+.person_center_head_img{
+  display: inline-block;
+  width: 61px;
+  height: 61px;
+  border-radius: 50%;
+  margin-top: 33px;
+}
+.person_center_head_img img{
+  width: 100%;
+  height: 61px;
+  border-radius: 50%;
+}
+.person_center_head_name{
+  text-align: center;
+  margin-top: 8px;
+  font-size: 28px;
+  color: #fff;
+}
+.person_infor{
+  display: inline-block;
+  margin-top: 10px;
+  padding:2px 23px;
+  border-radius: 18px;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.person_center_number{
+  padding: 13px 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #fff;
+  margin-bottom: 24px;
+}
+.person_center_number_left{
+  width: 50%;
+  box-sizing: border-box;
+  border-right: 1px solid #dedede;
+  text-align: center;
+}
+.person_center_number_right{
+  width: 50%;
+  box-sizing: border-box;
+  text-align: center;
+}
+.person_center_number_infor{
+  font-size: 28px;
+  font-weight: 300;
+  text-align: center;
+}
+.person_center_number_infor span{
+  color: #a4a4a4;
+  font-size: 18px;
+}
+.icon_style1{
+  background: #fb7e84;
+}
+.icon_style2{
+  background: #ffac37;
+}
+.icon_style3{
+  background: #54c455;
+}
+.icon_style4{
+  background: #3ab2ee;
+}

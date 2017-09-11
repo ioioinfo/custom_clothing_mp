@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 185);
+/******/ 	return __webpack_require__(__webpack_require__.s = 187);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22382,294 +22382,11 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 183 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var React = __webpack_require__(49);
-
-var Lunbo = function (_React$Component) {
-    _inherits(Lunbo, _React$Component);
-
-    function Lunbo(props) {
-        _classCallCheck(this, Lunbo);
-
-        var _this = _possibleConstructorReturn(this, (Lunbo.__proto__ || Object.getPrototypeOf(Lunbo)).call(this, props));
-
-        _this.jump = _this.jump.bind(_this);
-        _this.back = _this.back.bind(_this);
-        _this.move = _this.move.bind(_this);
-        _this.onTouchStart = _this.onTouchStart.bind(_this);
-        _this.onTouchMove = _this.onTouchMove.bind(_this);
-        _this.onTouchEnd = _this.onTouchEnd.bind(_this);
-        // 初始化一个空对象
-        _this.state = { imgItems: _this.props.items || [], selected: 0, touchPage: 0, change: 0 };
-        return _this;
-    }
-
-    _createClass(Lunbo, [{
-        key: "jump",
-        value: function jump() {
-            //当前显示图片
-            var selected = this.state.selected;
-            var imgLength = this.state.imgItems.length;
-            var widthUl = $(window).width();
-
-            var next1 = selected + 1;
-            if (next1 >= imgLength) {
-                next1 = next1 - imgLength;
-            }
-
-            //循环所有图片
-            $(".imgul li").each(function (index, element) {
-                if (index == selected) {
-                    $(this).css("z-index", "10");
-                    $(this).css("transform", "translate3d(" + -widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 300ms ease");
-                } else if (index == next1) {
-                    $(this).css("z-index", "10");
-                    $(this).css("transform", "translate3d(0px, 0px, 0px)");
-                    $(this).css("transition", "all 300ms ease");
-                } else {
-                    $(this).css("z-index", "9");
-                    $(this).css("transform", "translate3d(" + widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 0ms ease");
-                }
-            });
-
-            this.setState({ selected: next1 });
-        }
-        //向右移动一张
-
-    }, {
-        key: "back",
-        value: function back() {
-            //当前显示图片
-            var selected = this.state.selected;
-            var imgLength = this.state.imgItems.length;
-            var widthUl = $(window).width();
-
-            var prev1 = selected - 1;
-            if (prev1 < 0) {
-                prev1 = imgLength - 1;
-            }
-
-            //循环所有图片
-            $(".imgul li").each(function (index, element) {
-                if (index == selected) {
-                    $(this).css("z-index", "10");
-                    $(this).css("transform", "translate3d(" + widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 300ms ease");
-                } else if (index == prev1) {
-                    $(this).css("z-index", "10");
-                    $(this).css("transform", "translate3d(0px, 0px, 0px)");
-                    $(this).css("transition", "all 300ms ease");
-                } else {
-                    $(this).css("z-index", "9");
-                    $(this).css("transform", "translate3d(" + -widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 0ms ease");
-                }
-            });
-
-            this.setState({ selected: prev1 });
-        }
-    }, {
-        key: "move",
-        value: function move(change) {
-            var widthUl = $(window).width();
-            if (change < -widthUl / 8) {
-                this.jump();
-            } else if (change > widthUl / 8) {
-                this.back();
-            }
-        }
-    }, {
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            $(".imgul li").css("width", $(window).width());
-            var rate = this.props.rate;
-            if (!rate) {
-                rate = 0.3125;
-            }
-
-            var imgLIheight = rate * $(window).width();
-            $(".imgul").css("height", imgLIheight);
-            var imgLength = this.state.imgItems.length;
-            var widthUl = $(window).width();
-            //循环所有图片
-            $(".imgul li").each(function (index, element) {
-                if (index == 0) {
-                    $(this).css("z-index", "10");
-                } else if (index == 1) {
-                    $(this).css("transform", "translate3d(" + widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 0ms ease");
-                } else if (index == imgLength - 1) {
-                    $(this).css("z-index", "10");
-                    $(this).css("transform", "translate3d(" + -widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 0ms ease");
-                } else {
-                    $(this).css("z-index", "9");
-                    $(this).css("transform", "translate3d(" + widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 0ms ease");
-                }
-            });
-
-            if (this.state.imgItems.length > 1) {
-                this.timer = setInterval(this.jump, 1500);
-            }
-        }
-
-        // 开始
-
-    }, {
-        key: "onTouchStart",
-        value: function onTouchStart(e) {
-            if (this.state.imgItems.length <= 1) {
-                return;
-            }
-            if (this.timer) {
-                clearInterval(this.timer);
-            }
-
-            var touch = e.targetTouches[0]; //touches数组对象获得屏幕上所有的touch，取第一个touch
-            var touchPageStart = touch.pageX; //获取当前最新的坐标
-
-            this.setState({ touchPage: touchPageStart, change: 0 });
-        }
-
-        // 移动中
-
-    }, {
-        key: "onTouchMove",
-        value: function onTouchMove(e) {
-            if (this.state.imgItems.length <= 1) {
-                return;
-            }
-            var touchPageMove = e.targetTouches[0].pageX; //获取当前最新的坐标
-
-            var touchPage = this.state.touchPage;
-            var change = touchPageMove - touchPage;
-
-            this.setState({ change: change });
-        }
-        // 移动结束
-
-    }, {
-        key: "onTouchEnd",
-        value: function onTouchEnd(e) {
-            if (this.state.imgItems.length <= 1) {
-                return;
-            }
-            var change = this.state.change;
-            this.move(change);
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var _this2 = this;
-
-            return React.createElement(
-                "div",
-                { className: "flashWrap" },
-                React.createElement(
-                    "ul",
-                    { className: "imgul", onTouchStart: this.onTouchStart, onTouchMove: this.onTouchMove, onTouchEnd: this.onTouchEnd },
-                    this.state.imgItems.map(function (item) {
-                        return React.createElement(FlashImgLi, { key: item.id, item: item });
-                    })
-                ),
-                React.createElement(
-                    "div",
-                    { className: "pointul" },
-                    this.state.imgItems.map(function (item, index) {
-                        return React.createElement(FlashPointLi, { key: index, selected: _this2.state.selected, index: index });
-                    })
-                )
-            );
-        }
-    }]);
-
-    return Lunbo;
-}(React.Component);
-// 图片
-
-
-var FlashImgLi = function (_React$Component2) {
-    _inherits(FlashImgLi, _React$Component2);
-
-    function FlashImgLi() {
-        _classCallCheck(this, FlashImgLi);
-
-        return _possibleConstructorReturn(this, (FlashImgLi.__proto__ || Object.getPrototypeOf(FlashImgLi)).apply(this, arguments));
-    }
-
-    _createClass(FlashImgLi, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            $(".imgul li").css("width", $(window).width());
-            $(".imgul li img").css("width", $(window).width());
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var imgsec = this.props.item.img;
-            return React.createElement(
-                "li",
-                { className: "pull-left" },
-                React.createElement(
-                    "a",
-                    { href: this.props.item.href || "javascript:void(0)" },
-                    React.createElement("img", { src: imgsec, className: "img-responsive", alt: "" })
-                )
-            );
-        }
-    }]);
-
-    return FlashImgLi;
-}(React.Component);
-
-// 点
-
-
-var FlashPointLi = function (_React$Component3) {
-    _inherits(FlashPointLi, _React$Component3);
-
-    function FlashPointLi() {
-        _classCallCheck(this, FlashPointLi);
-
-        return _possibleConstructorReturn(this, (FlashPointLi.__proto__ || Object.getPrototypeOf(FlashPointLi)).apply(this, arguments));
-    }
-
-    _createClass(FlashPointLi, [{
-        key: "render",
-        value: function render() {
-
-            var c = "";
-            if (this.props.selected == this.props.index) {
-                c = "on";
-            }
-            return React.createElement("span", { className: c });
-        }
-    }]);
-
-    return FlashPointLi;
-}(React.Component);
-
-module.exports = Lunbo;
-
-/***/ }),
+/* 183 */,
 /* 184 */,
-/* 185 */
+/* 185 */,
+/* 186 */,
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22685,325 +22402,223 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(82);
-var Lunbo = __webpack_require__(183);
 
-// 框架
+var IoIo = function (_React$Component) {
+    _inherits(IoIo, _React$Component);
 
-var Wrap = function (_React$Component) {
-    _inherits(Wrap, _React$Component);
+    function IoIo(props) {
+        _classCallCheck(this, IoIo);
 
-    function Wrap() {
-        _classCallCheck(this, Wrap);
-
-        return _possibleConstructorReturn(this, (Wrap.__proto__ || Object.getPrototypeOf(Wrap)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
+        // 初始化一个空对象
     }
 
-    _createClass(Wrap, [{
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                { className: 'wrap row' },
-                React.createElement(Head, null),
-                React.createElement(Activity, null),
-                React.createElement(Maintenance, null),
-                React.createElement(Nav, null),
-                React.createElement(
-                    'div',
-                    { className: 'gif' },
-                    React.createElement('img', { src: 'images/jiazai1.gif', alt: '' })
-                ),
-                React.createElement('div', { className: 'person_information' })
-            );
-        }
-    }]);
-
-    return Wrap;
-}(React.Component);
-
-;
-
-var Head = function (_React$Component2) {
-    _inherits(Head, _React$Component2);
-
-    function Head() {
-        _classCallCheck(this, Head);
-
-        return _possibleConstructorReturn(this, (Head.__proto__ || Object.getPrototypeOf(Head)).apply(this, arguments));
-    }
-
-    _createClass(Head, [{
+    _createClass(IoIo, [{
         key: 'componentDidMount',
-        value: function componentDidMount() {
-            $(".person_information").fadeIn(1000);
-        }
+        value: function componentDidMount() {}
     }, {
         key: 'render',
         value: function render() {
-
             return React.createElement(
                 'div',
-                { className: 'person_head_wrap' },
-                React.createElement(Lunbo, { items: items, rate: rate })
-            );
-        }
-    }]);
-
-    return Head;
-}(React.Component);
-
-;
-// <div className="person_information">
-//   <div className="person_information_img pull-left"><img src="images/me.jpg" alt="" /></div>
-//   <div className="person_information_name pull-right"><p>周润花</p><p>唐66</p></div>
-// </div>
-// 活动
-
-var Activity = function (_React$Component3) {
-    _inherits(Activity, _React$Component3);
-
-    function Activity() {
-        _classCallCheck(this, Activity);
-
-        return _possibleConstructorReturn(this, (Activity.__proto__ || Object.getPrototypeOf(Activity)).apply(this, arguments));
-    }
-
-    _createClass(Activity, [{
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                { className: 'person_activity' },
+                { className: 'person_center' },
                 React.createElement(
-                    'a',
-                    { className: 'weui-cell weui-cell_access', href: 'buy_process' },
+                    'div',
+                    { className: 'person_center_head' },
+                    React.createElement(
+                        'span',
+                        { className: 'person_center_head_img' },
+                        React.createElement('img', { src: 'images/biyou.jpg' })
+                    ),
+                    React.createElement(
+                        'p',
+                        { className: 'person_center_head_name' },
+                        'BiYou'
+                    ),
+                    React.createElement(
+                        'span',
+                        { className: 'person_infor' },
+                        '\u6211\u7684\u8D44\u6599'
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'person_center_number' },
                     React.createElement(
                         'div',
-                        { className: 'weui-cell__bd' },
+                        { className: 'person_center_number_left pull-left' },
+                        React.createElement(
+                            'p',
+                            { className: 'person_center_number_infor' },
+                            '0',
+                            React.createElement(
+                                'span',
+                                null,
+                                '\u5143'
+                            )
+                        ),
                         React.createElement(
                             'p',
                             null,
-                            '\u8D2D\u8F66\u6D41\u7A0B'
+                            '\u4F59\u989D'
                         )
                     ),
                     React.createElement(
                         'div',
-                        { className: 'weui-cell__ft' },
-                        '\u8BE6\u7EC6\u4FE1\u606F'
+                        { className: 'person_center_number_right pull-right' },
+                        React.createElement(
+                            'p',
+                            { className: 'person_center_number_infor' },
+                            '0',
+                            React.createElement(
+                                'span',
+                                null,
+                                '\u4EF6'
+                            )
+                        ),
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u5DF2\u8D2D'
+                        )
                     )
-                )
+                ),
+                React.createElement(PersonCenterMiddle, null)
             );
         }
     }]);
 
-    return Activity;
+    return IoIo;
 }(React.Component);
 
 ;
 
-// 活动
+var PersonCenterMiddle = function (_React$Component2) {
+    _inherits(PersonCenterMiddle, _React$Component2);
 
-var Maintenance = function (_React$Component4) {
-    _inherits(Maintenance, _React$Component4);
+    function PersonCenterMiddle(props) {
+        _classCallCheck(this, PersonCenterMiddle);
 
-    function Maintenance() {
-        _classCallCheck(this, Maintenance);
-
-        return _possibleConstructorReturn(this, (Maintenance.__proto__ || Object.getPrototypeOf(Maintenance)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (PersonCenterMiddle.__proto__ || Object.getPrototypeOf(PersonCenterMiddle)).call(this, props));
+        // 初始化一个空对象
     }
 
-    _createClass(Maintenance, [{
+    _createClass(PersonCenterMiddle, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {}
+    }, {
         key: 'render',
         value: function render() {
+            var style = { color: '#fff', marginRight: '5px', display: 'block', padding: '3px 6px' };
             return React.createElement(
                 'div',
-                { className: 'person_maintenance' },
+                { className: 'weui-cells' },
                 React.createElement(
                     'a',
                     { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
                     React.createElement(
                         'div',
+                        { className: 'weui-cell__hd' },
+                        React.createElement(
+                            'span',
+                            { style: style, className: 'icon_style1' },
+                            React.createElement('i', { className: 'fa fa-camera-retro' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
                         { className: 'weui-cell__bd' },
                         React.createElement(
                             'p',
                             null,
-                            '\u53C2\u4E0E\u6D3B\u52A8'
+                            '\u6682\u5B9A\u83DC\u5355\u4E00'
                         )
                     ),
                     React.createElement(
                         'div',
                         { className: 'weui-cell__ft' },
-                        '\u8BE6\u7EC6\u4FE1\u606F'
+                        '\u8BF4\u660E\u6587\u5B57'
                     )
                 ),
                 React.createElement(
                     'a',
-                    { className: 'weui-cell weui-cell_access', href: 'repair_history' },
+                    { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__hd' },
+                        React.createElement(
+                            'span',
+                            { style: style, className: 'icon_style2' },
+                            React.createElement('i', { className: 'fa fa-balance-scale' })
+                        )
+                    ),
                     React.createElement(
                         'div',
                         { className: 'weui-cell__bd' },
                         React.createElement(
                             'p',
                             null,
-                            '\u7EF4\u4FEE\u5386\u53F2'
+                            '\u6682\u5B9A\u83DC\u5355\u4E8C'
+                        )
+                    ),
+                    React.createElement('div', { className: 'weui-cell__ft' })
+                ),
+                React.createElement(
+                    'a',
+                    { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__hd' },
+                        React.createElement(
+                            'span',
+                            { style: style, className: 'icon_style3' },
+                            React.createElement('i', { className: 'fa fa-camera-retro' })
                         )
                     ),
                     React.createElement(
                         'div',
-                        { className: 'weui-cell__ft' },
-                        '\u8BE6\u7EC6\u4FE1\u606F'
-                    )
+                        { className: 'weui-cell__bd' },
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u6682\u5B9A\u83DC\u5355\u4E09'
+                        )
+                    ),
+                    React.createElement('div', { className: 'weui-cell__ft' })
+                ),
+                React.createElement(
+                    'a',
+                    { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__hd' },
+                        React.createElement(
+                            'span',
+                            { style: style, className: 'icon_style4' },
+                            React.createElement('i', { className: 'fa fa-balance-scale' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__bd' },
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u6682\u5B9A\u83DC\u5355\u56DB'
+                        )
+                    ),
+                    React.createElement('div', { className: 'weui-cell__ft' })
                 )
             );
         }
     }]);
 
-    return Maintenance;
+    return PersonCenterMiddle;
 }(React.Component);
 
 ;
 
-// 导航
-
-var Nav = function (_React$Component5) {
-    _inherits(Nav, _React$Component5);
-
-    function Nav() {
-        _classCallCheck(this, Nav);
-
-        return _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).apply(this, arguments));
-    }
-
-    _createClass(Nav, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            $(".nav_public").fadeIn(1000);
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                { className: 'person_nav' },
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'maintenance_detail' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_baoyang.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u4FDD\u517B'
-                        )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'appointment_list' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_weixiu.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u7EF4\u4FEE'
-                        )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'sos' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_jiuyuan.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u6551\u63F4'
-                        )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'my_contract' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_baoxian.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u4FDD\u9669'
-                        )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'my_vip' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_shijia.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u4F1A\u5458\u5361'
-                        )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'my_car' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_mycar.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u6211\u7684\u8F66'
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Nav;
-}(React.Component);
-
-;
-
-// 返回到页面
-ReactDOM.render(React.createElement(Wrap, null), document.getElementById("content"));
+ReactDOM.render(React.createElement(IoIo, null), document.getElementById("loding"));
 
 /***/ })
 /******/ ]);

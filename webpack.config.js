@@ -15,7 +15,10 @@
 
 module.exports = {
     entry: {
-        index: './app/index.jsx'
+        index: './app/index.jsx',
+        login: './app/login.jsx',
+        person_center: './app/person_center.jsx',
+        clothing_chongzhi: './app/clothing_chongzhi.jsx',
     },
     output: {
         path: __dirname,

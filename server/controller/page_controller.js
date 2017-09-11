@@ -104,6 +104,35 @@ exports.register = function(server, options, next) {
             },
         },
 
+        //登录
+        {
+            method: 'GET',
+            path: '/login',
+            handler: function(request, reply) {
+              return reply.view("login");;
+            }
+        },
+
+        //个人中心
+        {
+            method: 'GET',
+            path: '/person_center',
+            handler: function(request, reply) {
+              return reply.view("person_center");;
+            }
+        },
+
+        //充值
+        {
+            method: 'GET',
+            path: '/clothing_chongzhi',
+            handler: function(request, reply) {
+              return reply.view("clothing_chongzhi");;
+            }
+        },
+
+
+
     ]);
 
     next();

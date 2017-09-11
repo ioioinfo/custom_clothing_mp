@@ -1,0 +1,181 @@
+html,body{
+  width: 100%;
+  height: 100%;
+}
+*{
+  padding: 0;
+  margin: 0;
+}
+#loding{
+  height: 100%;
+}
+.loding_wrap{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #3D4A7D;
+  padding: 170px 0 75px;
+  box-sizing: border-box;
+  background: -webkit-linear-gradient(-35deg, #DC6463 0%, #3D4A7D 100%); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(-35deg, #DC6463 0%, #3D4A7D 100%); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(-35deg, #DC6463 0%, #3D4A7D 100%); /* Firefox 3.6 - 15 */
+  background: linear-gradient(-35deg, #DC6463 0%, #3D4A7D 100%); /* 标准的语法（必须放在最后） */
+}
+.loding_com_namewrap{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.loding_com_name{
+  display: inline-block;
+  padding: 9px 25px;
+  min-width: 330px;
+  background: rgba(255,255,255,0.1);
+  box-sizing: border-box;
+  border-radius: 0 0 4px 4px;
+}
+.loding_com_name span{
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+}
+.loding_middle{
+  position: relative;
+  padding: 0 15px;
+  min-width: 290px;
+  max-width: 1140px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.loding_middle_next{
+  display: block;
+  margin: 0 auto;
+  max-width: 330px;
+}
+.login-form-title{
+  margin-bottom: 7px;
+  font-size: 1.75em;
+  color: #FFFFFF;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+.login-form-project{
+  opacity: 0.5;
+}
+.loding_middle_email_wrap,.loding_middle_password_wrap{
+  float: none;
+  width: 100%;
+  position: relative;
+  margin-bottom: 15px;
+}
+.loding_middle_email_input,.loding_middle_password_input{
+  display: block;
+  width: 100%;
+  font-size: 0.9375em;
+  padding: 14px 25px 14px 50px;
+  color: #fff;
+  background: #363641;
+  background: rgba(54,54,65,0.3);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  -webkit-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-ou;
+  outline-style: none;
+}
+.loding_middle_email_input:focus,.loding_middle_password_input:focus{
+  border: 1px solid transparent;
+  background: #363641;
+}
+.loding_middle_email_name{
+  display: inline-block;
+  background: url(../images/loding_accoment.png)no-repeat center center;
+  background-size: 18px 18px;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  margin-top: -9px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  left: 17px;
+
+}
+.loding_middle_password_name{
+  display: inline-block;
+  background: url(../images/loding_password.png)no-repeat center center;
+  background-size: 18px 18px;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  margin-top: -9px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  left: 17px;
+}
+.loding_middle_submit{
+  color: #fff;
+  background: #728CD4;
+  font-size: 1em;
+  line-height: 45px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  height: 45px;
+  border: 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  outline-style: none;
+}
+.loding_middle_submit:hover{
+  background: #8CA6ED;
+}
+#animation{
+-webkit-animation:fadeInDown 1s .2s ease both;
+-moz-animation:fadeInDown 1s .2s ease both;}
+@-webkit-keyframes fadeInDown{
+0%{opacity:0;
+-webkit-transform:translateY(-20px)}
+100%{opacity:1;
+-webkit-transform:translateY(0)}
+}
+@-moz-keyframes fadeInDown{
+0%{opacity:0;
+-moz-transform:translateY(-20px)}
+100%{opacity:1;
+-moz-transform:translateY(0)}
+}
+.error_message,.error_message1{
+  position: absolute;
+  padding: 0 15px;
+  font-size: 0.75em;
+  top: 0;
+  right: 0;
+  color: #fff;
+  background-color: #F77070;
+  border-radius: 0 4px 0 4px;
+  display: none;
+}
+#animation1{
+-webkit-animation:fadeInRightBig 1s .2s ease both;
+-moz-animation:fadeInRightBig 1s .2s ease both;}
+@-webkit-keyframes fadeInRightBig{
+0%{opacity:0;
+-webkit-transform:translateX(2000px)}
+100%{opacity:1;
+-webkit-transform:translateX(0)}
+}
+@-moz-keyframes fadeInRightBig{
+0%{opacity:0;
+-moz-transform:translateX(2000px)}
+100%{opacity:1;
+-moz-transform:translateX(0)}
+}
+.loding_border{
+  border: 1px solid #F77070;
+}
