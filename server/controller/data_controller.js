@@ -25,6 +25,8 @@ var moduel_prefix = sys_option.product_name + '_data';
 exports.register = function(server, options, next) {
     var service_info = sys_option.desc;
     var platform_id = sys_option.platform_id;
+    //短信平台编号
+    var sms_platform_code = "hrbs";
     
     var api = server.plugins.services["4s_api"];
     var wx_api = server.plugins.services.wx_api;
@@ -160,46 +162,91 @@ exports.register = function(server, options, next) {
             },
         },
         
-        //保存预约
+        //发送短信验证码
         {
             method: 'POST',
-            path: '/save_appointment',
+            path: '/send_sms',
             handler: function(request, reply) {
+                //手机号
+                var mobile = request.payload.mobile;
+                if (!mobile) {
+                    return reply({"success":false,"message":"param mobile is null"});
+                }
+                
+                var url = "http://139.196.148.40:11111/api/mobile_sms?platform_code="+sms_platform_code+"&send_type=ali_sms&mobile="+mobile;
+                uu_request.do_get_method(url,function(err,content) {
+                    if (err) {
+                        return reply({"success":false,"message":"error"});
+                    }
+                    
+                    if (!content.success) {
+                        return reply({"success":false,"message":content.message});
+                    }
+                    
+                    return reply({"success":true,"message":"ok"});
+                });
+            }
+        },
+        
+        //绑定会员
+        {
+            method: 'POST',
+            path: '/bind_vip',
+            handler: function(request, reply) {
+                //获取微信id
                 page_get_openid(request,function(open_id) {
-
                     if (!open_id) {
                         return reply({"success":false,"message":"获取用户open_id失败"});
                     }
-                    var mendian = request.payload.mendian;
-                    var customer_name = request.payload.customer_name;
                     var mobile = request.payload.mobile;
-                    var sex = request.payload.sex;
-                    var chexi_id = request.payload.chexi_id;
-                    var chexing_id = request.payload.chexing_id;
-                    var appointment_date = request.payload.appointment_date;
-                    if (!customer_name||!mobile||!sex||!chexi_id||!chexing_id||!appointment_date
-                    || !mendian || !open_id) {
-                        return reply({"success":false,"message":"params err"});
+                    if (!mobile) {
+                        return reply({"success":false,"message":"param mobile is null"});
                     }
-                    var data = {
-                        "open_id":open_id,
-                        "mendian":mendian,
-                        "customer_name":customer_name,
-                        "mobile":mobile,
-                        "sex":sex,
-                        "chexi_id":chexi_id,
-                        "chexing_id":chexing_id,
-                        "appointment_date":appointment_date
-                    };
-
-                    api.save_appointment(data,function(err,rows){
-                        if (!err) {
-                            return reply({"success":true,"message":rows.message});
-                        }else {
-                            return reply({"success":false,"message":rows.message});
+                    var username = request.payload.mobile;
+                    var person_name = request.payload.mobile;
+                    
+                    //验证码
+                    var yanzhengma = request.payload.yanzhengma;
+                    if (!yanzhengma) {
+                        return reply({"success":false,"message":"param yanzhengma is null"});
+                    }
+                    
+                    //数据来源
+                    var data_source = "微信会员注册";
+                    
+                    //判断验证码
+                    var url = "http://139.196.148.40:11111/api/dy_login";
+                    var data = {"platform_code":sms_platform_code,"mobile":mobile,"password":yanzhengma};
+                    
+                    uu_request.do_post_method(url,data,function(err,content) {
+                        if (err) {
+                            return reply({"success":false,"message":"error"});
                         }
+                        
+                        if (!content.success) {
+                            return reply({"success":false,"message":content.message});
+                        }
+                        
+                        //保存会员信息
+                        person.save_person(username,person_name,mobile,data_source,function(err,content) {
+                            if (err) {
+                                return reply({"success":false,"message":"save person error"});
+                            }
+                            var person_id = content.person_id;
+        
+                            if (!person_id) {
+                                return reply({"success":false,"message":"注册;失败。"});
+                            }
+        
+                            //绑定客户微信信息
+                            person.bind_person_wx(person_id,platform_id,openid,function(err,content) {
+        
+                            });
+        
+                            //更新进销存会员信息
+                            
+                        });
                     });
-
                 });
             },
         },
