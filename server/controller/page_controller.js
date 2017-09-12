@@ -159,6 +159,16 @@ exports.register = function(server, options, next) {
             }
         },
 
+        //物流进度
+        {
+            method: 'GET',
+            path: '/logistics',
+            handler: function(request, reply) {
+              return reply.view("logistics");
+            }
+        },
+
+
 
     ]);
 

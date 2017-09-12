@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>物流进度</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/weui.css">
+    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="logistics">
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <script type="text/javascript">
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      var proint = [{x : 50 , y : 50}];
+      canvas.width = $(window).width();
+      canvas.height = $(window).height();
+      var r = 10;
+      function drawStart(){
+        ctx.save();
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 6;
+        ctx.font =  '20px Arial';
+        for (var i = 0; i < 4; i++) {
+          ctx.beginPath();
+          ctx.arc(canvas.width / 2 , i * canvas.height / 4 + 30 , r , 0 , 2 * Math.PI);
+          if(i < 3){
+            ctx.moveTo(canvas.width / 2 , i * canvas.height / 4 + 30 + r + ctx.lineWidth);
+            ctx.lineTo(canvas.width / 2 , (i + 1)* canvas.height / 4 + 30 - r - ctx.lineWidth);
+          }
+          if(i==0){
+              ctx.fillText('开始制作', canvas.width / 2 + 15, i * canvas.height / 4 + 50);
+              ctx.fillText('2017 - 9 - 11', canvas.width / 2 - 150, i * canvas.height / 4 + 50);
+
+          }else if (i == 1) {
+            ctx.fillText('制作完成', canvas.width / 2 + 15, i * canvas.height / 4 + 50);
+            ctx.fillText('2017 - 9 - 11', canvas.width / 2 - 150, i * canvas.height / 4 + 50);
+          }else if (i == 2) {
+            ctx.fillText('到店', canvas.width / 2 + 15, i * canvas.height / 4 + 50);
+            ctx.fillText('2017 - 9 - 11', canvas.width / 2 - 150, i * canvas.height / 4 + 50);
+          }else if (i == 3) {
+            ctx.fillText('已签收', canvas.width / 2 + 15, i * canvas.height / 4 + 50);
+            ctx.fillText('2017 - 9 - 11', canvas.width / 2 - 150, i * canvas.height / 4 + 50);
+          }
+          ctx.closePath();
+          ctx.stroke();
+        }
+
+      }
+      window.onload= function(){
+        drawStart();
+      }
+    </script>
+  </body>
+</html>
