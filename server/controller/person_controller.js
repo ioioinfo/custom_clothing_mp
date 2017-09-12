@@ -175,7 +175,7 @@ exports.register = function(server, options, next) {
                     return reply({"success":false,"message":"param mobile is null"});
                 }
                 
-                var url = "http://139.196.148.40:11111/api/mobile_sms?platform_code=hrbs&send_type=ali_sms&mobile="+mobile;
+                var url = "http://139.196.148.40:11111/api/mobile_sms?platform_code="+sms_platform_code+"&send_type=ali_sms&mobile="+mobile;
                 uu_request.do_get_method(url,function(err,content) {
                     if (err) {
                         return reply({"success":false,"message":"error"});
@@ -189,84 +189,68 @@ exports.register = function(server, options, next) {
                 });
             }
         },
-
-        //会员卡激活申请
+        
+        //绑定会员
         {
             method: 'POST',
-            path: '/activate_card_apply',
+            path: '/bind_vip',
             handler: function(request, reply) {
-                var openid = request.payload.openid;
-                if (!openid) {
-                    return reply({"success":false,"message":"param openid is null"});
-                }
-
-                var username = request.payload.username;
-                var person_name = request.payload.person_name;
-                var mobile = request.payload.mobile;
-                var id_card = request.payload.id_card;
-                var vehicle_id = request.payload.vehicle_id;
-                var yanzhengma = request.payload.yanzhengma;
-                
-                //数据来源
-                var data_source = "会员卡激活";
-
-                if (!username) {
-                    return reply({"success":false,"message":"param username is null"});
-                }
-                if (!person_name) {
-                    return reply({"success":false,"message":"param person_name is null"});
-                }
-                if (!mobile) {
-                    return reply({"success":false,"message":"param mobile is null"});
-                }
-                if (!id_card) {
-                    return reply({"success":false,"message":"param id_card is null"});
-                }
-                if (!vehicle_id) {
-                    return reply({"success":false,"message":"param vehicle_id is null"});
-                }
-                if (!yanzhengma) {
-                    return reply({"success":false,"message":"param yanzhengma is null"});
-                }
-                
-                //判断验证码
-                var url = "http://139.196.148.40:11111/api/dy_login";
-                var data = {"platform_code":"hrbs","mobile":mobile,"password":yanzhengma};
-                
-                uu_request.do_post_method(url,data,function(err,content) {
-                    if (err) {
-                        return reply({"success":false,"message":"error"});
+                //获取微信id
+                page_get_openid(request,function(open_id) {
+                    if (!open_id) {
+                        return reply({"success":false,"message":"获取用户open_id失败"});
+                    }
+                    var mobile = request.payload.mobile;
+                    if (!mobile) {
+                        return reply({"success":false,"message":"param mobile is null"});
+                    }
+                    var username = request.payload.mobile;
+                    var person_name = request.payload.mobile;
+                    
+                    //验证码
+                    var yanzhengma = request.payload.yanzhengma;
+                    if (!yanzhengma) {
+                        return reply({"success":false,"message":"param yanzhengma is null"});
                     }
                     
-                    if (!content.success) {
-                        return reply({"success":false,"message":content.message});
-                    }
+                    //数据来源
+                    var data_source = "微信会员注册";
                     
-                    //保存会员信息
-                    person.save_person(username,person_name,mobile,data_source,function(err,content) {
+                    //判断验证码
+                    var url = "http://139.196.148.40:11111/api/dy_login";
+                    var data = {"platform_code":sms_platform_code,"mobile":mobile,"password":yanzhengma};
+                    
+                    uu_request.do_post_method(url,data,function(err,content) {
                         if (err) {
-                            return reply({"success":false,"message":"save person error"});
+                            return reply({"success":false,"message":"error"});
                         }
-                        var person_id = content.person_id;
-    
-                        if (!person_id) {
-                            return reply({"success":false,"message":"申请失败。"});
+                        
+                        if (!content.success) {
+                            return reply({"success":false,"message":content.message});
                         }
-    
-                        //绑定客户微信信息
-                        person.bind_person_wx(person_id,platform_id,openid,function(err,content) {
-    
-                        });
-    
-                        //保存会员卡激活申请
-                        var data = {"name":person_name,"mobile":mobile,"openid":openid
-                        ,"id_card":id_card,"vehicle_id":vehicle_id}
-                        api.update_name_and_mobile({"apply":JSON.stringify(data)},function(err,content) {
-                            return reply({"success":true,"message":"ok"});
+                        
+                        //保存会员信息
+                        person.save_person(username,person_name,mobile,data_source,function(err,content) {
+                            if (err) {
+                                return reply({"success":false,"message":"save person error"});
+                            }
+                            var person_id = content.person_id;
+        
+                            if (!person_id) {
+                                return reply({"success":false,"message":"注册;失败。"});
+                            }
+        
+                            //绑定客户微信信息
+                            person.bind_person_wx(person_id,platform_id,openid,function(err,content) {
+        
+                            });
+        
+                            //更新进销存会员信息
+                            
                         });
                     });
                 });
-            }
+            },
         },
 
     ]);
