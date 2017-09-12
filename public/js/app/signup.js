@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 186);
+/******/ 	return __webpack_require__(__webpack_require__.s = 189);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22385,7 +22385,10 @@ module.exports = traverseAllChildren;
 /* 183 */,
 /* 184 */,
 /* 185 */,
-/* 186 */
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22401,6 +22404,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(82);
+var time;
+function time(num) {
+  var t = setInterval(function () {
+    num--;
+    $(".timenum").html(Math.ceil(num));
+    if (num <= 0) {
+      clearInterval(t);
+      $(".timenum").html('获取验证码');
+    }
+  }, 1000);
+}
 
 var IoIo = function (_React$Component) {
   _inherits(IoIo, _React$Component);
@@ -22408,139 +22422,159 @@ var IoIo = function (_React$Component) {
   function IoIo(props) {
     _classCallCheck(this, IoIo);
 
-    // 初始化一个空对象
     var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
 
-    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.handleClick = _this.handleClick.bind(_this);
+    // 初始化一个空对象
     _this.state = {};
     return _this;
   }
 
   _createClass(IoIo, [{
     key: 'componentDidMount',
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      $('#phone').focus();
+      $("[name='checkbox']").prop("checked", true);
+      var windowHeight = $(window).height();
+      var signupTopHeight = $('.signup_top').height();
+      var marginHeight = windowHeight - signupTopHeight - 46;
+      $('.signup_button').css('margin-top', marginHeight);
+    }
   }, {
-    key: 'handleSubmit',
-    value: function handleSubmit(e) {
-      var data_email = $('#data_email').val();
-      var data_password = $('#data_password').val();
-      if (!data_email) {
-        $('#data_email').addClass('loding_border');
-        $('.error_message').css('display', 'block');
-        $('.error_message').attr('id', 'animation1');
-        return;
-      } else if (!data_password) {
-
-        $('#data_email').removeClass('loding_border');
-        $('.error_message').css('display', 'none');
-        $('.error_message').removeAttr('id', 'animation1');
-
-        $('#data_password').addClass('loding_border');
-        $('.error_message1').css('display', 'block');
-        $('.error_message1').attr('id', 'animation1');
-        return;
-      }
-
-      if ($('#loadingToast').css('display') != 'none') return;
-      $('#loadingToast').fadeIn(100);
-      setTimeout(function () {
-        $('#loadingToast').fadeOut(100);
-      }, 2000);
-
-      $('#data_password').removeClass('loding_border');
-      $('.error_message1').css('display', 'none');
-      $('.error_message1').removeAttr('id', 'animation1');
+    key: 'handleClick',
+    value: function handleClick(e) {
+      time(60);
     }
   }, {
     key: 'render',
     value: function render() {
-      var style = { display: 'none' };
       return React.createElement(
         'div',
-        { className: 'loding_wrap' },
+        { className: 'signup_wrap' },
         React.createElement(
           'div',
-          { className: 'loding_com_namewrap', id: 'animation' },
+          { className: 'signup_top' },
           React.createElement(
             'div',
-            { className: 'loding_com_name' },
+            { className: 'page__hd signup_title_style' },
+            React.createElement(
+              'h1',
+              { className: 'page__title', id: 'animation' },
+              '\u6B22\u8FCE\u6765\u5230\u79C1\u4EBA\u8BA2\u5236'
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'weui-cells' },
+            React.createElement(
+              'div',
+              { className: 'weui-cell weui-cell_access' },
+              React.createElement(
+                'div',
+                { className: 'weui-cell__bd' },
+                React.createElement(
+                  'p',
+                  { className: 'signup_word_style' },
+                  '\u6CE8\u518C'
+                )
+              ),
+              React.createElement(
+                'a',
+                { className: 'weui-cell__ft account_style', href: 'login' },
+                '\u6709\u5E10\u53F7\uFF1F\u53BB\u767B\u5F55'
+              )
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'weui-cells weui-cells_form' },
+            React.createElement(
+              'div',
+              { className: 'weui-cell weui-cell_vcode' },
+              React.createElement(
+                'div',
+                { className: 'weui-cell__hd' },
+                React.createElement(
+                  'label',
+                  { className: 'weui-label' },
+                  '\u624B\u673A\u53F7'
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__bd' },
+                React.createElement('input', { className: 'weui-input', type: 'tel', placeholder: '\u8BF7\u8F93\u5165\u624B\u673A\u53F7', id: 'phone' })
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__ft' },
+                React.createElement(
+                  'button',
+                  { className: 'weui-vcode-btn  timenum', onClick: this.handleClick },
+                  '\u83B7\u53D6\u9A8C\u8BC1\u7801'
+                )
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'weui-cell' },
+              React.createElement(
+                'div',
+                { className: 'weui-cell__hd' },
+                React.createElement(
+                  'label',
+                  { className: 'weui-label' },
+                  '\u5BC6\u7801'
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__bd' },
+                React.createElement('input', { className: 'weui-input', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' })
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'weui-cell yanzhengma' },
+              React.createElement(
+                'div',
+                { className: 'weui-cell__hd' },
+                React.createElement(
+                  'label',
+                  { className: 'weui-label' },
+                  '\u9A8C\u8BC1\u7801'
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__bd' },
+                React.createElement('input', { className: 'weui-input', type: 'number', pattern: '[0-9]*', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801' })
+              )
+            )
+          ),
+          React.createElement(
+            'label',
+            { className: 'weui-agree agree_style' },
+            React.createElement('input', { id: 'weuiAgree', type: 'checkbox', name: 'checkbox', className: 'weui-agree__checkbox' }),
             React.createElement(
               'span',
-              null,
-              '\u4F51\u4F51\u79D1\u6280'
+              { className: 'weui-agree__text' },
+              '\u9009\u62E9\u6CE8\u518C\u4EE3\u8868\u60A8\u5DF2\u7ECF\u540C\u610F',
+              React.createElement(
+                'a',
+                { href: '#' },
+                '\u300A\u76F8\u5173\u6761\u6B3E\u300B'
+              )
             )
           )
         ),
         React.createElement(
           'div',
-          { className: 'loding_middle' },
-          React.createElement(
-            'div',
-            { className: 'loding_middle_next' },
-            React.createElement(
-              'div',
-              { className: 'login-form-title' },
-              React.createElement(
-                'span',
-                { className: 'login-form-project' },
-                '\u79C1\u4EBA\u8BA2\u5236'
-              )
-            ),
-            React.createElement(
-              'div',
-              { className: 'loding_middle_email_wrap' },
-              React.createElement('input', { className: 'loding_middle_email_input', placeholder: '\u624B\u673A\u53F7', type: 'email', name: 'data[email]', id: 'data_email' }),
-              React.createElement('label', { className: 'loding_middle_email_name' }),
-              React.createElement(
-                'span',
-                { className: 'error_message' },
-                '\u8BF7\u91CD\u65B0\u8F93\u5165\u7528\u6237\u540D',
-                React.createElement('i', { className: 'ico error-buble' })
-              )
-            ),
-            React.createElement(
-              'div',
-              { className: 'loding_middle_password_wrap' },
-              React.createElement('input', { className: 'loding_middle_password_input', placeholder: 'Password', type: '\u5BC6\u7801', name: 'data[password]', id: 'data_password' }),
-              React.createElement('label', { className: 'loding_middle_password_name' }),
-              React.createElement(
-                'span',
-                { className: 'error_message1' },
-                '\u8BF7\u91CD\u65B0\u8F93\u5165\u5BC6\u7801',
-                React.createElement('i', { className: 'ico error-buble' })
-              )
-            ),
-            React.createElement('input', { type: 'submit', name: 'commit', value: '\u767B \u5F55', className: 'loding_middle_submit', onClick: this.handleSubmit })
-          )
-        ),
-        React.createElement(
-          'div',
-          { id: 'loadingToast', style: style },
-          React.createElement('div', { className: 'weui-mask_transparent' }),
-          React.createElement(
-            'div',
-            { className: 'weui-toast' },
-            React.createElement('i', { className: 'weui-loading weui-icon_toast' }),
-            React.createElement(
-              'p',
-              { className: 'weui-toast__content' },
-              '\u767B\u5F55\u52A0\u8F7D\u4E2D'
-            )
-          )
-        ),
-        React.createElement(
-          'p',
-          { className: 'login_bottom' },
+          { className: 'signup_button' },
           React.createElement(
             'a',
-            { href: 'signup' },
+            { className: 'weui-btn weui-btn_primary', href: 'javascript:', id: 'showTooltips' },
             '\u6CE8\u518C'
-          ),
-          '|',
-          React.createElement(
-            'a',
-            null,
-            '\u5FD8\u8BB0\u5BC6\u7801\uFF1F'
           )
         )
       );
@@ -22552,7 +22586,7 @@ var IoIo = function (_React$Component) {
 
 ;
 
-ReactDOM.render(React.createElement(IoIo, null), document.getElementById("loding"));
+ReactDOM.render(React.createElement(IoIo, null), document.getElementById("signup"));
 
 /***/ })
 /******/ ]);

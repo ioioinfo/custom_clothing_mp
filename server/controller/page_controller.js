@@ -132,6 +132,24 @@ exports.register = function(server, options, next) {
         },
 
 
+        //消费信息
+        {
+            method: 'GET',
+            path: '/record',
+            handler: function(request, reply) {
+              return reply.view("record");;
+            }
+        },
+
+        //注册
+        {
+            method: 'GET',
+            path: '/signup',
+            handler: function(request, reply) {
+              return reply.view("signup");
+            }
+        },
+
 
     ]);
 

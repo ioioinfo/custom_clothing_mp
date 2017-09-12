@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 186);
+/******/ 	return __webpack_require__(__webpack_require__.s = 188);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22385,7 +22385,9 @@ module.exports = traverseAllChildren;
 /* 183 */,
 /* 184 */,
 /* 185 */,
-/* 186 */
+/* 186 */,
+/* 187 */,
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22402,157 +22404,192 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(82);
 
-var IoIo = function (_React$Component) {
-  _inherits(IoIo, _React$Component);
+// 框架
 
-  function IoIo(props) {
-    _classCallCheck(this, IoIo);
+var Wrap = function (_React$Component) {
+  _inherits(Wrap, _React$Component);
 
-    // 初始化一个空对象
-    var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
+  function Wrap(props) {
+    _classCallCheck(this, Wrap);
 
-    _this.handleSubmit = _this.handleSubmit.bind(_this);
-    _this.state = {};
+    var _this = _possibleConstructorReturn(this, (Wrap.__proto__ || Object.getPrototypeOf(Wrap)).call(this, props));
+
+    _this.state = { vip_item: {}, record_items: [] };
     return _this;
   }
 
-  _createClass(IoIo, [{
+  _createClass(Wrap, [{
     key: 'componentDidMount',
-    value: function componentDidMount() {}
-  }, {
-    key: 'handleSubmit',
-    value: function handleSubmit(e) {
-      var data_email = $('#data_email').val();
-      var data_password = $('#data_password').val();
-      if (!data_email) {
-        $('#data_email').addClass('loding_border');
-        $('.error_message').css('display', 'block');
-        $('.error_message').attr('id', 'animation1');
-        return;
-      } else if (!data_password) {
+    value: function componentDidMount() {
+      $.ajax({
+        url: "/get_member_info",
+        dataType: 'json',
+        type: 'GET',
+        data: { "card_id": card_id },
+        success: function (data) {
+          if (data.rows.length > 0) {
+            this.setState({ vip_item: data.rows[0] });
+          } else {
+            $('.ammount').html('暂无金额');
+          }
+        }.bind(this),
+        error: function (xhr, status, err) {}.bind(this)
+      });
 
-        $('#data_email').removeClass('loding_border');
-        $('.error_message').css('display', 'none');
-        $('.error_message').removeAttr('id', 'animation1');
+      $.ajax({
+        url: "/member_consume_history",
+        dataType: 'json',
+        type: 'GET',
+        data: { "card_id": card_id },
+        success: function (data) {
+          var record_items = this.state.record_items;
+          for (var i = 0; i < data.cost.length; i++) {
+            var cost = data.cost[i];
+            cost.type = 1;
+            record_items.push(cost);
+          };
+          for (var i = 0; i < data.income.length; i++) {
+            var income = data.income[i];
+            income.type = 2;
+            record_items.push(income);
+          }
 
-        $('#data_password').addClass('loding_border');
-        $('.error_message1').css('display', 'block');
-        $('.error_message1').attr('id', 'animation1');
-        return;
-      }
+          function compare(a, b) {
+            if (a.created_at < b.created_at) {
+              return -1;
+            }
+            if (a.created_at > b.created_at) {
+              return 1;
+            }
+            return 0;
+          }
 
-      if ($('#loadingToast').css('display') != 'none') return;
-      $('#loadingToast').fadeIn(100);
-      setTimeout(function () {
-        $('#loadingToast').fadeOut(100);
-      }, 2000);
+          record_items.sort(compare);
 
-      $('#data_password').removeClass('loding_border');
-      $('.error_message1').css('display', 'none');
-      $('.error_message1').removeAttr('id', 'animation1');
+          this.setState({ record_items: record_items });
+        }.bind(this),
+        error: function (xhr, status, err) {}.bind(this)
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      var style = { display: 'none' };
+      var record_items = this.state.record_items;
+
+      var list = [];
+
+      record_items.map(function (item) {
+        var type = item.type;
+        if (type == 1) {
+          list.push(React.createElement(
+            'div',
+            { className: 'weui-cells', key: item.id },
+            React.createElement(
+              'div',
+              { className: 'weui-cell' },
+              React.createElement(
+                'div',
+                { className: 'weui-cell__hd' },
+                '+'
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__bd record_name' },
+                React.createElement(
+                  'p',
+                  null,
+                  '\u6D88\u8D39'
+                ),
+                React.createElement(
+                  'p',
+                  { className: 'record_time' },
+                  item.created_at
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__ft' },
+                '- ',
+                item.jine,
+                '\u5143'
+              )
+            )
+          ));
+        } else {
+          list.push(React.createElement(
+            'div',
+            { className: 'weui-cells', key: item.id },
+            React.createElement(
+              'div',
+              { className: 'weui-cell' },
+              React.createElement(
+                'div',
+                { className: 'weui-cell__hd' },
+                '+'
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__bd record_name' },
+                React.createElement(
+                  'p',
+                  null,
+                  '\u5145\u503C'
+                ),
+                React.createElement(
+                  'p',
+                  { className: 'record_time' },
+                  item.created_at
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__ft' },
+                '+ ',
+                item.jine,
+                '\u5143'
+              )
+            )
+          ));
+        }
+      });
+
       return React.createElement(
         'div',
-        { className: 'loding_wrap' },
+        { className: 'record' },
         React.createElement(
           'div',
-          { className: 'loding_com_namewrap', id: 'animation' },
+          { className: 'page__hd' },
           React.createElement(
-            'div',
-            { className: 'loding_com_name' },
+            'h1',
+            { className: 'page__title ammount' },
             React.createElement(
               'span',
-              null,
-              '\u4F51\u4F51\u79D1\u6280'
-            )
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'loding_middle' },
-          React.createElement(
-            'div',
-            { className: 'loding_middle_next' },
-            React.createElement(
-              'div',
-              { className: 'login-form-title' },
-              React.createElement(
-                'span',
-                { className: 'login-form-project' },
-                '\u79C1\u4EBA\u8BA2\u5236'
-              )
+              { className: 'money_style' },
+              '\uFFE5'
             ),
-            React.createElement(
-              'div',
-              { className: 'loding_middle_email_wrap' },
-              React.createElement('input', { className: 'loding_middle_email_input', placeholder: '\u624B\u673A\u53F7', type: 'email', name: 'data[email]', id: 'data_email' }),
-              React.createElement('label', { className: 'loding_middle_email_name' }),
-              React.createElement(
-                'span',
-                { className: 'error_message' },
-                '\u8BF7\u91CD\u65B0\u8F93\u5165\u7528\u6237\u540D',
-                React.createElement('i', { className: 'ico error-buble' })
-              )
-            ),
-            React.createElement(
-              'div',
-              { className: 'loding_middle_password_wrap' },
-              React.createElement('input', { className: 'loding_middle_password_input', placeholder: 'Password', type: '\u5BC6\u7801', name: 'data[password]', id: 'data_password' }),
-              React.createElement('label', { className: 'loding_middle_password_name' }),
-              React.createElement(
-                'span',
-                { className: 'error_message1' },
-                '\u8BF7\u91CD\u65B0\u8F93\u5165\u5BC6\u7801',
-                React.createElement('i', { className: 'ico error-buble' })
-              )
-            ),
-            React.createElement('input', { type: 'submit', name: 'commit', value: '\u767B \u5F55', className: 'loding_middle_submit', onClick: this.handleSubmit })
-          )
-        ),
-        React.createElement(
-          'div',
-          { id: 'loadingToast', style: style },
-          React.createElement('div', { className: 'weui-mask_transparent' }),
-          React.createElement(
-            'div',
-            { className: 'weui-toast' },
-            React.createElement('i', { className: 'weui-loading weui-icon_toast' }),
-            React.createElement(
-              'p',
-              { className: 'weui-toast__content' },
-              '\u767B\u5F55\u52A0\u8F7D\u4E2D'
-            )
-          )
-        ),
-        React.createElement(
-          'p',
-          { className: 'login_bottom' },
-          React.createElement(
-            'a',
-            { href: 'signup' },
-            '\u6CE8\u518C'
+            ' 100'
           ),
-          '|',
           React.createElement(
-            'a',
-            null,
-            '\u5FD8\u8BB0\u5BC6\u7801\uFF1F'
+            'p',
+            { className: 'page__desc' },
+            '\u4F59\u989D'
           )
+        ),
+        React.createElement(
+          'div',
+          { className: 'record_list' },
+          list
         )
       );
     }
   }]);
 
-  return IoIo;
+  return Wrap;
 }(React.Component);
+// 返回到页面
 
-;
 
-ReactDOM.render(React.createElement(IoIo, null), document.getElementById("loding"));
+ReactDOM.render(React.createElement(Wrap, null), document.getElementById("content"));
 
 /***/ })
 /******/ ]);

@@ -179,3 +179,15 @@ html,body{
 .loding_border{
   border: 1px solid #F77070;
 }
+.login_bottom{
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+}
+.login_bottom a{
+  margin: 0 17px;
+  color: #fff;
+}

@@ -57,7 +57,7 @@ class IoIo extends React.Component {
           <div className="loding_middle">
             <div className="loding_middle_next">
               <div className="login-form-title">
-                <span className="login-form-project">Admin</span>
+                <span className="login-form-project">私人订制</span>
               </div>
 
               <div className="loding_middle_email_wrap">
@@ -83,6 +83,8 @@ class IoIo extends React.Component {
                   <p className="weui-toast__content">登录加载中</p>
               </div>
           </div>
+
+          <p className="login_bottom"><a href="signup">注册</a>|<a>忘记密码？</a></p>
         </div>
       );
     }

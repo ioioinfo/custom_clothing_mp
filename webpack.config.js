@@ -19,6 +19,8 @@ module.exports = {
         login: './app/login.jsx',
         person_center: './app/person_center.jsx',
         clothing_chongzhi: './app/clothing_chongzhi.jsx',
+        record: './app/record.jsx',
+        signup: './app/signup.jsx',
     },
     output: {
         path: __dirname,
