@@ -150,6 +150,15 @@ exports.register = function(server, options, next) {
             }
         },
 
+        //优惠券
+        {
+            method: 'GET',
+            path: '/coupon',
+            handler: function(request, reply) {
+              return reply.view("coupon");
+            }
+        },
+
 
     ]);
 

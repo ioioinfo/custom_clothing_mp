@@ -21,6 +21,7 @@ module.exports = {
         clothing_chongzhi: './app/clothing_chongzhi.jsx',
         record: './app/record.jsx',
         signup: './app/signup.jsx',
+        coupon: './app/coupon.jsx',
     },
     output: {
         path: __dirname,
