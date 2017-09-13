@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 190);
+/******/ 	return __webpack_require__(__webpack_require__.s = 189);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22388,8 +22388,7 @@ module.exports = traverseAllChildren;
 /* 186 */,
 /* 187 */,
 /* 188 */,
-/* 189 */,
-/* 190 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22461,7 +22460,7 @@ var IoIo = function (_React$Component) {
             React.createElement(
               'h1',
               { className: 'page__title', id: 'animation' },
-              '\u6B22\u8FCE\u6765\u5230\u79C1\u4EBA\u8BA2\u5236'
+              '\u6B22\u8FCE\u6765\u5230\u79C1\u4EBA\u8BA2\u8D27'
             )
           ),
           React.createElement(

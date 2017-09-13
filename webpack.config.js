@@ -18,10 +18,9 @@ module.exports = {
         index: './app/index.jsx',
         login: './app/login.jsx',
         person_center: './app/person_center.jsx',
-        clothing_chongzhi: './app/clothing_chongzhi.jsx',
-        record: './app/record.jsx',
+        project_list: './app/project_list.jsx',
         signup: './app/signup.jsx',
-        coupon: './app/coupon.jsx',
+        project_sort: './app/project_sort.jsx',
     },
     output: {
         path: __dirname,

@@ -122,22 +122,12 @@ exports.register = function(server, options, next) {
             }
         },
 
-        //充值
+        //商品列表
         {
             method: 'GET',
-            path: '/clothing_chongzhi',
+            path: '/project_list',
             handler: function(request, reply) {
-              return reply.view("clothing_chongzhi");;
-            }
-        },
-
-
-        //消费信息
-        {
-            method: 'GET',
-            path: '/record',
-            handler: function(request, reply) {
-              return reply.view("record");;
+              return reply.view("project_list");;
             }
         },
 
@@ -150,24 +140,14 @@ exports.register = function(server, options, next) {
             }
         },
 
-        //优惠券
+        //商品分类
         {
             method: 'GET',
-            path: '/coupon',
+            path: '/project_sort',
             handler: function(request, reply) {
-              return reply.view("coupon");
+              return reply.view("project_sort");;
             }
         },
-
-        //物流进度
-        {
-            method: 'GET',
-            path: '/logistics',
-            handler: function(request, reply) {
-              return reply.view("logistics");
-            }
-        },
-
 
 
     ]);

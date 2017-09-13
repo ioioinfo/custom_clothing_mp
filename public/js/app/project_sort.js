@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 189);
+/******/ 	return __webpack_require__(__webpack_require__.s = 188);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22387,8 +22387,7 @@ module.exports = traverseAllChildren;
 /* 185 */,
 /* 186 */,
 /* 187 */,
-/* 188 */,
-/* 189 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22405,192 +22404,359 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(82);
 
-// 框架
+var IoIo = function (_React$Component) {
+  _inherits(IoIo, _React$Component);
 
-var Wrap = function (_React$Component) {
-  _inherits(Wrap, _React$Component);
+  function IoIo(props) {
+    _classCallCheck(this, IoIo);
 
-  function Wrap(props) {
-    _classCallCheck(this, Wrap);
+    // 初始化一个空对象
+    var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
 
-    var _this = _possibleConstructorReturn(this, (Wrap.__proto__ || Object.getPrototypeOf(Wrap)).call(this, props));
-
-    _this.state = { vip_item: {}, record_items: [] };
+    _this.state = {};
     return _this;
   }
 
-  _createClass(Wrap, [{
+  _createClass(IoIo, [{
     key: 'componentDidMount',
-    value: function componentDidMount() {
-      $.ajax({
-        url: "/get_member_info",
-        dataType: 'json',
-        type: 'GET',
-        data: { "card_id": card_id },
-        success: function (data) {
-          if (data.rows.length > 0) {
-            this.setState({ vip_item: data.rows[0] });
-          } else {
-            $('.ammount').html('暂无金额');
-          }
-        }.bind(this),
-        error: function (xhr, status, err) {}.bind(this)
-      });
-
-      $.ajax({
-        url: "/member_consume_history",
-        dataType: 'json',
-        type: 'GET',
-        data: { "card_id": card_id },
-        success: function (data) {
-          var record_items = this.state.record_items;
-          for (var i = 0; i < data.cost.length; i++) {
-            var cost = data.cost[i];
-            cost.type = 1;
-            record_items.push(cost);
-          };
-          for (var i = 0; i < data.income.length; i++) {
-            var income = data.income[i];
-            income.type = 2;
-            record_items.push(income);
-          }
-
-          function compare(a, b) {
-            if (a.created_at < b.created_at) {
-              return -1;
-            }
-            if (a.created_at > b.created_at) {
-              return 1;
-            }
-            return 0;
-          }
-
-          record_items.sort(compare);
-
-          this.setState({ record_items: record_items });
-        }.bind(this),
-        error: function (xhr, status, err) {}.bind(this)
-      });
-    }
+    value: function componentDidMount() {}
   }, {
     key: 'render',
     value: function render() {
-      var record_items = this.state.record_items;
-
-      var list = [];
-
-      record_items.map(function (item) {
-        var type = item.type;
-        if (type == 1) {
-          list.push(React.createElement(
-            'div',
-            { className: 'weui-cells', key: item.id },
-            React.createElement(
-              'div',
-              { className: 'weui-cell' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                '+'
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd record_name' },
-                React.createElement(
-                  'p',
-                  null,
-                  '\u6D88\u8D39'
-                ),
-                React.createElement(
-                  'p',
-                  { className: 'record_time' },
-                  item.created_at
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__ft' },
-                '- ',
-                item.jine,
-                '\u5143'
-              )
-            )
-          ));
-        } else {
-          list.push(React.createElement(
-            'div',
-            { className: 'weui-cells', key: item.id },
-            React.createElement(
-              'div',
-              { className: 'weui-cell' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                '+'
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd record_name' },
-                React.createElement(
-                  'p',
-                  null,
-                  '\u5145\u503C'
-                ),
-                React.createElement(
-                  'p',
-                  { className: 'record_time' },
-                  item.created_at
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__ft' },
-                '+ ',
-                item.jine,
-                '\u5143'
-              )
-            )
-          ));
-        }
-      });
-
       return React.createElement(
         'div',
-        { className: 'record' },
+        { className: 'project_list_wrap' },
+        React.createElement(Projectsearch, null),
+        React.createElement(ProjectBottom, null)
+      );
+    }
+  }]);
+
+  return IoIo;
+}(React.Component);
+
+;
+
+var Projectsearch = function (_React$Component2) {
+  _inherits(Projectsearch, _React$Component2);
+
+  function Projectsearch(props) {
+    _classCallCheck(this, Projectsearch);
+
+    // 初始化一个空对象
+    var _this2 = _possibleConstructorReturn(this, (Projectsearch.__proto__ || Object.getPrototypeOf(Projectsearch)).call(this, props));
+
+    _this2.state = {};
+    return _this2;
+  }
+
+  _createClass(Projectsearch, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'page__bd project_list_search' },
         React.createElement(
           'div',
-          { className: 'page__hd' },
+          { className: 'weui-search-bar', id: 'searchBar' },
           React.createElement(
-            'h1',
-            { className: 'page__title ammount' },
+            'form',
+            { className: 'weui-search-bar__form' },
             React.createElement(
-              'span',
-              { className: 'money_style' },
-              '\uFFE5'
-            ),
-            ' 100'
+              'div',
+              { className: 'weui-search-bar__box' },
+              React.createElement('i', { className: 'weui-icon-search' }),
+              React.createElement('input', { type: 'search', className: 'weui-search-bar__input', id: 'searchInput', placeholder: '\u641C\u7D22', required: '' })
+            )
           ),
           React.createElement(
-            'p',
-            { className: 'page__desc' },
-            '\u4F59\u989D'
+            'a',
+            { href: 'javascript:', className: 'weui-search-bar__cancel-btn', id: 'searchCancel' },
+            '\u53D6\u6D88'
           )
-        ),
-        React.createElement(
-          'div',
-          { className: 'record_list' },
-          list
         )
       );
     }
   }]);
 
-  return Wrap;
+  return Projectsearch;
 }(React.Component);
-// 返回到页面
 
+;
 
-ReactDOM.render(React.createElement(Wrap, null), document.getElementById("content"));
+var ProjectBottom = function (_React$Component3) {
+  _inherits(ProjectBottom, _React$Component3);
+
+  function ProjectBottom(props) {
+    _classCallCheck(this, ProjectBottom);
+
+    // 初始化一个空对象
+    var _this3 = _possibleConstructorReturn(this, (ProjectBottom.__proto__ || Object.getPrototypeOf(ProjectBottom)).call(this, props));
+
+    _this3.state = {};
+    return _this3;
+  }
+
+  _createClass(ProjectBottom, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'project_sort_bottom' },
+        React.createElement(ProjectsortNav, null),
+        React.createElement(ProjectsortInfor, null)
+      );
+    }
+  }]);
+
+  return ProjectBottom;
+}(React.Component);
+
+;
+
+var ProjectsortNav = function (_React$Component4) {
+  _inherits(ProjectsortNav, _React$Component4);
+
+  function ProjectsortNav(props) {
+    _classCallCheck(this, ProjectsortNav);
+
+    var _this4 = _possibleConstructorReturn(this, (ProjectsortNav.__proto__ || Object.getPrototypeOf(ProjectsortNav)).call(this, props));
+
+    _this4.handleClick = _this4.handleClick.bind(_this4);
+    // 初始化一个空对象
+    _this4.state = {};
+    return _this4;
+  }
+
+  _createClass(ProjectsortNav, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      $('.project_sort_nav li:nth-child(1)').attr('id', 'nav_style');
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick(id) {
+      $('.project_sort_infor ul').hide();
+      $('.project_sort_nav li').removeAttr('id');
+      $('#project_sort_infor_ul_' + id).show();
+      $('.project_sort_nav_infor_' + id).attr('id', 'nav_style');
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'ul',
+        { className: 'project_sort_nav' },
+        React.createElement(
+          'li',
+          { className: 'project_sort_nav_infor project_sort_nav_infor_1', onClick: this.handleClick.bind(this, 1) },
+          '\u852C\u83DC'
+        ),
+        React.createElement(
+          'li',
+          { className: 'project_sort_nav_infor project_sort_nav_infor_2', onClick: this.handleClick.bind(this, 2) },
+          '\u6C34\u679C'
+        ),
+        React.createElement(
+          'li',
+          { className: 'project_sort_nav_infor project_sort_nav_infor_3', onClick: this.handleClick.bind(this, 3) },
+          '\u8089\u79BD\u86CB'
+        ),
+        React.createElement(
+          'li',
+          { className: 'project_sort_nav_infor project_sort_nav_infor_4', onClick: this.handleClick.bind(this, 4) },
+          '\u6C34\u4EA7\u6D77\u9C9C'
+        ),
+        React.createElement(
+          'li',
+          { className: 'project_sort_nav_infor project_sort_nav_infor_5', onClick: this.handleClick.bind(this, 5) },
+          '\u4E73\u996E\u897F\u70B9'
+        ),
+        React.createElement(
+          'li',
+          { className: 'project_sort_nav_infor project_sort_nav_infor_6', onClick: this.handleClick.bind(this, 6) },
+          '\u70B9\u5FC3\u901F\u98DF'
+        ),
+        React.createElement(
+          'li',
+          { className: 'project_sort_nav_infor project_sort_nav_infor_7', onClick: this.handleClick.bind(this, 7) },
+          '\u7CAE\u6CB9\u526F\u98DF'
+        ),
+        React.createElement(
+          'li',
+          { className: 'project_sort_nav_infor project_sort_nav_infor_8', onClick: this.handleClick.bind(this, 9) },
+          '\u9152\u6C34\u996E\u6599'
+        )
+      );
+    }
+  }]);
+
+  return ProjectsortNav;
+}(React.Component);
+
+;
+
+var ProjectsortInfor = function (_React$Component5) {
+  _inherits(ProjectsortInfor, _React$Component5);
+
+  function ProjectsortInfor(props) {
+    _classCallCheck(this, ProjectsortInfor);
+
+    // 初始化一个空对象
+    var _this5 = _possibleConstructorReturn(this, (ProjectsortInfor.__proto__ || Object.getPrototypeOf(ProjectsortInfor)).call(this, props));
+
+    _this5.state = {};
+    return _this5;
+  }
+
+  _createClass(ProjectsortInfor, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      $('.project_sort_infor ul').hide();
+      $('.project_sort_infor ul:nth-child(1)').show();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'project_sort_infor' },
+        React.createElement(
+          'ul',
+          { className: 'project_sort_infor_ul', id: 'project_sort_infor_ul_1' },
+          React.createElement(
+            'li',
+            { className: 'project_sort_infor_li' },
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_img' },
+              React.createElement('img', { src: 'images/img2.jpg' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_name' },
+              '\u852C\u83DC'
+            )
+          ),
+          React.createElement(
+            'li',
+            { className: 'project_sort_infor_li' },
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_img' },
+              React.createElement('img', { src: 'images/img2.jpg' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_name' },
+              '\u852C\u83DC'
+            )
+          ),
+          React.createElement(
+            'li',
+            { className: 'project_sort_infor_li' },
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_img' },
+              React.createElement('img', { src: 'images/img2.jpg' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_name' },
+              '\u852C\u83DC'
+            )
+          ),
+          React.createElement(
+            'li',
+            { className: 'project_sort_infor_li' },
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_img' },
+              React.createElement('img', { src: 'images/img2.jpg' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_name' },
+              '\u852C\u83DC'
+            )
+          )
+        ),
+        React.createElement(
+          'ul',
+          { className: 'project_sort_infor_ul', id: 'project_sort_infor_ul_2' },
+          React.createElement(
+            'li',
+            { className: 'project_sort_infor_li' },
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_img' },
+              React.createElement('img', { src: 'images/img3.jpg' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_name' },
+              '\u852C\u83DC'
+            )
+          ),
+          React.createElement(
+            'li',
+            { className: 'project_sort_infor_li' },
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_img' },
+              React.createElement('img', { src: 'images/img3.jpg' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_name' },
+              '\u852C\u83DC'
+            )
+          ),
+          React.createElement(
+            'li',
+            { className: 'project_sort_infor_li' },
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_img' },
+              React.createElement('img', { src: 'images/img3.jpg' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_name' },
+              '\u852C\u83DC'
+            )
+          ),
+          React.createElement(
+            'li',
+            { className: 'project_sort_infor_li' },
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_img' },
+              React.createElement('img', { src: 'images/img3.jpg' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'project_sort_infor_li_name' },
+              '\u852C\u83DC'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return ProjectsortInfor;
+}(React.Component);
+
+;
+
+ReactDOM.render(React.createElement(IoIo, null), document.getElementById("project_sort"));
 
 /***/ })
 /******/ ]);
