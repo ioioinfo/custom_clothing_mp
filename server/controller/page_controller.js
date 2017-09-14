@@ -149,6 +149,59 @@ exports.register = function(server, options, next) {
             }
         },
 
+        //购物车
+        {
+            method: 'GET',
+            path: '/project_cart',
+            handler: function(request, reply) {
+              return reply.view("project_cart");;
+            }
+        },
+
+        //订单确认
+        {
+            method: 'GET',
+            path: '/order_sure',
+            handler: function(request, reply) {
+              return reply.view("order_sure");;
+            }
+        },
+
+        //订单详情
+        {
+            method: 'GET',
+            path: '/order_detail',
+            handler: function(request, reply) {
+              return reply.view("order_detail");;
+            }
+        },
+
+        //订单列表
+        {
+            method: 'GET',
+            path: '/order_list',
+            handler: function(request, reply) {
+              return reply.view("order_list");;
+            }
+        },
+
+        //搜索
+        {
+            method: 'GET',
+            path: '/search',
+            handler: function(request, reply) {
+              return reply.view("search");;
+            }
+        },
+
+        //商品详情
+        {
+            method: 'GET',
+            path: '/product_show',
+            handler: function(request, reply) {
+              return reply.view("product_show");;
+            }
+        },
 
     ]);
 

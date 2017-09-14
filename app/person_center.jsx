@@ -8,84 +8,57 @@ class IoIo extends React.Component {
       // 初始化一个空对象
     }
     componentDidMount() {
-
+      var height = $(window).height();
+      console.log(height);
+      $('.back_bottom').css('height',0.7*height);
+      $('.person_center_top').css('height',0.15*height);
+      $('.person_center_order').css('top',0.3*height-60);
     }
 
     render() {
       return (
         <div className="person_center">
-          <div className="person_center_head">
-            <span className="person_center_head_img"><img src="images/biyou.jpg"/></span>
-            <p className="person_center_head_name">BiYou</p>
-            <span className="person_infor">我的资料</span>
-          </div>
-          <div className="person_center_number">
-            <div className="person_center_number_left pull-left">
-              <p className="person_center_number_infor">0<span>元</span></p>
-              <p>余额</p>
-            </div>
-            <div className="person_center_number_right pull-right">
-              <p className="person_center_number_infor">0<span>件</span></p>
-              <p>已购</p>
-            </div>
+          <div className="background"></div>
+          <div className="back_bottom"></div>
+          <div className="person_center_top">
+            <img src="images/biyou.jpg"/>
+            <p>187****7203</p>
           </div>
 
-          <PersonCenterMiddle/>
+          <div className="person_center_order">
+            <div className="person_center_order_infor person_center_order_left">
+              <p>1</p>
+              <p>待收货</p>
+            </div>
+            <div className="person_center_order_infor person_center_order_right">
+              <p>11</p>
+              <p>历史订单</p>
+            </div>
+          </div>
+          <div className="weui-tabbar">
+              <a href="javascript:;" className="weui-tabbar__item">
+                  <span className="weui-tabbar__icon"><i className="fa fa-home"></i></span>
+                  <p className="weui-tabbar__label">首页</p>
+              </a>
+              <a href="javascript:;" className="weui-tabbar__item">
+                  <span className="weui-tabbar__icon"><i className="fa fa-cart-arrow-down"></i></span>
+                  <p className="weui-tabbar__label">购物车</p>
+              </a>
+              <a href="javascript:;" className="weui-tabbar__item">
+                  <span className="weui-tabbar__icon"><i className="fa fa-bars"></i></span>
+                  <p className="weui-tabbar__label">分类</p>
+              </a>
+              <a href="javascript:;" className="weui-tabbar__item weui-bar__item_on">
+                  <span className="weui-tabbar__icon"><i className="fa fa-user"></i></span>
+                  <p className="weui-tabbar__label">我</p>
+              </a>
+          </div>
         </div>
       );
     }
 };
-
-
-class PersonCenterMiddle extends React.Component {
-    constructor(props) {
-      super(props);
-      // 初始化一个空对象
-    }
-    componentDidMount() {
-
-    }
-
-    render() {
-      var style = {color:'#fff',marginRight:'5px',display:'block',padding:'3px 6px' };
-      return (
-        <div className="weui-cells">
-            <a className="weui-cell weui-cell_access" href="javascript:;">
-                <div className="weui-cell__hd"><span style={style} className="icon_style1"><i className="fa fa-camera-retro"></i></span></div>
-                <div className="weui-cell__bd">
-                    <p>暂定菜单一</p>
-                </div>
-                <div className="weui-cell__ft">说明文字</div>
-            </a>
-            <a className="weui-cell weui-cell_access" href="javascript:;">
-                <div className="weui-cell__hd"><span style={style} className="icon_style2"><i className="fa fa-balance-scale"></i></span></div>
-                <div className="weui-cell__bd">
-                    <p>暂定菜单二</p>
-                </div>
-                <div className="weui-cell__ft"></div>
-            </a>
-            <a className="weui-cell weui-cell_access" href="javascript:;">
-                <div className="weui-cell__hd"><span style={style} className="icon_style3"><i className="fa fa-camera-retro"></i></span></div>
-                <div className="weui-cell__bd">
-                    <p>暂定菜单三</p>
-                </div>
-                <div className="weui-cell__ft"></div>
-            </a>
-            <a className="weui-cell weui-cell_access" href="javascript:;">
-                <div className="weui-cell__hd"><span style={style} className="icon_style4"><i className="fa fa-balance-scale"></i></span></div>
-                <div className="weui-cell__bd">
-                    <p>暂定菜单四</p>
-                </div>
-                <div className="weui-cell__ft"></div>
-            </a>
-        </div>
-
-      );
-    }
-};
-
 
 ReactDOM.render(
   <IoIo/>,
-  document.getElementById("loding")
+  document.getElementById("person_center")
 );

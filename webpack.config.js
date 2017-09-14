@@ -21,6 +21,12 @@ module.exports = {
         project_list: './app/project_list.jsx',
         signup: './app/signup.jsx',
         project_sort: './app/project_sort.jsx',
+        project_cart: './app/project_cart.jsx',
+        order_sure: './app/order_sure.jsx',
+        order_detail: './app/order_detail.jsx',
+        order_list: './app/order_list.jsx',
+        search: './app/search.jsx',
+        product_show: './app/product_show.jsx',
     },
     output: {
         path: __dirname,

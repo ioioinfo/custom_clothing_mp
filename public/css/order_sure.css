@@ -1,0 +1,11 @@
+.project_list_wrap{
+  text-align: center;
+  padding-top: 75px;
+}
+.project_list_wrap img{
+  margin-bottom: 17px;
+}
+.go_back_home{
+  margin-top: 17px;
+  font-size: 12px;
+}

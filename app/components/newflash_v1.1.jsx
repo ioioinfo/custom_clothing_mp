@@ -87,7 +87,7 @@ class Lunbo extends React.Component {
         $(".imgul li").css("width",$(window).width());
         var rate = this.props.rate;
         if (!rate) {
-            rate = 0.3125;
+            rate = 1;
         }
 
         var imgLIheight = rate*$(window).width();

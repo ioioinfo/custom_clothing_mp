@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 186);
+/******/ 	return __webpack_require__(__webpack_require__.s = 189);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22385,7 +22385,10 @@ module.exports = traverseAllChildren;
 /* 183 */,
 /* 184 */,
 /* 185 */,
-/* 186 */
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22403,221 +22406,144 @@ var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(82);
 
 var IoIo = function (_React$Component) {
-    _inherits(IoIo, _React$Component);
+  _inherits(IoIo, _React$Component);
 
-    function IoIo(props) {
-        _classCallCheck(this, IoIo);
+  function IoIo(props) {
+    _classCallCheck(this, IoIo);
 
-        return _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
-        // 初始化一个空对象
+    return _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
+    // 初始化一个空对象
+  }
+
+  _createClass(IoIo, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var height = $(window).height();
+      console.log(height);
+      $('.back_bottom').css('height', 0.7 * height);
+      $('.person_center_top').css('height', 0.15 * height);
+      $('.person_center_order').css('top', 0.3 * height - 60);
     }
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'person_center' },
+        React.createElement('div', { className: 'background' }),
+        React.createElement('div', { className: 'back_bottom' }),
+        React.createElement(
+          'div',
+          { className: 'person_center_top' },
+          React.createElement('img', { src: 'images/biyou.jpg' }),
+          React.createElement(
+            'p',
+            null,
+            '187****7203'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'person_center_order' },
+          React.createElement(
+            'div',
+            { className: 'person_center_order_infor person_center_order_left' },
+            React.createElement(
+              'p',
+              null,
+              '1'
+            ),
+            React.createElement(
+              'p',
+              null,
+              '\u5F85\u6536\u8D27'
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'person_center_order_infor person_center_order_right' },
+            React.createElement(
+              'p',
+              null,
+              '11'
+            ),
+            React.createElement(
+              'p',
+              null,
+              '\u5386\u53F2\u8BA2\u5355'
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'weui-tabbar' },
+          React.createElement(
+            'a',
+            { href: 'javascript:;', className: 'weui-tabbar__item' },
+            React.createElement(
+              'span',
+              { className: 'weui-tabbar__icon' },
+              React.createElement('i', { className: 'fa fa-home' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'weui-tabbar__label' },
+              '\u9996\u9875'
+            )
+          ),
+          React.createElement(
+            'a',
+            { href: 'javascript:;', className: 'weui-tabbar__item' },
+            React.createElement(
+              'span',
+              { className: 'weui-tabbar__icon' },
+              React.createElement('i', { className: 'fa fa-cart-arrow-down' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'weui-tabbar__label' },
+              '\u8D2D\u7269\u8F66'
+            )
+          ),
+          React.createElement(
+            'a',
+            { href: 'javascript:;', className: 'weui-tabbar__item' },
+            React.createElement(
+              'span',
+              { className: 'weui-tabbar__icon' },
+              React.createElement('i', { className: 'fa fa-bars' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'weui-tabbar__label' },
+              '\u5206\u7C7B'
+            )
+          ),
+          React.createElement(
+            'a',
+            { href: 'javascript:;', className: 'weui-tabbar__item weui-bar__item_on' },
+            React.createElement(
+              'span',
+              { className: 'weui-tabbar__icon' },
+              React.createElement('i', { className: 'fa fa-user' })
+            ),
+            React.createElement(
+              'p',
+              { className: 'weui-tabbar__label' },
+              '\u6211'
+            )
+          )
+        )
+      );
+    }
+  }]);
 
-    _createClass(IoIo, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {}
-    }, {
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                { className: 'person_center' },
-                React.createElement(
-                    'div',
-                    { className: 'person_center_head' },
-                    React.createElement(
-                        'span',
-                        { className: 'person_center_head_img' },
-                        React.createElement('img', { src: 'images/biyou.jpg' })
-                    ),
-                    React.createElement(
-                        'p',
-                        { className: 'person_center_head_name' },
-                        'BiYou'
-                    ),
-                    React.createElement(
-                        'span',
-                        { className: 'person_infor' },
-                        '\u6211\u7684\u8D44\u6599'
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'person_center_number' },
-                    React.createElement(
-                        'div',
-                        { className: 'person_center_number_left pull-left' },
-                        React.createElement(
-                            'p',
-                            { className: 'person_center_number_infor' },
-                            '0',
-                            React.createElement(
-                                'span',
-                                null,
-                                '\u5143'
-                            )
-                        ),
-                        React.createElement(
-                            'p',
-                            null,
-                            '\u4F59\u989D'
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'person_center_number_right pull-right' },
-                        React.createElement(
-                            'p',
-                            { className: 'person_center_number_infor' },
-                            '0',
-                            React.createElement(
-                                'span',
-                                null,
-                                '\u4EF6'
-                            )
-                        ),
-                        React.createElement(
-                            'p',
-                            null,
-                            '\u5DF2\u8D2D'
-                        )
-                    )
-                ),
-                React.createElement(PersonCenterMiddle, null)
-            );
-        }
-    }]);
-
-    return IoIo;
+  return IoIo;
 }(React.Component);
 
 ;
 
-var PersonCenterMiddle = function (_React$Component2) {
-    _inherits(PersonCenterMiddle, _React$Component2);
-
-    function PersonCenterMiddle(props) {
-        _classCallCheck(this, PersonCenterMiddle);
-
-        return _possibleConstructorReturn(this, (PersonCenterMiddle.__proto__ || Object.getPrototypeOf(PersonCenterMiddle)).call(this, props));
-        // 初始化一个空对象
-    }
-
-    _createClass(PersonCenterMiddle, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {}
-    }, {
-        key: 'render',
-        value: function render() {
-            var style = { color: '#fff', marginRight: '5px', display: 'block', padding: '3px 6px' };
-            return React.createElement(
-                'div',
-                { className: 'weui-cells' },
-                React.createElement(
-                    'a',
-                    { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__hd' },
-                        React.createElement(
-                            'span',
-                            { style: style, className: 'icon_style1' },
-                            React.createElement('i', { className: 'fa fa-camera-retro' })
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__bd' },
-                        React.createElement(
-                            'p',
-                            null,
-                            '\u6682\u5B9A\u83DC\u5355\u4E00'
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__ft' },
-                        '\u8BF4\u660E\u6587\u5B57'
-                    )
-                ),
-                React.createElement(
-                    'a',
-                    { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__hd' },
-                        React.createElement(
-                            'span',
-                            { style: style, className: 'icon_style2' },
-                            React.createElement('i', { className: 'fa fa-balance-scale' })
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__bd' },
-                        React.createElement(
-                            'p',
-                            null,
-                            '\u6682\u5B9A\u83DC\u5355\u4E8C'
-                        )
-                    ),
-                    React.createElement('div', { className: 'weui-cell__ft' })
-                ),
-                React.createElement(
-                    'a',
-                    { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__hd' },
-                        React.createElement(
-                            'span',
-                            { style: style, className: 'icon_style3' },
-                            React.createElement('i', { className: 'fa fa-camera-retro' })
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__bd' },
-                        React.createElement(
-                            'p',
-                            null,
-                            '\u6682\u5B9A\u83DC\u5355\u4E09'
-                        )
-                    ),
-                    React.createElement('div', { className: 'weui-cell__ft' })
-                ),
-                React.createElement(
-                    'a',
-                    { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__hd' },
-                        React.createElement(
-                            'span',
-                            { style: style, className: 'icon_style4' },
-                            React.createElement('i', { className: 'fa fa-balance-scale' })
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__bd' },
-                        React.createElement(
-                            'p',
-                            null,
-                            '\u6682\u5B9A\u83DC\u5355\u56DB'
-                        )
-                    ),
-                    React.createElement('div', { className: 'weui-cell__ft' })
-                )
-            );
-        }
-    }]);
-
-    return PersonCenterMiddle;
-}(React.Component);
-
-;
-
-ReactDOM.render(React.createElement(IoIo, null), document.getElementById("loding"));
+ReactDOM.render(React.createElement(IoIo, null), document.getElementById("person_center"));
 
 /***/ })
 /******/ ]);
