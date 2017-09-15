@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>用户列表</title>
+    <link rel="stylesheet" href="css/bootstrap2.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+		<link rel="stylesheet" href="css/uniform.css" />
+		<link rel="stylesheet" href="css/select2.css" />
+		<link rel="stylesheet" href="css/unicorn.main.css" />
+		<link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="stylesheet" href="css/mermaid.css">
+    <link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+    <div id="admin_user_list"></div>
+    <script type="text/javascript">
+      var platform_name = "{{platform_name}}";
+      var company_name = "{{company_name}}";
+      //表头
+      var tt = [{name:'id',title:'编号',sort:false}
+      ,{name:'name',title:'姓名',sort:false}
+      ,{name:'gongsi',title:'公司',sort:false}
+      ,{name:'phone',title:'电话',type:"images",sort:false}
+      ,{name:'address',title:'地址',sort:false}];
+
+
+      function getTableData(params,cb) {
+          params.everyNum = 50;
+          var allNum = 0;
+          var list = [{id:"1",name:"曹操", gongsi:"魏",phone:"18930317203",address:"杭州，萧山，泰禾路900弄"},
+                      {id:"2",name:"赵云", gongsi:"蜀",phone:"18930317203",address:"杭州，萧山，泰禾路900弄"}];
+          cb({tabthitems:tt,tabtritems:list,allNum:allNum,everyNum:params.everyNum});
+      };
+    </script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap2.min.js"></script>
+    <script src="js/jquery.uniform.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/unicorn.js"></script>
+    <script src="js/unicorn.tables.js"></script>
+    <script src="js/mermaid.min.js"></script>
+    <script src="js/app/admin_user_list.js"></script>
+</body>
+</html>

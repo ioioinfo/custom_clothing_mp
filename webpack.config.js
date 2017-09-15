@@ -27,6 +27,11 @@ module.exports = {
         order_list: './app/order_list.jsx',
         search: './app/search.jsx',
         product_show: './app/product_show.jsx',
+
+        admin_user_list: './app/admin_user_list.jsx',
+        admin_product_list: './app/admin_product_list.jsx',
+        admin_product_img: './app/admin_product_img.jsx',
+        admin_add_custom: './app/admin_add_custom.jsx',
     },
     output: {
         path: __dirname,

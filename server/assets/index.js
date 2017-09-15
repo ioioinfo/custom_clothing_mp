@@ -19,6 +19,13 @@ exports.register = function(server, options, next){
         },
         {
             method: 'GET',
+            path: '/img/{path*}',
+            handler: {
+                directory: { path: './public/img' }
+            }
+        },
+        {
+            method: 'GET',
             path: '/css/{path*}',
             handler: {
                 directory: { path: './public/css' }

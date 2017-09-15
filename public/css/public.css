@@ -1,0 +1,19 @@
+
+/*===============表格样式========================*/
+.nav_text{
+    text-align: right;
+}
+
+/*================分页=============*/
+
+.form-inline .check_roles{
+    font-size: 12px;
+    vertical-align: sub;
+    margin-right: 3px;
+
+}
+.form-inline .check_roles_style{
+    font-size: 12px;
+    margin-right: 3px;
+
+}

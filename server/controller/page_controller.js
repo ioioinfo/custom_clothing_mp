@@ -203,6 +203,48 @@ exports.register = function(server, options, next) {
             }
         },
 
+
+
+        //后台用户列表
+        {
+            method: 'GET',
+            path: '/admin_user_list',
+            handler: function(request, reply) {
+              return reply.view("admin_user_list");;
+            }
+        },
+
+        //后台商品列表
+        {
+            method: 'GET',
+            path: '/admin_product_list',
+            handler: function(request, reply) {
+              return reply.view("admin_product_list");;
+            }
+        },
+
+
+        //后台商品图片查看
+        {
+            method: 'GET',
+            path: '/admin_product_img',
+            handler: function(request, reply) {
+              return reply.view("admin_product_img");;
+            }
+        },
+
+        //后台添加客户
+        {
+            method: 'GET',
+            path: '/admin_add_custom',
+            handler: function(request, reply) {
+              return reply.view("admin_add_custom");;
+            }
+        },
+
+
+
+
     ]);
 
     next();
