@@ -109,7 +109,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/login',
             handler: function(request, reply) {
-              return reply.view("login");;
+              return reply.view("login");
             }
         },
 
@@ -118,7 +118,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/person_center',
             handler: function(request, reply) {
-              return reply.view("person_center");;
+              return reply.view("person_center");
             }
         },
 
@@ -127,7 +127,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/project_list',
             handler: function(request, reply) {
-              return reply.view("project_list");;
+              return reply.view("project_list");
             }
         },
 
@@ -145,7 +145,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/project_sort',
             handler: function(request, reply) {
-              return reply.view("project_sort");;
+              return reply.view("project_sort");
             }
         },
 
@@ -154,7 +154,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/project_cart',
             handler: function(request, reply) {
-              return reply.view("project_cart");;
+              return reply.view("project_cart");
             }
         },
 
@@ -163,7 +163,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/order_sure',
             handler: function(request, reply) {
-              return reply.view("order_sure");;
+              return reply.view("order_sure");
             }
         },
 
@@ -172,7 +172,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/order_detail',
             handler: function(request, reply) {
-              return reply.view("order_detail");;
+              return reply.view("order_detail");
             }
         },
 
@@ -181,7 +181,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/order_list',
             handler: function(request, reply) {
-              return reply.view("order_list");;
+              return reply.view("order_list");
             }
         },
 
@@ -190,7 +190,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/search',
             handler: function(request, reply) {
-              return reply.view("search");;
+              return reply.view("search");
             }
         },
 
@@ -199,7 +199,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/product_show',
             handler: function(request, reply) {
-              return reply.view("product_show");;
+              return reply.view("product_show");
             }
         },
 
@@ -210,7 +210,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/admin_user_list',
             handler: function(request, reply) {
-              return reply.view("admin_user_list");;
+              return reply.view("admin_user_list");
             }
         },
 
@@ -219,7 +219,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/admin_product_list',
             handler: function(request, reply) {
-              return reply.view("admin_product_list");;
+              return reply.view("admin_product_list");
             }
         },
 
@@ -229,7 +229,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/admin_product_img',
             handler: function(request, reply) {
-              return reply.view("admin_product_img");;
+              return reply.view("admin_product_img");
             }
         },
 
@@ -238,7 +238,16 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/admin_add_custom',
             handler: function(request, reply) {
-              return reply.view("admin_add_custom");;
+              return reply.view("admin_add_custom");
+            }
+        },
+
+        //后台登录
+        {
+            method: 'GET',
+            path: '/admin_login',
+            handler: function(request, reply) {
+              return reply.view("admin_login");
             }
         },
 

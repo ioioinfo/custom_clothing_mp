@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 192);
+/******/ 	return __webpack_require__(__webpack_require__.s = 185);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22384,14 +22384,7 @@ module.exports = traverseAllChildren;
 /***/ }),
 /* 183 */,
 /* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22423,131 +22416,130 @@ var IoIo = function (_React$Component) {
 
     _createClass(IoIo, [{
         key: 'componentDidMount',
-        value: function componentDidMount() {}
+        value: function componentDidMount() {
+            adminLogin();
+        }
     }, {
         key: 'render',
         value: function render() {
-            var style = { width: '20px', marginRight: '5px', display: 'block' };
-            var style1 = { textAlign: 'center', fontSize: '12px', color: '#666', marginTop: '27px', marginBottom: '17px' };
             return React.createElement(
                 'div',
-                null,
+                { className: 'loding_wrap' },
                 React.createElement(
                     'div',
-                    { className: 'page__hd' },
-                    React.createElement(
-                        'h1',
-                        { className: 'page__title' },
-                        '\u8BA2\u5355'
-                    ),
-                    React.createElement(
-                        'p',
-                        { className: 'page__desc' },
-                        '\u5217\u8868'
-                    )
+                    { id: 'logo' },
+                    React.createElement('img', { src: 'img/logo.png', alt: '' })
                 ),
                 React.createElement(
                     'div',
-                    { className: 'weui-cells' },
+                    { id: 'loginbox' },
                     React.createElement(
-                        'a',
-                        { className: 'weui-cell weui-cell_access', href: '#' },
+                        'form',
+                        { id: 'loginform', className: 'form-vertical', action: 'index.html' },
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u8BF7\u8F93\u5165\u7528\u6237\u540D\u548C\u5BC6\u7801'
+                        ),
                         React.createElement(
                             'div',
-                            { className: 'weui-cell__bd' },
+                            { className: 'control-group' },
                             React.createElement(
-                                'p',
-                                null,
-                                '2017-9-14'
+                                'div',
+                                { className: 'controls' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-prepend' },
+                                    React.createElement(
+                                        'span',
+                                        { className: 'add-on' },
+                                        React.createElement('i', { className: 'icon-user' })
+                                    ),
+                                    React.createElement('input', { type: 'text', placeholder: '\u7528\u6237\u540D' })
+                                )
                             )
                         ),
                         React.createElement(
                             'div',
-                            { className: 'weui-cell__ft' },
-                            '3000.00 \u5143'
+                            { className: 'control-group' },
+                            React.createElement(
+                                'div',
+                                { className: 'controls' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-prepend' },
+                                    React.createElement(
+                                        'span',
+                                        { className: 'add-on' },
+                                        React.createElement('i', { className: 'icon-lock' })
+                                    ),
+                                    React.createElement('input', { type: 'password', placeholder: '\u5BC6\u7801' })
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'form-actions' },
+                            React.createElement(
+                                'span',
+                                { className: 'pull-left' },
+                                React.createElement(
+                                    'a',
+                                    { href: '#', className: 'flip-link', id: 'to-recover' },
+                                    '\u5FD8\u8BB0\u5BC6\u7801?'
+                                )
+                            ),
+                            React.createElement(
+                                'span',
+                                { className: 'pull-right' },
+                                React.createElement('input', { type: 'submit', className: 'btn btn-inverse', value: '\u767B\u5F55' })
+                            )
                         )
                     ),
                     React.createElement(
-                        'a',
-                        { className: 'weui-cell weui-cell_access', href: '#' },
+                        'form',
+                        { id: 'recoverform', action: '#', className: 'form-vertical' },
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u8F93\u5165\u6CE8\u518C\u624B\u673A\u53F7'
+                        ),
                         React.createElement(
                             'div',
-                            { className: 'weui-cell__bd' },
+                            { className: 'control-group' },
                             React.createElement(
-                                'p',
-                                null,
-                                '2017-9-13'
+                                'div',
+                                { className: 'controls' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-prepend' },
+                                    React.createElement(
+                                        'span',
+                                        { className: 'add-on' },
+                                        React.createElement('i', { className: 'icon-envelope' })
+                                    ),
+                                    React.createElement('input', { type: 'text', placeholder: '\u624B\u673A\u53F7' })
+                                )
                             )
                         ),
                         React.createElement(
                             'div',
-                            { className: 'weui-cell__ft' },
-                            '40040.00 \u5143'
-                        )
-                    ),
-                    React.createElement(
-                        'a',
-                        { className: 'weui-cell weui-cell_access', href: '#' },
-                        React.createElement(
-                            'div',
-                            { className: 'weui-cell__bd' },
+                            { className: 'form-actions' },
                             React.createElement(
-                                'p',
-                                null,
-                                '2017-9-12'
-                            )
-                        ),
-                        React.createElement(
-                            'div',
-                            { className: 'weui-cell__ft' },
-                            '40040.00 \u5143'
-                        )
-                    ),
-                    React.createElement(
-                        'a',
-                        { className: 'weui-cell weui-cell_access', href: '#' },
-                        React.createElement(
-                            'div',
-                            { className: 'weui-cell__bd' },
+                                'span',
+                                { className: 'pull-left' },
+                                React.createElement(
+                                    'a',
+                                    { href: '#', className: 'flip-link', id: 'to-login' },
+                                    '< \u8FD4\u56DE\u767B\u9646'
+                                )
+                            ),
                             React.createElement(
-                                'p',
-                                null,
-                                '2017-9-11'
+                                'span',
+                                { className: 'pull-right' },
+                                React.createElement('input', { type: 'submit', className: 'btn btn-inverse', value: '\u627E\u56DE' })
                             )
-                        ),
-                        React.createElement(
-                            'div',
-                            { className: 'weui-cell__ft' },
-                            '40040.00 \u5143'
                         )
-                    ),
-                    React.createElement(
-                        'a',
-                        { className: 'weui-cell weui-cell_access', href: '#' },
-                        React.createElement(
-                            'div',
-                            { className: 'weui-cell__bd' },
-                            React.createElement(
-                                'p',
-                                null,
-                                '2017-9-10'
-                            )
-                        ),
-                        React.createElement(
-                            'div',
-                            { className: 'weui-cell__ft' },
-                            '40040.00 \u5143'
-                        )
-                    )
-                ),
-                React.createElement(
-                    'p',
-                    { style: style1 },
-                    '\u6CA1\u6709\u66F4\u591A\u4E86 \xA0\xA0\xA0',
-                    React.createElement(
-                        'a',
-                        { href: '#' },
-                        '\u70B9\u6B64\u8FD4\u56DE\u9996\u9875'
                     )
                 )
             );
@@ -22559,7 +22551,7 @@ var IoIo = function (_React$Component) {
 
 ;
 
-ReactDOM.render(React.createElement(IoIo, null), document.getElementById("order_list"));
+ReactDOM.render(React.createElement(IoIo, null), document.getElementById("admin_login"));
 
 /***/ })
 /******/ ]);

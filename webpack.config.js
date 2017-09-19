@@ -28,6 +28,7 @@ module.exports = {
         search: './app/search.jsx',
         product_show: './app/product_show.jsx',
 
+        admin_login: './app/admin_login.jsx',
         admin_user_list: './app/admin_user_list.jsx',
         admin_product_list: './app/admin_product_list.jsx',
         admin_product_img: './app/admin_product_img.jsx',
