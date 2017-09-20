@@ -12,15 +12,39 @@ class IoIo extends React.Component {
     render() {
       return (
         <div className="project_list_wrap">
+          <Projectsearch/>
           <Projectlist/>
           <ProjectButton/>
           <Top/>
-          <Home/>
         </div>
       );
     }
 };
 
+class Projectsearch extends React.Component {
+    constructor(props) {
+      super(props);
+      // 初始化一个空对象
+      this.state = {};
+    }
+    componentDidMount() {
+    }
+    render() {
+      return (
+        <div className="page__bd project_list_search">
+            <div className="weui-search-bar" id="searchBar">
+                <form className="weui-search-bar__form">
+                    <div className="weui-search-bar__box">
+                        <i className="weui-icon-search"></i>
+                        <input type="search" className="weui-search-bar__input" id="searchInput" placeholder="搜索" required=""/>
+                    </div>
+                </form>
+                <a href="javascript:" className="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+            </div>
+        </div>
+      );
+    }
+};
 class Projectlist extends React.Component {
     constructor(props) {
       super(props);
@@ -29,8 +53,6 @@ class Projectlist extends React.Component {
       this.handleSure = this.handleSure.bind(this);
       this.handleBack = this.handleBack.bind(this);
       this.handleBuy = this.handleBuy.bind(this);
-      this.handleDelect = this.handleDelect.bind(this);
-      this.handleHide = this.handleHide.bind(this);
       // 初始化一个空对象
       this.state = {project_list:[],number:1};
     }
@@ -46,14 +68,8 @@ class Projectlist extends React.Component {
       var num = $('#number').val();
       $('#number').val(num);
       this.setState({number:num});
-
-      $('.background').show();
-      $('.project_money').show();
-      $('.project_money').attr('id','animation');
     }
     handleBuy(e){
-      var num = $('.position_absolute2 span').html();
-      $('#number').val(num);
       $('.background').show();
       $('.projecrt_number').show();
     }
@@ -84,18 +100,8 @@ class Projectlist extends React.Component {
     handleBack(e){
       $('.background').hide();
       $('.projecrt_number').hide();
-      $('.delect_order').hide();
-      $('.project_money').hide();
-    }
-    handleHide(e){
-      $('.background').hide();
-      $('.delect_order').hide();
-    }
-    handleDelect(e){
-      $('.delect_order').show();
-      $('.background').show();
-    }
 
+  }
     render() {
       var style = {marginRight:'5px' ,display:'block'};
       return (
@@ -109,12 +115,9 @@ class Projectlist extends React.Component {
                         <p className="product_name_infor">{item.name}</p>
                         <p className="product_price"><span>￥</span>{item.price}</p>
                     </div>
-                    <div className="weui-cell__ft position_absolute" onClick={this.handleBuy}><i className="fa fa-pencil"></i></div>
-                    <div className="weui-cell__ft position_absolute1" onClick={this.handleDelect}><i className="fa fa-trash-o"></i></div>
-                    <div className="weui-cell__ft position_absolute2"><span>11</span> 件</div>
+                    <div className="weui-cell__ft position_absolute" onClick={this.handleBuy}><i className="fa fa-shopping-basket"></i></div>
                 </div>
               </div>
-
             </li>
 
             ))
@@ -129,15 +132,6 @@ class Projectlist extends React.Component {
             </div>
           </div>
 
-          <div className="delect_order">
-            <p className="yes_or_no">是否确认删除该商品？</p>
-            <p className="delect_order_button"><span className="no">删除</span><span className="yes" onClick={this.handleHide}>不删除</span></p>
-          </div>
-
-          <div className="project_money">
-            <p>统计</p>
-            <p>共计 ： 1000.00 元</p>
-          </div>
         </ul>
       );
     }
@@ -175,7 +169,7 @@ class Top extends React.Component {
   componentDidMount() {
     $(window).scroll(function(){
       var topHeight=$(window).scrollTop();
-      if (topHeight>200){
+      if (topHeight>100){
         //当滚动条的位置处于距顶部1000像素以下时，就是大于1000象数时，跳转出现
         $(".top").fadeIn(250);
       }else{ //否则就消失
@@ -196,32 +190,7 @@ class Top extends React.Component {
 };
 
 
-class Home extends React.Component {
-    constructor(props) {
-      super(props);
-      // 初始化一个空对象
-      this.state = {};
-    }
-    componentDidMount() {
-      $(window).scroll(function(){
-        var topHeight=$(window).scrollTop();
-        if (topHeight>100){
-          //当滚动条的位置处于距顶部1000像素以下时，就是大于1000象数时，跳转出现
-          $(".nav_home").fadeIn(250);
-        }else{ //否则就消失
-          $(".nav_home").fadeOut(250);
-        }
-
-      })
-    }
-    render() {
-      return (
-        <div className="nav_home"><a href="#"><i className="fa fa-home"></i></a></div>
-      );
-    }
-};
-
 ReactDOM.render(
   <IoIo/>,
-  document.getElementById("project_cart")
+  document.getElementById("product_list")
 );

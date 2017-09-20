@@ -153,5 +153,5 @@ class ProjectsortInfor extends React.Component {
 
 ReactDOM.render(
   <IoIo/>,
-  document.getElementById("project_sort")
+  document.getElementById("product_sort")
 );

@@ -125,9 +125,9 @@ exports.register = function(server, options, next) {
         //商品列表
         {
             method: 'GET',
-            path: '/project_list',
+            path: '/product_list',
             handler: function(request, reply) {
-              return reply.view("project_list");
+              return reply.view("product_list");
             }
         },
 
@@ -143,18 +143,18 @@ exports.register = function(server, options, next) {
         //商品分类
         {
             method: 'GET',
-            path: '/project_sort',
+            path: '/product_sort',
             handler: function(request, reply) {
-              return reply.view("project_sort");
+              return reply.view("product_sort");
             }
         },
 
         //购物车
         {
             method: 'GET',
-            path: '/project_cart',
+            path: '/product_cart',
             handler: function(request, reply) {
-              return reply.view("project_cart");
+              return reply.view("product_cart");
             }
         },
 

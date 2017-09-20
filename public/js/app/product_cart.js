@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 197);
+/******/ 	return __webpack_require__(__webpack_require__.s = 195);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22382,292 +22382,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 183 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var React = __webpack_require__(49);
-
-var Lunbo = function (_React$Component) {
-    _inherits(Lunbo, _React$Component);
-
-    function Lunbo(props) {
-        _classCallCheck(this, Lunbo);
-
-        var _this = _possibleConstructorReturn(this, (Lunbo.__proto__ || Object.getPrototypeOf(Lunbo)).call(this, props));
-
-        _this.jump = _this.jump.bind(_this);
-        _this.back = _this.back.bind(_this);
-        _this.move = _this.move.bind(_this);
-        _this.onTouchStart = _this.onTouchStart.bind(_this);
-        _this.onTouchMove = _this.onTouchMove.bind(_this);
-        _this.onTouchEnd = _this.onTouchEnd.bind(_this);
-        // 初始化一个空对象
-        _this.state = { imgItems: _this.props.items || [], selected: 0, touchPage: 0, change: 0 };
-        return _this;
-    }
-
-    _createClass(Lunbo, [{
-        key: "jump",
-        value: function jump() {
-            //当前显示图片
-            var selected = this.state.selected;
-            var imgLength = this.state.imgItems.length;
-            var widthUl = $(window).width();
-
-            var next1 = selected + 1;
-            if (next1 >= imgLength) {
-                next1 = next1 - imgLength;
-            }
-
-            //循环所有图片
-            $(".imgul li").each(function (index, element) {
-                if (index == selected) {
-                    $(this).css("z-index", "10");
-                    $(this).css("transform", "translate3d(" + -widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 300ms ease");
-                } else if (index == next1) {
-                    $(this).css("z-index", "10");
-                    $(this).css("transform", "translate3d(0px, 0px, 0px)");
-                    $(this).css("transition", "all 300ms ease");
-                } else {
-                    $(this).css("z-index", "9");
-                    $(this).css("transform", "translate3d(" + widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 0ms ease");
-                }
-            });
-
-            this.setState({ selected: next1 });
-        }
-        //向右移动一张
-
-    }, {
-        key: "back",
-        value: function back() {
-            //当前显示图片
-            var selected = this.state.selected;
-            var imgLength = this.state.imgItems.length;
-            var widthUl = $(window).width();
-
-            var prev1 = selected - 1;
-            if (prev1 < 0) {
-                prev1 = imgLength - 1;
-            }
-
-            //循环所有图片
-            $(".imgul li").each(function (index, element) {
-                if (index == selected) {
-                    $(this).css("z-index", "10");
-                    $(this).css("transform", "translate3d(" + widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 300ms ease");
-                } else if (index == prev1) {
-                    $(this).css("z-index", "10");
-                    $(this).css("transform", "translate3d(0px, 0px, 0px)");
-                    $(this).css("transition", "all 300ms ease");
-                } else {
-                    $(this).css("z-index", "9");
-                    $(this).css("transform", "translate3d(" + -widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 0ms ease");
-                }
-            });
-
-            this.setState({ selected: prev1 });
-        }
-    }, {
-        key: "move",
-        value: function move(change) {
-            var widthUl = $(window).width();
-            if (change < -widthUl / 8) {
-                this.jump();
-            } else if (change > widthUl / 8) {
-                this.back();
-            }
-        }
-    }, {
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            $(".imgul li").css("width", $(window).width());
-            var rate = this.props.rate;
-            if (!rate) {
-                rate = 1;
-            }
-
-            var imgLIheight = rate * $(window).width();
-            $(".imgul").css("height", imgLIheight);
-            var imgLength = this.state.imgItems.length;
-            var widthUl = $(window).width();
-            //循环所有图片
-            $(".imgul li").each(function (index, element) {
-                if (index == 0) {
-                    $(this).css("z-index", "10");
-                } else if (index == 1) {
-                    $(this).css("transform", "translate3d(" + widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 0ms ease");
-                } else if (index == imgLength - 1) {
-                    $(this).css("z-index", "10");
-                    $(this).css("transform", "translate3d(" + -widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 0ms ease");
-                } else {
-                    $(this).css("z-index", "9");
-                    $(this).css("transform", "translate3d(" + widthUl + "px, 0px, 0px)");
-                    $(this).css("transition", "all 0ms ease");
-                }
-            });
-
-            if (this.state.imgItems.length > 1) {
-                this.timer = setInterval(this.jump, 1500);
-            }
-        }
-
-        // 开始
-
-    }, {
-        key: "onTouchStart",
-        value: function onTouchStart(e) {
-            if (this.state.imgItems.length <= 1) {
-                return;
-            }
-            if (this.timer) {
-                clearInterval(this.timer);
-            }
-
-            var touch = e.targetTouches[0]; //touches数组对象获得屏幕上所有的touch，取第一个touch
-            var touchPageStart = touch.pageX; //获取当前最新的坐标
-
-            this.setState({ touchPage: touchPageStart, change: 0 });
-        }
-
-        // 移动中
-
-    }, {
-        key: "onTouchMove",
-        value: function onTouchMove(e) {
-            if (this.state.imgItems.length <= 1) {
-                return;
-            }
-            var touchPageMove = e.targetTouches[0].pageX; //获取当前最新的坐标
-
-            var touchPage = this.state.touchPage;
-            var change = touchPageMove - touchPage;
-
-            this.setState({ change: change });
-        }
-        // 移动结束
-
-    }, {
-        key: "onTouchEnd",
-        value: function onTouchEnd(e) {
-            if (this.state.imgItems.length <= 1) {
-                return;
-            }
-            var change = this.state.change;
-            this.move(change);
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var _this2 = this;
-
-            return React.createElement(
-                "div",
-                { className: "flashWrap" },
-                React.createElement(
-                    "ul",
-                    { className: "imgul", onTouchStart: this.onTouchStart, onTouchMove: this.onTouchMove, onTouchEnd: this.onTouchEnd },
-                    this.state.imgItems.map(function (item) {
-                        return React.createElement(FlashImgLi, { key: item.id, item: item });
-                    })
-                ),
-                React.createElement(
-                    "div",
-                    { className: "pointul" },
-                    this.state.imgItems.map(function (item, index) {
-                        return React.createElement(FlashPointLi, { key: index, selected: _this2.state.selected, index: index });
-                    })
-                )
-            );
-        }
-    }]);
-
-    return Lunbo;
-}(React.Component);
-// 图片
-
-
-var FlashImgLi = function (_React$Component2) {
-    _inherits(FlashImgLi, _React$Component2);
-
-    function FlashImgLi() {
-        _classCallCheck(this, FlashImgLi);
-
-        return _possibleConstructorReturn(this, (FlashImgLi.__proto__ || Object.getPrototypeOf(FlashImgLi)).apply(this, arguments));
-    }
-
-    _createClass(FlashImgLi, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            $(".imgul li").css("width", $(window).width());
-            $(".imgul li img").css("width", $(window).width());
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var imgsec = this.props.item.img;
-            return React.createElement(
-                "li",
-                { className: "pull-left" },
-                React.createElement(
-                    "a",
-                    { href: this.props.item.href || "javascript:void(0)" },
-                    React.createElement("img", { src: imgsec, className: "img-responsive", alt: "" })
-                )
-            );
-        }
-    }]);
-
-    return FlashImgLi;
-}(React.Component);
-
-// 点
-
-
-var FlashPointLi = function (_React$Component3) {
-    _inherits(FlashPointLi, _React$Component3);
-
-    function FlashPointLi() {
-        _classCallCheck(this, FlashPointLi);
-
-        return _possibleConstructorReturn(this, (FlashPointLi.__proto__ || Object.getPrototypeOf(FlashPointLi)).apply(this, arguments));
-    }
-
-    _createClass(FlashPointLi, [{
-        key: "render",
-        value: function render() {
-
-            var c = "";
-            if (this.props.selected == this.props.index) {
-                c = "on";
-            }
-            return React.createElement("span", { className: c });
-        }
-    }]);
-
-    return FlashPointLi;
-}(React.Component);
-
-module.exports = Lunbo;
-
-/***/ }),
+/* 183 */,
 /* 184 */,
 /* 185 */,
 /* 186 */,
@@ -22679,9 +22394,7 @@ module.exports = Lunbo;
 /* 192 */,
 /* 193 */,
 /* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22697,7 +22410,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(82);
-var Lunbo = __webpack_require__(183);
 
 var IoIo = function (_React$Component) {
   _inherits(IoIo, _React$Component);
@@ -22705,15 +22417,10 @@ var IoIo = function (_React$Component) {
   function IoIo(props) {
     _classCallCheck(this, IoIo);
 
+    // 初始化一个空对象
     var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
 
-    _this.handleMinus = _this.handleMinus.bind(_this);
-    _this.handlePlus = _this.handlePlus.bind(_this);
-    _this.handleSure = _this.handleSure.bind(_this);
-    _this.handleBack = _this.handleBack.bind(_this);
-    _this.handleBuy = _this.handleBuy.bind(_this);
-    var items = [{ id: 1, img: 'images/img1.jpg', href: '#' }, { id: 2, img: 'images/img2.jpg', href: '#' }, { id: 3, img: 'images/img3.jpg', href: '#' }];
-    _this.state = { items: items };
+    _this.state = {};
     return _this;
   }
 
@@ -22721,8 +22428,63 @@ var IoIo = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {}
   }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'project_list_wrap' },
+        React.createElement(Projectlist, null),
+        React.createElement(ProjectButton, null),
+        React.createElement(Top, null),
+        React.createElement(Home, null)
+      );
+    }
+  }]);
+
+  return IoIo;
+}(React.Component);
+
+;
+
+var Projectlist = function (_React$Component2) {
+  _inherits(Projectlist, _React$Component2);
+
+  function Projectlist(props) {
+    _classCallCheck(this, Projectlist);
+
+    var _this2 = _possibleConstructorReturn(this, (Projectlist.__proto__ || Object.getPrototypeOf(Projectlist)).call(this, props));
+
+    _this2.handleMinus = _this2.handleMinus.bind(_this2);
+    _this2.handlePlus = _this2.handlePlus.bind(_this2);
+    _this2.handleSure = _this2.handleSure.bind(_this2);
+    _this2.handleBack = _this2.handleBack.bind(_this2);
+    _this2.handleBuy = _this2.handleBuy.bind(_this2);
+    _this2.handleDelect = _this2.handleDelect.bind(_this2);
+    _this2.handleHide = _this2.handleHide.bind(_this2);
+    // 初始化一个空对象
+    _this2.state = { project_list: [], number: 1 };
+    return _this2;
+  }
+
+  _createClass(Projectlist, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var list = [{ img: 'images/img1.jpg', name: '这个名字够不够长你说，不够长我还可以加，加到你满意为止', price: '100.00' }, { img: 'images/img2.jpg', name: '来一个短一点的', price: '100.00' }, { img: 'images/img3.jpg', name: '汉堡', price: '999.00' }, { img: 'images/img4.jpg', name: '猪肉', price: '888.00' }, { img: 'images/img5.jpg', name: '葡萄', price: '777.00' }, { img: 'images/img6.jpg', name: '连衣裙', price: '666.00' }];
+      this.setState({ project_list: list });
+      var number = this.state.number;
+      var num = $('#number').val();
+      $('#number').val(num);
+      this.setState({ number: num });
+
+      $('.background').show();
+      $('.project_money').show();
+      $('.project_money').attr('id', 'animation');
+    }
+  }, {
     key: 'handleBuy',
     value: function handleBuy(e) {
+      var num = $('.position_absolute2 span').html();
+      $('#number').val(num);
       $('.background').show();
       $('.projecrt_number').show();
     }
@@ -22760,95 +22522,88 @@ var IoIo = function (_React$Component) {
     value: function handleBack(e) {
       $('.background').hide();
       $('.projecrt_number').hide();
+      $('.delect_order').hide();
+      $('.project_money').hide();
+    }
+  }, {
+    key: 'handleHide',
+    value: function handleHide(e) {
+      $('.background').hide();
+      $('.delect_order').hide();
+    }
+  }, {
+    key: 'handleDelect',
+    value: function handleDelect(e) {
+      $('.delect_order').show();
+      $('.background').show();
     }
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
+      var style = { marginRight: '5px', display: 'block' };
       return React.createElement(
-        'div',
-        { className: 'project_show_wrap' },
-        React.createElement(Lunbo, { items: this.state.items }),
-        React.createElement(
-          'div',
-          { className: 'product_infor' },
-          React.createElement(
-            'div',
-            { className: 'product_infor_in' },
+        'ul',
+        { className: 'project_list_ul' },
+        this.state.project_list.map(function (item, index) {
+          return React.createElement(
+            'li',
+            { key: index },
             React.createElement(
-              'p',
-              { className: 'product_name' },
-              '\u6B63\u5B97\u725B\u5934\u5CAD\u9ED1\u6BDB\u732A'
-            ),
-            React.createElement(
-              'p',
-              { className: 'product_price' },
+              'div',
+              { className: 'weui-cells' },
               React.createElement(
-                'span',
-                null,
-                '\uFFE5'
-              ),
-              ' 399.99'
+                'div',
+                { className: 'weui-cell font_style position_relative' },
+                React.createElement(
+                  'div',
+                  { className: 'weui-cell__hd project_list_img_wrap' },
+                  React.createElement('img', { src: item.img, alt: '', style: style })
+                ),
+                React.createElement(
+                  'div',
+                  { className: 'weui-cell__bd product_name' },
+                  React.createElement(
+                    'p',
+                    { className: 'product_name_infor' },
+                    item.name
+                  ),
+                  React.createElement(
+                    'p',
+                    { className: 'product_price' },
+                    React.createElement(
+                      'span',
+                      null,
+                      '\uFFE5'
+                    ),
+                    item.price
+                  )
+                ),
+                React.createElement(
+                  'div',
+                  { className: 'weui-cell__ft position_absolute', onClick: _this3.handleBuy },
+                  React.createElement('i', { className: 'fa fa-pencil' })
+                ),
+                React.createElement(
+                  'div',
+                  { className: 'weui-cell__ft position_absolute1', onClick: _this3.handleDelect },
+                  React.createElement('i', { className: 'fa fa-trash-o' })
+                ),
+                React.createElement(
+                  'div',
+                  { className: 'weui-cell__ft position_absolute2' },
+                  React.createElement(
+                    'span',
+                    null,
+                    '11'
+                  ),
+                  ' \u4EF6'
+                )
+              )
             )
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'product_remind' },
-          React.createElement(
-            'p',
-            null,
-            React.createElement(
-              'span',
-              null,
-              '\u4EA7\u5730\uFF1A'
-            ),
-            '\u4E2D\u56FD\u9999\u6E2F'
-          ),
-          React.createElement(
-            'p',
-            null,
-            React.createElement(
-              'span',
-              null,
-              '\u4FDD\u8D28\u671F\uFF1A'
-            ),
-            '\u4E09\u5E74'
-          ),
-          React.createElement(
-            'p',
-            null,
-            React.createElement(
-              'span',
-              null,
-              '\u89C4\u683C\uFF1A'
-            ),
-            '500 g'
-          ),
-          React.createElement(
-            'p',
-            null,
-            React.createElement(
-              'span',
-              null,
-              '\u5B58\u50A8\u6E29\u5EA6\uFF1A'
-            ),
-            '2\uFF5E6\u2103'
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'project_infor_img' },
-          React.createElement('img', { src: 'images/product_infor.jpg' })
-        ),
-        React.createElement(
-          'div',
-          { className: 'project_list_button' },
-          React.createElement(
-            'p',
-            { onClick: this.handleBuy },
-            '\u4E0B\u5355'
-          )
-        ),
+          );
+        }),
         React.createElement('div', { className: 'background', onClick: this.handleBack }),
         React.createElement(
           'div',
@@ -22881,17 +22636,192 @@ var IoIo = function (_React$Component) {
               '\u786E\u5B9A'
             )
           )
+        ),
+        React.createElement(
+          'div',
+          { className: 'delect_order' },
+          React.createElement(
+            'p',
+            { className: 'yes_or_no' },
+            '\u662F\u5426\u786E\u8BA4\u5220\u9664\u8BE5\u5546\u54C1\uFF1F'
+          ),
+          React.createElement(
+            'p',
+            { className: 'delect_order_button' },
+            React.createElement(
+              'span',
+              { className: 'no' },
+              '\u5220\u9664'
+            ),
+            React.createElement(
+              'span',
+              { className: 'yes', onClick: this.handleHide },
+              '\u4E0D\u5220\u9664'
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'project_money' },
+          React.createElement(
+            'p',
+            null,
+            '\u7EDF\u8BA1'
+          ),
+          React.createElement(
+            'p',
+            null,
+            '\u5171\u8BA1 \uFF1A 1000.00 \u5143'
+          )
         )
       );
     }
   }]);
 
-  return IoIo;
+  return Projectlist;
 }(React.Component);
 
 ;
 
-ReactDOM.render(React.createElement(IoIo, null), document.getElementById("product_show"));
+var ProjectButton = function (_React$Component3) {
+  _inherits(ProjectButton, _React$Component3);
+
+  function ProjectButton(props) {
+    _classCallCheck(this, ProjectButton);
+
+    // 初始化一个空对象
+    var _this4 = _possibleConstructorReturn(this, (ProjectButton.__proto__ || Object.getPrototypeOf(ProjectButton)).call(this, props));
+
+    _this4.state = {};
+    return _this4;
+  }
+
+  _createClass(ProjectButton, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'project_list_button' },
+        React.createElement(
+          'p',
+          null,
+          '\u53BB\u63D0\u4EA4'
+        )
+      );
+    }
+  }]);
+
+  return ProjectButton;
+}(React.Component);
+
+;
+
+// 返回顶部
+
+var Top = function (_React$Component4) {
+  _inherits(Top, _React$Component4);
+
+  function Top(props) {
+    _classCallCheck(this, Top);
+
+    var _this5 = _possibleConstructorReturn(this, (Top.__proto__ || Object.getPrototypeOf(Top)).call(this, props));
+
+    _this5.handleClick = _this5.handleClick.bind(_this5);
+    return _this5;
+  }
+  // 点击返回顶部
+
+
+  _createClass(Top, [{
+    key: 'handleClick',
+    value: function handleClick(e) {
+      $('body,html').animate({ scrollTop: 0 }, 400);
+    }
+    // 页面发生变化的时候触发
+
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      $(window).scroll(function () {
+        var topHeight = $(window).scrollTop();
+        if (topHeight > 200) {
+          //当滚动条的位置处于距顶部1000像素以下时，就是大于1000象数时，跳转出现
+          $(".top").fadeIn(250);
+        } else {
+          //否则就消失
+          $(".top").fadeOut(250);
+        }
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var topHeight = $(window).scrollTop();
+
+      return React.createElement(
+        'div',
+        { className: 'top', onClick: this.handleClick },
+        React.createElement('img', { src: 'images/scroll-to-top-icon.png', alt: '' })
+      );
+    }
+  }]);
+
+  return Top;
+}(React.Component);
+
+;
+
+var Home = function (_React$Component5) {
+  _inherits(Home, _React$Component5);
+
+  function Home(props) {
+    _classCallCheck(this, Home);
+
+    // 初始化一个空对象
+    var _this6 = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
+
+    _this6.state = {};
+    return _this6;
+  }
+
+  _createClass(Home, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      $(window).scroll(function () {
+        var topHeight = $(window).scrollTop();
+        if (topHeight > 100) {
+          //当滚动条的位置处于距顶部1000像素以下时，就是大于1000象数时，跳转出现
+          $(".nav_home").fadeIn(250);
+        } else {
+          //否则就消失
+          $(".nav_home").fadeOut(250);
+        }
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'nav_home' },
+        React.createElement(
+          'a',
+          { href: '#' },
+          React.createElement('i', { className: 'fa fa-home' })
+        )
+      );
+    }
+  }]);
+
+  return Home;
+}(React.Component);
+
+;
+
+ReactDOM.render(React.createElement(IoIo, null), document.getElementById("product_cart"));
 
 /***/ })
 /******/ ]);
