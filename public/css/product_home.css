@@ -1,0 +1,73 @@
+html,body{
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
+.lunbo{
+  z-index: 11;
+  opacity: 0.7;
+}
+.product_nav_list{
+  margin: 20px;
+}
+.qipao_title{
+  text-align: center;
+  display: block;
+  font-size: 34px;
+  font-weight: 300;
+  border-bottom: 1px solid #000;
+  padding: 15px 0;
+  margin: 25px 0;
+}
+.qipao_wrap{
+  margin: 10px;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.qipao_wrap li{
+  width: 50%;
+  list-style: none;
+  box-sizing: border-box;
+
+}
+.qipao_wrap li img{
+  width: 100%;
+  padding: 0 3px;
+  box-sizing: border-box;
+}
+.qipao_price span{
+  display: inline-block;
+}
+.price_style{
+  color: red;
+  font-size: 14px;
+  padding: 3px 0;
+}
+.buy_style{
+  font-size: 14px;
+  padding: 3px 7px;
+  border-radius: 5px;
+  background: red;
+  color: #fff;
+}
+.qipao_price{
+  padding: 12px 3px;
+  overflow: hidden;
+}
+.qipao_ad{
+  margin: 10px;
+
+}
+.qipao_ad img{
+  width: 100%;
+}
+.chuiniubi{
+  font-size: 24px;
+  text-align: center;
+  padding: 37px 0;
+}

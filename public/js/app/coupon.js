@@ -22655,7 +22655,7 @@ var CouponInfor = function (_React$Component2) {
                   React.createElement(
                     'p',
                     { className: 'coupon_left_infor_area' },
-                    '\u6EE12999\u5143\u53EF\u7528'
+                    ' '
                   )
                 )
               ),

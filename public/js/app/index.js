@@ -22687,324 +22687,167 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(82);
 var Lunbo = __webpack_require__(183);
-
 // 框架
 
 var Wrap = function (_React$Component) {
-    _inherits(Wrap, _React$Component);
+  _inherits(Wrap, _React$Component);
 
-    function Wrap() {
-        _classCallCheck(this, Wrap);
+  function Wrap() {
+    _classCallCheck(this, Wrap);
 
-        return _possibleConstructorReturn(this, (Wrap.__proto__ || Object.getPrototypeOf(Wrap)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Wrap.__proto__ || Object.getPrototypeOf(Wrap)).apply(this, arguments));
+  }
+
+  _createClass(Wrap, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'product_home' },
+        React.createElement(Lunbo, { items: items, rate: rate }),
+        React.createElement(ProductNav, null)
+      );
     }
+  }]);
 
-    _createClass(Wrap, [{
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                { className: 'wrap row' },
-                React.createElement(Head, null),
-                React.createElement(Activity, null),
-                React.createElement(Maintenance, null),
-                React.createElement(Nav, null),
-                React.createElement(
-                    'div',
-                    { className: 'gif' },
-                    React.createElement('img', { src: 'images/jiazai1.gif', alt: '' })
-                ),
-                React.createElement('div', { className: 'person_information' })
-            );
-        }
-    }]);
-
-    return Wrap;
+  return Wrap;
 }(React.Component);
 
 ;
 
-var Head = function (_React$Component2) {
-    _inherits(Head, _React$Component2);
+// 菜单
 
-    function Head() {
-        _classCallCheck(this, Head);
+var ProductNav = function (_React$Component2) {
+  _inherits(ProductNav, _React$Component2);
 
-        return _possibleConstructorReturn(this, (Head.__proto__ || Object.getPrototypeOf(Head)).apply(this, arguments));
+  function ProductNav(props) {
+    _classCallCheck(this, ProductNav);
+
+    var _this2 = _possibleConstructorReturn(this, (ProductNav.__proto__ || Object.getPrototypeOf(ProductNav)).call(this, props));
+
+    _this2.state = { qipao: [] };
+
+    return _this2;
+  }
+
+  _createClass(ProductNav, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // var product_nav_list_width = $('.product_nav_list').width();
+      // $('.product_nav_list').css('height',product_nav_list_width/2);
+      var list = [{ img: 'img/qipao_1.jpg', price: '399.00' }, { img: 'img/qipao_2.jpg', price: '399.00' }, { img: 'img/qipao_3.jpg', price: '399.00' }, { img: 'img/qipao_4.jpg', price: '399.00' }, { img: 'img/qipao_5.jpg', price: '399.00' }, { img: 'img/qipao_6.jpg', price: '399.00' }, { img: 'img/qipao_7.jpg', price: '399.00' }, { img: 'img/qipao_8.jpg', price: '399.00' }];
+      this.setState({ qipao: list });
     }
-
-    _createClass(Head, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            $(".person_information").fadeIn(1000);
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-
-            return React.createElement(
-                'div',
-                { className: 'person_head_wrap' },
-                React.createElement(Lunbo, { items: items, rate: rate })
-            );
-        }
-    }]);
-
-    return Head;
-}(React.Component);
-
-;
-// <div className="person_information">
-//   <div className="person_information_img pull-left"><img src="images/me.jpg" alt="" /></div>
-//   <div className="person_information_name pull-right"><p>周润花</p><p>唐66</p></div>
-// </div>
-// 活动
-
-var Activity = function (_React$Component3) {
-    _inherits(Activity, _React$Component3);
-
-    function Activity() {
-        _classCallCheck(this, Activity);
-
-        return _possibleConstructorReturn(this, (Activity.__proto__ || Object.getPrototypeOf(Activity)).apply(this, arguments));
-    }
-
-    _createClass(Activity, [{
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                { className: 'person_activity' },
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'product_nav' },
+        React.createElement(
+          'div',
+          { className: 'product_nav_list' },
+          React.createElement(
+            'h1',
+            { className: 'qipao_title' },
+            '\u300C\u65D7 \u888D\u300D'
+          ),
+          React.createElement(
+            'ul',
+            { className: 'qipao_wrap' },
+            this.state.qipao.map(function (item, index) {
+              return React.createElement(
+                'li',
+                { key: index },
+                React.createElement('img', { src: item.img }),
                 React.createElement(
-                    'a',
-                    { className: 'weui-cell weui-cell_access', href: 'buy_process' },
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__bd' },
-                        React.createElement(
-                            'p',
-                            null,
-                            '\u8D2D\u8F66\u6D41\u7A0B'
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__ft' },
-                        '\u8BE6\u7EC6\u4FE1\u606F'
-                    )
+                  'p',
+                  { className: 'qipao_price' },
+                  React.createElement(
+                    'span',
+                    { className: 'pull-left price_style' },
+                    '\uFFE5',
+                    item.price
+                  ),
+                  React.createElement(
+                    'span',
+                    { className: 'pull-right buy_style' },
+                    '\u7ACB\u5373\u5B9A\u5236'
+                  )
                 )
-            );
-        }
-    }]);
-
-    return Activity;
-}(React.Component);
-
-;
-
-// 活动
-
-var Maintenance = function (_React$Component4) {
-    _inherits(Maintenance, _React$Component4);
-
-    function Maintenance() {
-        _classCallCheck(this, Maintenance);
-
-        return _possibleConstructorReturn(this, (Maintenance.__proto__ || Object.getPrototypeOf(Maintenance)).apply(this, arguments));
-    }
-
-    _createClass(Maintenance, [{
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                { className: 'person_maintenance' },
+              );
+            })
+          ),
+          React.createElement(
+            'div',
+            { className: 'chuiniubi' },
+            '\u73CD\u85CF'
+          ),
+          React.createElement(
+            'div',
+            { className: 'qipao_ad' },
+            React.createElement('img', { src: 'img/qipao_9.jpg' })
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'product_nav_list' },
+          React.createElement(
+            'h1',
+            { className: 'qipao_title' },
+            '\u300C\u65D7 \u888D\u300D'
+          ),
+          React.createElement(
+            'ul',
+            { className: 'qipao_wrap' },
+            this.state.qipao.map(function (item, index) {
+              return React.createElement(
+                'li',
+                { key: index },
+                React.createElement('img', { src: item.img }),
                 React.createElement(
-                    'a',
-                    { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__bd' },
-                        React.createElement(
-                            'p',
-                            null,
-                            '\u53C2\u4E0E\u6D3B\u52A8'
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__ft' },
-                        '\u8BE6\u7EC6\u4FE1\u606F'
-                    )
-                ),
-                React.createElement(
-                    'a',
-                    { className: 'weui-cell weui-cell_access', href: 'repair_history' },
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__bd' },
-                        React.createElement(
-                            'p',
-                            null,
-                            '\u7EF4\u4FEE\u5386\u53F2'
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'weui-cell__ft' },
-                        '\u8BE6\u7EC6\u4FE1\u606F'
-                    )
+                  'p',
+                  { className: 'qipao_price' },
+                  React.createElement(
+                    'span',
+                    { className: 'pull-left price_style' },
+                    '\uFFE5',
+                    item.price
+                  ),
+                  React.createElement(
+                    'span',
+                    { className: 'pull-right buy_style' },
+                    '\u7ACB\u5373\u5B9A\u5236'
+                  )
                 )
-            );
-        }
-    }]);
-
-    return Maintenance;
-}(React.Component);
-
-;
-
-// 导航
-
-var Nav = function (_React$Component5) {
-    _inherits(Nav, _React$Component5);
-
-    function Nav() {
-        _classCallCheck(this, Nav);
-
-        return _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).apply(this, arguments));
+              );
+            })
+          ),
+          React.createElement(
+            'div',
+            { className: 'chuiniubi' },
+            '\u73CD\u85CF'
+          ),
+          React.createElement(
+            'div',
+            { className: 'qipao_ad' },
+            React.createElement('img', { src: 'img/qipao_9.jpg' })
+          )
+        )
+      );
     }
+  }]);
 
-    _createClass(Nav, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            $(".nav_public").fadeIn(1000);
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                { className: 'person_nav' },
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'maintenance_detail' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_baoyang.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u4FDD\u517B'
-                        )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'appointment_list' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_weixiu.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u7EF4\u4FEE'
-                        )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'sos' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_jiuyuan.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u6551\u63F4'
-                        )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'my_contract' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_baoxian.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u4FDD\u9669'
-                        )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'my_vip' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_shijia.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u4F1A\u5458\u5361'
-                        )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-4 nav_public' },
-                    React.createElement(
-                        'a',
-                        { href: 'my_car' },
-                        React.createElement(
-                            'p',
-                            { className: 'nav_picture' },
-                            React.createElement('img', { src: 'images/nav_mycar.png' })
-                        ),
-                        React.createElement(
-                            'p',
-                            { className: 'nav_name' },
-                            '\u6211\u7684\u8F66'
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Nav;
+  return ProductNav;
 }(React.Component);
 
 ;
 
 // 返回到页面
-ReactDOM.render(React.createElement(Wrap, null), document.getElementById("content"));
+ReactDOM.render(React.createElement(Wrap, null), document.getElementById("product"));
 
 /***/ })
 /******/ ]);
