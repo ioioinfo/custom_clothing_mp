@@ -35,7 +35,7 @@ class IoIo extends React.Component {
         <div className="signup_wrap">
           <div className="signup_top">
             <div className="page__hd signup_title_style">
-              <h1 className="page__title" id="animation">欢迎来到私人订货</h1>
+              <h1 className="page__title" id="animation">欢迎来到私人订制</h1>
             </div>
 
             <div className="weui-cells">

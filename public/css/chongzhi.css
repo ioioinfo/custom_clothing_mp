@@ -1,0 +1,181 @@
+*{padding: 0;margin: 0;}
+body,html{
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+}
+.chongzhi_head{
+  width: 100%;
+
+  text-align: center;
+  background: #f7f7f7;
+  position: relative;
+}
+.chongzhi_head p {
+  color: #010101;
+  height: 46px;
+  line-height: 46px;
+}
+.chongzhi_head_back{
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  color: #999;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #e6e6e6;
+  border-radius: 50%;
+}
+.chongzhi_head_back_icon{
+  font-size: 20px;
+}
+.chongzhi_head_infor{
+  position: absolute;
+  top: 13px;
+  right: 7px;
+  color: #999;
+}
+.chongzhi_middle{
+  width: 95%;
+  margin: 0 auto;
+}
+.chongzhi_middle_account{
+  width: 100%;
+  margin: 17px 0;
+  background: #fff;
+  height: 104px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px 17px;
+  box-sizing: border-box;
+}
+.chongzhi_middle_account_infor{
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.chongzhi_middle_account_number{
+  font-size: 16px;
+  color: #afafaf;
+}
+.chongzhi_middle_account_left{
+  border-right: 1px solid #e6e6e6;
+}
+.chongzhi_middle_account_number span{
+  font-size: 24px;
+  padding-top: 7px;
+  color: #010101;
+
+}
+.chongzhi_middle_account_right_money{
+  overflow: hidden;
+  padding: 3.5px 0;
+}
+.chongzhi_middle_account_right{
+  padding-left: 17px;
+}
+.chongzhi_middle_account_right_money_dian1{
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #f66e62;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+.chongzhi_middle_account_right_money_dian2{
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #27a365;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+.chongzhi_middle_account_right_money_number{
+  float: right;
+}
+.chongzhi_middle_choice{
+  background: #fff;
+  width: 100%;
+  padding: 0 17px;
+  box-sizing: border-box;
+}
+.chongzhi_middle_choice_title{
+  height: 34px;
+  line-height: 34px;
+  color: #afafaf;
+}
+.chongzhi_middle_choice_infor{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+.chongzhi_middle_choice_infor p{
+  width: 33.33%;
+  box-sizing: border-box;
+  text-align: center;
+  height: 93px;
+  line-height: 93px;
+}
+.chongzhijine_style{
+    border: 1px solid #27a365;
+    color: #27a365;
+}
+.chongzhi_middle_choice_jiesuan{
+  text-align: right;
+  padding: 17px 0 ;
+}
+.chongzhi_middle_choice_jiesuan span{
+  color: #27a365;
+  margin-left: 7px;
+}
+.chongzhi_middle_kind{
+  background: #fff;
+  width: 100%;
+  padding: 0 17px;
+  margin: 17px 0;
+  box-sizing: border-box;
+}
+.chongzhi_middle_kind_img{
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.weui-cell{
+  padding: 10px  0;
+}
+.chongzhi_middle_kind_img_right{
+  margin-right: 7px;
+}
+.chongzhi_bottom{
+  background: #fff;
+  width: 100%;
+  padding: 7px 17px;
+  box-sizing: border-box;
+}
+.chongzhi_bottom p{
+  text-align: center;
+  font-size: 12px;
+  color: #8B8B8B;
+  padding: 3px 0;
+}
+.chongzhi_bottom_span{
+  color: #1AAD19;
+}
+
+.chongzhi_middle_kind_icon{
+  color: #1AAD19;
+}
+.chongzhi_fangshi{
+  display: none;
+}

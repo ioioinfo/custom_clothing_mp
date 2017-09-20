@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 190);
+/******/ 	return __webpack_require__(__webpack_require__.s = 184);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22383,13 +22383,7 @@ module.exports = traverseAllChildren;
 
 /***/ }),
 /* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22405,17 +22399,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(82);
-var time;
-function time(num) {
-  var t = setInterval(function () {
-    num--;
-    $(".timenum").html(Math.ceil(num));
-    if (num <= 0) {
-      clearInterval(t);
-      $(".timenum").html('获取验证码');
-    }
-  }, 1000);
-}
 
 var IoIo = function (_React$Component) {
   _inherits(IoIo, _React$Component);
@@ -22425,159 +22408,22 @@ var IoIo = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
 
-    _this.handleClick = _this.handleClick.bind(_this);
-    // 初始化一个空对象
     _this.state = {};
     return _this;
   }
 
   _createClass(IoIo, [{
     key: 'componentDidMount',
-    value: function componentDidMount() {
-      $('#phone').focus();
-      $("[name='checkbox']").prop("checked", true);
-      var windowHeight = $(window).height();
-      var signupTopHeight = $('.signup_top').height();
-      var marginHeight = windowHeight - signupTopHeight - 46;
-      $('.signup_button').css('margin-top', marginHeight);
-    }
-  }, {
-    key: 'handleClick',
-    value: function handleClick(e) {
-      time(60);
-    }
+    value: function componentDidMount() {}
   }, {
     key: 'render',
     value: function render() {
+      var style = { display: 'none' };
       return React.createElement(
         'div',
-        { className: 'signup_wrap' },
-        React.createElement(
-          'div',
-          { className: 'signup_top' },
-          React.createElement(
-            'div',
-            { className: 'page__hd signup_title_style' },
-            React.createElement(
-              'h1',
-              { className: 'page__title', id: 'animation' },
-              '\u6B22\u8FCE\u6765\u5230\u79C1\u4EBA\u8BA2\u5236'
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cells' },
-            React.createElement(
-              'div',
-              { className: 'weui-cell weui-cell_access' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement(
-                  'p',
-                  { className: 'signup_word_style' },
-                  '\u6CE8\u518C'
-                )
-              ),
-              React.createElement(
-                'a',
-                { className: 'weui-cell__ft account_style', href: 'login' },
-                '\u6709\u5E10\u53F7\uFF1F\u53BB\u767B\u5F55'
-              )
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cells weui-cells_form' },
-            React.createElement(
-              'div',
-              { className: 'weui-cell weui-cell_vcode' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u624B\u673A\u53F7'
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', type: 'tel', placeholder: '\u8BF7\u8F93\u5165\u624B\u673A\u53F7', id: 'phone' })
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__ft' },
-                React.createElement(
-                  'button',
-                  { className: 'weui-vcode-btn  timenum', onClick: this.handleClick },
-                  '\u83B7\u53D6\u9A8C\u8BC1\u7801'
-                )
-              )
-            ),
-            React.createElement(
-              'div',
-              { className: 'weui-cell' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u5BC6\u7801'
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' })
-              )
-            ),
-            React.createElement(
-              'div',
-              { className: 'weui-cell yanzhengma' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u9A8C\u8BC1\u7801'
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', type: 'number', pattern: '[0-9]*', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801' })
-              )
-            )
-          ),
-          React.createElement(
-            'label',
-            { className: 'weui-agree agree_style' },
-            React.createElement('input', { id: 'weuiAgree', type: 'checkbox', name: 'checkbox', className: 'weui-agree__checkbox' }),
-            React.createElement(
-              'span',
-              { className: 'weui-agree__text' },
-              '\u9009\u62E9\u6CE8\u518C\u4EE3\u8868\u60A8\u5DF2\u7ECF\u540C\u610F',
-              React.createElement(
-                'a',
-                { href: '#' },
-                '\u300A\u76F8\u5173\u6761\u6B3E\u300B'
-              )
-            )
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'signup_button' },
-          React.createElement(
-            'a',
-            { className: 'weui-btn weui-btn_primary', href: 'javascript:', id: 'showTooltips' },
-            '\u6CE8\u518C'
-          )
-        )
+        { className: 'chongzhi_wrap' },
+        React.createElement(ChongzhiHead, null),
+        React.createElement(ChongzhiMiddle, null)
       );
     }
   }]);
@@ -22587,7 +22433,286 @@ var IoIo = function (_React$Component) {
 
 ;
 
-ReactDOM.render(React.createElement(IoIo, null), document.getElementById("signup"));
+var ChongzhiHead = function (_React$Component2) {
+  _inherits(ChongzhiHead, _React$Component2);
+
+  function ChongzhiHead(props) {
+    _classCallCheck(this, ChongzhiHead);
+
+    return _possibleConstructorReturn(this, (ChongzhiHead.__proto__ || Object.getPrototypeOf(ChongzhiHead)).call(this, props));
+  }
+
+  _createClass(ChongzhiHead, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      var style = { display: 'none' };
+      return React.createElement(
+        'div',
+        { className: 'chongzhi_head' },
+        React.createElement(
+          'p',
+          null,
+          '\u5728\u7EBF\u5145\u503C'
+        ),
+        React.createElement(
+          'span',
+          { className: 'chongzhi_head_back' },
+          React.createElement('i', { className: 'fa fa-angle-left chongzhi_head_back_icon' })
+        ),
+        React.createElement(
+          'span',
+          { className: 'chongzhi_head_infor' },
+          React.createElement('i', { className: 'fa fa-info-circle chongzhi_head_back_icon' })
+        )
+      );
+    }
+  }]);
+
+  return ChongzhiHead;
+}(React.Component);
+
+;
+
+var ChongzhiMiddle = function (_React$Component3) {
+  _inherits(ChongzhiMiddle, _React$Component3);
+
+  function ChongzhiMiddle(props) {
+    _classCallCheck(this, ChongzhiMiddle);
+
+    var _this3 = _possibleConstructorReturn(this, (ChongzhiMiddle.__proto__ || Object.getPrototypeOf(ChongzhiMiddle)).call(this, props));
+
+    _this3.handleClick = _this3.handleClick.bind(_this3);
+    _this3.handleClick1 = _this3.handleClick1.bind(_this3);
+    return _this3;
+  }
+
+  _createClass(ChongzhiMiddle, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      $('.chongzhi_middle_choice_infor p:first-child').addClass('chongzhijine_style');
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick(selected) {
+      $('.chongzhi_fangshi').hide();
+      $('#chongzhi_fangshi' + selected).show();
+    }
+  }, {
+    key: 'handleClick1',
+    value: function handleClick1(selected1) {
+      $('.chongzhi_middle_choice_infor p').removeClass('chongzhijine_style');
+      $('#chongzhijine' + selected1).addClass('chongzhijine_style');
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var style = { display: 'none' };
+      return React.createElement(
+        'div',
+        { className: 'chongzhi_middle' },
+        React.createElement(
+          'div',
+          { className: 'chongzhi_middle_account' },
+          React.createElement(
+            'div',
+            { className: 'chongzhi_middle_account_left chongzhi_middle_account_infor' },
+            React.createElement(
+              'p',
+              { className: 'chongzhi_middle_account_number' },
+              '\u603B\u91D1\u989D\uFF1A',
+              React.createElement('br', null),
+              React.createElement(
+                'span',
+                null,
+                '3000.00'
+              )
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'chongzhi_middle_account_right chongzhi_middle_account_infor' },
+            React.createElement(
+              'p',
+              { className: 'chongzhi_middle_account_right_money' },
+              React.createElement('span', { className: 'chongzhi_middle_account_right_money_dian1' }),
+              '\u672C\u91D1',
+              React.createElement(
+                'span',
+                { className: 'chongzhi_middle_account_right_money_number' },
+                '0.00'
+              )
+            ),
+            React.createElement(
+              'p',
+              { className: 'chongzhi_middle_account_right_money' },
+              React.createElement('span', { className: 'chongzhi_middle_account_right_money_dian2' }),
+              '\u589E\u989D',
+              React.createElement(
+                'span',
+                { className: 'chongzhi_middle_account_right_money_number' },
+                '0.00'
+              )
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'chongzhi_middle_choice' },
+          React.createElement(
+            'div',
+            { className: 'chongzhi_middle_choice_title' },
+            '\u9009\u62E9\u5145\u503C\u91D1\u989D'
+          ),
+          React.createElement(
+            'div',
+            { className: 'chongzhi_middle_choice_infor' },
+            React.createElement(
+              'p',
+              { id: 'chongzhijine1', onClick: this.handleClick1.bind(this, 1) },
+              '100 \u5143'
+            ),
+            React.createElement(
+              'p',
+              { id: 'chongzhijine2', onClick: this.handleClick1.bind(this, 2) },
+              '200 \u5143'
+            ),
+            React.createElement(
+              'p',
+              { id: 'chongzhijine3', onClick: this.handleClick1.bind(this, 3) },
+              '500 \u5143'
+            ),
+            React.createElement(
+              'p',
+              { id: 'chongzhijine4', onClick: this.handleClick1.bind(this, 4) },
+              '1000 \u5143'
+            ),
+            React.createElement(
+              'p',
+              { id: 'chongzhijine5', onClick: this.handleClick1.bind(this, 5) },
+              '2000 \u5143'
+            ),
+            React.createElement(
+              'p',
+              { id: 'chongzhijine6', onClick: this.handleClick1.bind(this, 6) },
+              '5000 \u5143'
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'chongzhi_middle_choice_jiesuan' },
+            '\u5B9E\u9645\u5230\u8D26',
+            React.createElement(
+              'span',
+              null,
+              '0.00'
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'chongzhi_middle_kind' },
+          React.createElement(
+            'a',
+            { className: 'weui-cell weui-cell_access', href: 'javascript:;', onClick: this.handleClick.bind(this, 1) },
+            React.createElement(
+              'div',
+              { className: 'weui-cell__hd chongzhi_middle_kind_img_right' },
+              React.createElement('img', { src: 'images/zhifu_zhifubao.png', alt: '', className: 'chongzhi_middle_kind_img' })
+            ),
+            React.createElement(
+              'div',
+              { className: 'weui-cell__bd weui-cell_primary' },
+              React.createElement(
+                'p',
+                null,
+                '\u652F\u4ED8\u5B9D'
+              )
+            ),
+            React.createElement(
+              'span',
+              { className: 'chongzhi_fangshi', id: 'chongzhi_fangshi1' },
+              React.createElement('i', { className: 'fa fa-check-circle chongzhi_middle_kind_icon' })
+            )
+          ),
+          React.createElement(
+            'a',
+            { className: 'weui-cell weui-cell_access', href: 'javascript:;', onClick: this.handleClick.bind(this, 2) },
+            React.createElement(
+              'div',
+              { className: 'weui-cell__hd chongzhi_middle_kind_img_right' },
+              React.createElement('img', { src: 'images/zhifu_weixin.png', alt: '', className: 'chongzhi_middle_kind_img' })
+            ),
+            React.createElement(
+              'div',
+              { className: 'weui-cell__bd weui-cell_primary' },
+              React.createElement(
+                'p',
+                null,
+                '\u5FAE\u4FE1'
+              )
+            ),
+            React.createElement(
+              'span',
+              { className: 'chongzhi_fangshi', id: 'chongzhi_fangshi2' },
+              React.createElement('i', { className: 'fa fa-check-circle chongzhi_middle_kind_icon' })
+            )
+          ),
+          React.createElement(
+            'a',
+            { className: 'weui-cell weui-cell_access', href: 'javascript:;', onClick: this.handleClick.bind(this, 3) },
+            React.createElement(
+              'div',
+              { className: 'weui-cell__hd chongzhi_middle_kind_img_right' },
+              React.createElement('img', { src: 'images/zhifu_yinhangka.png', alt: '', className: 'chongzhi_middle_kind_img' })
+            ),
+            React.createElement(
+              'div',
+              { className: 'weui-cell__bd weui-cell_primary' },
+              React.createElement(
+                'p',
+                null,
+                '\u94F6\u884C\u5361'
+              )
+            ),
+            React.createElement(
+              'span',
+              { className: 'chongzhi_fangshi', id: 'chongzhi_fangshi3' },
+              React.createElement('i', { className: 'fa fa-check-circle chongzhi_middle_kind_icon' })
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'chongzhi_bottom' },
+          React.createElement(
+            'p',
+            null,
+            '\u70B9\u51FB\u53BB\u5145\u503C\uFF0C\u5373\u9ED8\u8BA4\u540C\u610F',
+            React.createElement(
+              'span',
+              { className: 'chongzhi_bottom_span' },
+              '\u300A\u5145\u503C\u534F\u8BAE\u300B'
+            )
+          ),
+          React.createElement(
+            'a',
+            { href: 'javascript:;', className: 'weui-btn weui-btn_primary' },
+            '\u53BB\u5145\u503C'
+          )
+        )
+      );
+    }
+  }]);
+
+  return ChongzhiMiddle;
+}(React.Component);
+
+;
+
+ReactDOM.render(React.createElement(IoIo, null), document.getElementById("chongzhi"));
 
 /***/ })
 /******/ ]);

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 189);
+/******/ 	return __webpack_require__(__webpack_require__.s = 186);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22499,7 +22499,7 @@ var Lunbo = function (_React$Component) {
             $(".imgul li").css("width", $(window).width());
             var rate = this.props.rate;
             if (!rate) {
-                rate = 1;
+                rate = 0.3125;
             }
 
             var imgLIheight = rate * $(window).width();
@@ -22670,10 +22670,7 @@ module.exports = Lunbo;
 /***/ }),
 /* 184 */,
 /* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

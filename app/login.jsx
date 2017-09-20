@@ -57,7 +57,7 @@ class IoIo extends React.Component {
           <div className="loding_middle">
             <div className="loding_middle_next">
               <div className="login-form-title">
-                <span className="login-form-project">私人订货</span>
+                <span className="login-form-project">私人订制</span>
               </div>
 
               <div className="loding_middle_email_wrap">

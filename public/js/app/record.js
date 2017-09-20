@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 190);
+/******/ 	return __webpack_require__(__webpack_require__.s = 189);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22388,8 +22388,7 @@ module.exports = traverseAllChildren;
 /* 186 */,
 /* 187 */,
 /* 188 */,
-/* 189 */,
-/* 190 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22405,189 +22404,193 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(49);
 var ReactDOM = __webpack_require__(82);
-var time;
-function time(num) {
-  var t = setInterval(function () {
-    num--;
-    $(".timenum").html(Math.ceil(num));
-    if (num <= 0) {
-      clearInterval(t);
-      $(".timenum").html('获取验证码');
-    }
-  }, 1000);
-}
 
-var IoIo = function (_React$Component) {
-  _inherits(IoIo, _React$Component);
+// 框架
 
-  function IoIo(props) {
-    _classCallCheck(this, IoIo);
+var Wrap = function (_React$Component) {
+  _inherits(Wrap, _React$Component);
 
-    var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
+  function Wrap(props) {
+    _classCallCheck(this, Wrap);
 
-    _this.handleClick = _this.handleClick.bind(_this);
-    // 初始化一个空对象
-    _this.state = {};
+    var _this = _possibleConstructorReturn(this, (Wrap.__proto__ || Object.getPrototypeOf(Wrap)).call(this, props));
+
+    _this.state = { vip_item: {}, record_items: [] };
     return _this;
   }
 
-  _createClass(IoIo, [{
+  _createClass(Wrap, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      $('#phone').focus();
-      $("[name='checkbox']").prop("checked", true);
-      var windowHeight = $(window).height();
-      var signupTopHeight = $('.signup_top').height();
-      var marginHeight = windowHeight - signupTopHeight - 46;
-      $('.signup_button').css('margin-top', marginHeight);
-    }
-  }, {
-    key: 'handleClick',
-    value: function handleClick(e) {
-      time(60);
+      $.ajax({
+        url: "/get_member_info",
+        dataType: 'json',
+        type: 'GET',
+        data: { "card_id": card_id },
+        success: function (data) {
+          if (data.rows.length > 0) {
+            this.setState({ vip_item: data.rows[0] });
+          } else {
+            $('.ammount').html('暂无金额');
+          }
+        }.bind(this),
+        error: function (xhr, status, err) {}.bind(this)
+      });
+
+      $.ajax({
+        url: "/member_consume_history",
+        dataType: 'json',
+        type: 'GET',
+        data: { "card_id": card_id },
+        success: function (data) {
+          var record_items = this.state.record_items;
+          for (var i = 0; i < data.cost.length; i++) {
+            var cost = data.cost[i];
+            cost.type = 1;
+            record_items.push(cost);
+          };
+          for (var i = 0; i < data.income.length; i++) {
+            var income = data.income[i];
+            income.type = 2;
+            record_items.push(income);
+          }
+
+          function compare(a, b) {
+            if (a.created_at < b.created_at) {
+              return -1;
+            }
+            if (a.created_at > b.created_at) {
+              return 1;
+            }
+            return 0;
+          }
+
+          record_items.sort(compare);
+
+          this.setState({ record_items: record_items });
+        }.bind(this),
+        error: function (xhr, status, err) {}.bind(this)
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      return React.createElement(
-        'div',
-        { className: 'signup_wrap' },
-        React.createElement(
-          'div',
-          { className: 'signup_top' },
-          React.createElement(
+      var record_items = this.state.record_items;
+
+      var list = [];
+
+      record_items.map(function (item) {
+        var type = item.type;
+        if (type == 1) {
+          list.push(React.createElement(
             'div',
-            { className: 'page__hd signup_title_style' },
-            React.createElement(
-              'h1',
-              { className: 'page__title', id: 'animation' },
-              '\u6B22\u8FCE\u6765\u5230\u79C1\u4EBA\u8BA2\u5236'
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cells' },
-            React.createElement(
-              'div',
-              { className: 'weui-cell weui-cell_access' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement(
-                  'p',
-                  { className: 'signup_word_style' },
-                  '\u6CE8\u518C'
-                )
-              ),
-              React.createElement(
-                'a',
-                { className: 'weui-cell__ft account_style', href: 'login' },
-                '\u6709\u5E10\u53F7\uFF1F\u53BB\u767B\u5F55'
-              )
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cells weui-cells_form' },
-            React.createElement(
-              'div',
-              { className: 'weui-cell weui-cell_vcode' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u624B\u673A\u53F7'
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', type: 'tel', placeholder: '\u8BF7\u8F93\u5165\u624B\u673A\u53F7', id: 'phone' })
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__ft' },
-                React.createElement(
-                  'button',
-                  { className: 'weui-vcode-btn  timenum', onClick: this.handleClick },
-                  '\u83B7\u53D6\u9A8C\u8BC1\u7801'
-                )
-              )
-            ),
+            { className: 'weui-cells', key: item.id },
             React.createElement(
               'div',
               { className: 'weui-cell' },
               React.createElement(
                 'div',
                 { className: 'weui-cell__hd' },
+                '+'
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__bd record_name' },
                 React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u5BC6\u7801'
+                  'p',
+                  null,
+                  '\u6D88\u8D39'
+                ),
+                React.createElement(
+                  'p',
+                  { className: 'record_time' },
+                  item.created_at
                 )
               ),
               React.createElement(
                 'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' })
+                { className: 'weui-cell__ft' },
+                '- ',
+                item.jine,
+                '\u5143'
               )
-            ),
+            )
+          ));
+        } else {
+          list.push(React.createElement(
+            'div',
+            { className: 'weui-cells', key: item.id },
             React.createElement(
               'div',
-              { className: 'weui-cell yanzhengma' },
+              { className: 'weui-cell' },
               React.createElement(
                 'div',
                 { className: 'weui-cell__hd' },
+                '+'
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__bd record_name' },
                 React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u9A8C\u8BC1\u7801'
+                  'p',
+                  null,
+                  '\u5145\u503C'
+                ),
+                React.createElement(
+                  'p',
+                  { className: 'record_time' },
+                  item.created_at
                 )
               ),
               React.createElement(
                 'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', type: 'number', pattern: '[0-9]*', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801' })
+                { className: 'weui-cell__ft' },
+                '+ ',
+                item.jine,
+                '\u5143'
               )
             )
-          ),
+          ));
+        }
+      });
+
+      return React.createElement(
+        'div',
+        { className: 'record' },
+        React.createElement(
+          'div',
+          { className: 'page__hd' },
           React.createElement(
-            'label',
-            { className: 'weui-agree agree_style' },
-            React.createElement('input', { id: 'weuiAgree', type: 'checkbox', name: 'checkbox', className: 'weui-agree__checkbox' }),
+            'h1',
+            { className: 'page__title ammount' },
             React.createElement(
               'span',
-              { className: 'weui-agree__text' },
-              '\u9009\u62E9\u6CE8\u518C\u4EE3\u8868\u60A8\u5DF2\u7ECF\u540C\u610F',
-              React.createElement(
-                'a',
-                { href: '#' },
-                '\u300A\u76F8\u5173\u6761\u6B3E\u300B'
-              )
-            )
+              { className: 'money_style' },
+              '\uFFE5'
+            ),
+            ' 100'
+          ),
+          React.createElement(
+            'p',
+            { className: 'page__desc' },
+            '\u4F59\u989D'
           )
         ),
         React.createElement(
           'div',
-          { className: 'signup_button' },
-          React.createElement(
-            'a',
-            { className: 'weui-btn weui-btn_primary', href: 'javascript:', id: 'showTooltips' },
-            '\u6CE8\u518C'
-          )
+          { className: 'record_list' },
+          list
         )
       );
     }
   }]);
 
-  return IoIo;
+  return Wrap;
 }(React.Component);
+// 返回到页面
 
-;
 
-ReactDOM.render(React.createElement(IoIo, null), document.getElementById("signup"));
+ReactDOM.render(React.createElement(Wrap, null), document.getElementById("content"));
 
 /***/ })
 /******/ ]);

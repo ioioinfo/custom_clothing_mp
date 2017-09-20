@@ -109,7 +109,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/login',
             handler: function(request, reply) {
-              return reply.view("login");
+              return reply.view("login");;
             }
         },
 
@@ -118,16 +118,26 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/person_center',
             handler: function(request, reply) {
-              return reply.view("person_center");
+              return reply.view("person_center");;
             }
         },
 
-        //商品列表
+        //充值
         {
             method: 'GET',
-            path: '/product_list',
+            path: '/clothing_chongzhi',
             handler: function(request, reply) {
-              return reply.view("product_list");
+              return reply.view("clothing_chongzhi");;
+            }
+        },
+
+
+        //消费信息
+        {
+            method: 'GET',
+            path: '/record',
+            handler: function(request, reply) {
+              return reply.view("record");;
             }
         },
 
@@ -140,117 +150,23 @@ exports.register = function(server, options, next) {
             }
         },
 
-        //商品分类
+        //优惠券
         {
             method: 'GET',
-            path: '/product_sort',
+            path: '/coupon',
             handler: function(request, reply) {
-              return reply.view("product_sort");
+              return reply.view("coupon");
             }
         },
 
-        //购物车
+        //物流进度
         {
             method: 'GET',
-            path: '/product_cart',
+            path: '/logistics',
             handler: function(request, reply) {
-              return reply.view("product_cart");
+              return reply.view("logistics");
             }
         },
-
-        //订单确认
-        {
-            method: 'GET',
-            path: '/order_sure',
-            handler: function(request, reply) {
-              return reply.view("order_sure");
-            }
-        },
-
-        //订单详情
-        {
-            method: 'GET',
-            path: '/order_detail',
-            handler: function(request, reply) {
-              return reply.view("order_detail");
-            }
-        },
-
-        //订单列表
-        {
-            method: 'GET',
-            path: '/order_list',
-            handler: function(request, reply) {
-              return reply.view("order_list");
-            }
-        },
-
-        //搜索
-        {
-            method: 'GET',
-            path: '/search',
-            handler: function(request, reply) {
-              return reply.view("search");
-            }
-        },
-
-        //商品详情
-        {
-            method: 'GET',
-            path: '/product_show',
-            handler: function(request, reply) {
-              return reply.view("product_show");
-            }
-        },
-
-
-
-        //后台用户列表
-        {
-            method: 'GET',
-            path: '/admin_user_list',
-            handler: function(request, reply) {
-              return reply.view("admin_user_list");
-            }
-        },
-
-        //后台商品列表
-        {
-            method: 'GET',
-            path: '/admin_product_list',
-            handler: function(request, reply) {
-              return reply.view("admin_product_list");
-            }
-        },
-
-
-        //后台商品图片查看
-        {
-            method: 'GET',
-            path: '/admin_product_img',
-            handler: function(request, reply) {
-              return reply.view("admin_product_img");
-            }
-        },
-
-        //后台添加客户
-        {
-            method: 'GET',
-            path: '/admin_add_custom',
-            handler: function(request, reply) {
-              return reply.view("admin_add_custom");
-            }
-        },
-
-        //后台登录
-        {
-            method: 'GET',
-            path: '/admin_login',
-            handler: function(request, reply) {
-              return reply.view("admin_login");
-            }
-        },
-
 
 
 
