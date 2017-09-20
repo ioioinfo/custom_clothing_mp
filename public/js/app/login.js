@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 187);
+/******/ 	return __webpack_require__(__webpack_require__.s = 190);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22386,7 +22386,10 @@ module.exports = traverseAllChildren;
 /* 184 */,
 /* 185 */,
 /* 186 */,
-/* 187 */
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22484,7 +22487,7 @@ var IoIo = function (_React$Component) {
               React.createElement(
                 'span',
                 { className: 'login-form-project' },
-                '\u79C1\u4EBA\u8BA2\u5236'
+                '\u79C1\u4EBA\u8BA2\u8D27'
               )
             ),
             React.createElement(
