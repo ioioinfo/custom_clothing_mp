@@ -48,10 +48,11 @@ class ChongzhiMiddle extends React.Component {
     }
     componentDidMount() {
       $('.chongzhi_middle_choice_infor p:first-child').addClass('chongzhijine_style');
+      var firstVal = $('#chongzhijine1').html();
     }
     handleClick(selected){
       $('.chongzhi_fangshi').hide();
-      $('#chongzhi_fangshi'+selected).show();
+      $('#chongzhi_fangshi'+selected).css("display","block");
     }
     handleClick1(selected1){
       $('.chongzhi_middle_choice_infor p').removeClass('chongzhijine_style');
@@ -77,7 +78,7 @@ class ChongzhiMiddle extends React.Component {
               </p>
             </div>
           </div>
-
+          
           <div className="chongzhi_middle_choice">
             <div className="chongzhi_middle_choice_title">选择充值金额</div>
             <div className="chongzhi_middle_choice_infor">

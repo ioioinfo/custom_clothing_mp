@@ -22493,12 +22493,13 @@ var ChongzhiMiddle = function (_React$Component3) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       $('.chongzhi_middle_choice_infor p:first-child').addClass('chongzhijine_style');
+      var firstVal = $('#chongzhijine1').html();
     }
   }, {
     key: 'handleClick',
     value: function handleClick(selected) {
       $('.chongzhi_fangshi').hide();
-      $('#chongzhi_fangshi' + selected).show();
+      $('#chongzhi_fangshi' + selected).css("display", "block");
     }
   }, {
     key: 'handleClick1',
