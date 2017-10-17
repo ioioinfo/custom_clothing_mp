@@ -67,7 +67,7 @@ class IoIo extends React.Component {
               </div>
 
               <div className="loding_middle_password_wrap">
-                <input className="loding_middle_password_input" placeholder="Password" type="密码" name="data[password]" id="data_password" />
+                <input className="loding_middle_password_input" placeholder="密码" type="密码" name="data[password]" id="data_password" />
                 <label className="loding_middle_password_name"></label>
                 <span className="error_message1">请重新输入密码<i className="ico error-buble"></i></span>
               </div>

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 37);
+/******/ 	return __webpack_require__(__webpack_require__.s = 40);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21158,7 +21158,10 @@ module.exports = function() {
 /* 34 */,
 /* 35 */,
 /* 36 */,
-/* 37 */
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21174,226 +21177,156 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(6);
 var ReactDOM = __webpack_require__(17);
-var time;
-function time(num) {
-  var t = setInterval(function () {
-    num--;
-    $(".timenum").html(Math.ceil(num));
-    if (num <= 0) {
-      clearInterval(t);
-      $(".timenum").html('获取验证码');
-    }
-  }, 1000);
-}
 
-var IoIo = function (_React$Component) {
-  _inherits(IoIo, _React$Component);
+// 框架
 
-  function IoIo(props) {
-    _classCallCheck(this, IoIo);
+var Wrap = function (_React$Component) {
+    _inherits(Wrap, _React$Component);
 
-    var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
+    function Wrap(props) {
+        _classCallCheck(this, Wrap);
 
-    _this.handleClick = _this.handleClick.bind(_this);
-    _this.handleClick1 = _this.handleClick1.bind(_this);
-    _this.handleClick2 = _this.handleClick2.bind(_this);
-    // 初始化一个空对象
-    _this.state = {};
-    return _this;
-  }
+        return _possibleConstructorReturn(this, (Wrap.__proto__ || Object.getPrototypeOf(Wrap)).call(this, props));
+    }
 
-  _createClass(IoIo, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      $('#phone').focus();
-      $("[name='checkbox']").prop("checked", true);
-      var windowHeight = $(window).height();
-      var signupTopHeight = $('.signup_top').height();
-      var marginHeight = windowHeight - signupTopHeight - 46;
-      $('.signup_button').css('margin-top', marginHeight);
-    }
-  }, {
-    key: 'handleClick',
-    value: function handleClick(e) {
-      var phone = $('#phone').val();
-      var isPhone = /^1(3|4|5|7|8)\d{9}$/;
-      if (!isPhone.test(phone)) {
-        alert('请输入正确的手机号');
-        return;
-      }
-      time(60);
-    }
-  }, {
-    key: 'handleClick1',
-    value: function handleClick1() {
-      $('.tiaokuan').show();
-    }
-  }, {
-    key: 'handleClick2',
-    value: function handleClick2() {
-      $('.tiaokuan').hide();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return React.createElement(
-        'div',
-        { className: 'signup_wrap' },
-        React.createElement(
-          'div',
-          { className: 'signup_top' },
-          React.createElement(
-            'div',
-            { className: 'page__hd signup_title_style' },
-            React.createElement(
-              'h1',
-              { className: 'page__title', id: 'animation' },
-              '\u6B22\u8FCE\u6765\u5230\u79C1\u4EBA\u8BA2\u5236'
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cells' },
-            React.createElement(
-              'div',
-              { className: 'weui-cell weui-cell_access' },
-              React.createElement(
+    _createClass(Wrap, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {}
+    }, {
+        key: 'render',
+        value: function render() {
+            return React.createElement(
                 'div',
-                { className: 'weui-cell__bd' },
+                { className: 'my_profile_wrap' },
                 React.createElement(
-                  'p',
-                  { className: 'signup_word_style' },
-                  '\u6CE8\u518C'
-                )
-              ),
-              React.createElement(
-                'a',
-                { className: 'weui-cell__ft account_style', href: 'login' },
-                '\u6709\u5E10\u53F7\uFF1F\u53BB\u767B\u5F55'
-              )
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cells weui-cells_form' },
-            React.createElement(
-              'div',
-              { className: 'weui-cell weui-cell_vcode' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
+                    'h3',
+                    null,
+                    '\u6211\u7684\u8D44\u6599'
+                ),
                 React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u624B\u673A\u53F7'
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', type: 'tel', placeholder: '\u8BF7\u8F93\u5165\u624B\u673A\u53F7', id: 'phone' })
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__ft' },
+                    'div',
+                    { className: 'my_profile_infor_type' },
+                    React.createElement(
+                        'span',
+                        { className: 'my_profile_title' },
+                        '\u8EAB\u9AD8\uFF1A'
+                    ),
+                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
+                ),
                 React.createElement(
-                  'button',
-                  { className: 'weui-vcode-btn  timenum', onClick: this.handleClick },
-                  '\u83B7\u53D6\u9A8C\u8BC1\u7801'
-                )
-              )
-            ),
-            React.createElement(
-              'div',
-              { className: 'weui-cell' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
+                    'div',
+                    { className: 'my_profile_infor_type' },
+                    React.createElement(
+                        'span',
+                        { className: 'my_profile_title' },
+                        '\u4F53\u91CD\uFF1A'
+                    ),
+                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
+                ),
                 React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u5BC6\u7801'
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' })
-              )
-            ),
-            React.createElement(
-              'div',
-              { className: 'weui-cell yanzhengma' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
+                    'div',
+                    { className: 'my_profile_infor_type' },
+                    React.createElement(
+                        'span',
+                        { className: 'my_profile_title' },
+                        '\u80F8\u56F4\uFF1A'
+                    ),
+                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
+                ),
                 React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u9A8C\u8BC1\u7801'
+                    'div',
+                    { className: 'my_profile_infor_type' },
+                    React.createElement(
+                        'span',
+                        { className: 'my_profile_title' },
+                        '\u8170\u56F4\uFF1A'
+                    ),
+                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'my_profile_infor_type' },
+                    React.createElement(
+                        'span',
+                        { className: 'my_profile_title' },
+                        '\u81C0\u56F4\uFF1A'
+                    ),
+                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'my_profile_infor_type' },
+                    React.createElement(
+                        'span',
+                        { className: 'my_profile_title' },
+                        '\u80A9\u5BBD\uFF1A'
+                    ),
+                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'my_profile_infor_type' },
+                    React.createElement(
+                        'span',
+                        { className: 'my_profile_title' },
+                        '\u80F8\u56F4\uFF1A'
+                    ),
+                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'my_profile_infor_type' },
+                    React.createElement(
+                        'span',
+                        { className: 'my_profile_title' },
+                        '\u80F8\u56F4\uFF1A'
+                    ),
+                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'my_profile_infor_type' },
+                    React.createElement(
+                        'span',
+                        { className: 'my_profile_title' },
+                        '\u80F8\u56F4\uFF1A'
+                    ),
+                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'my_profile_infor_type' },
+                    React.createElement(
+                        'span',
+                        { className: 'my_profile_title' },
+                        '\u80F8\u56F4\uFF1A'
+                    ),
+                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'button' },
+                    React.createElement(
+                        'button',
+                        { className: 'button_xiugai' },
+                        '\u4FEE\u6539'
+                    ),
+                    React.createElement(
+                        'button',
+                        { className: 'button_baocun' },
+                        '\u4FDD\u5B58'
+                    )
                 )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', type: 'number', pattern: '[0-9]*', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801' })
-              )
-            )
-          ),
-          React.createElement(
-            'label',
-            { className: 'weui-agree agree_style' },
-            React.createElement('input', { id: 'weuiAgree', type: 'checkbox', name: 'checkbox', className: 'weui-agree__checkbox' }),
-            React.createElement(
-              'span',
-              { className: 'weui-agree__text', onClick: this.handleClick1 },
-              '\u9009\u62E9\u6CE8\u518C\u4EE3\u8868\u60A8\u5DF2\u7ECF\u540C\u610F',
-              React.createElement(
-                'a',
-                { href: '#' },
-                '\u300A\u76F8\u5173\u6761\u6B3E\u300B'
-              )
-            )
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'signup_button' },
-          React.createElement(
-            'a',
-            { className: 'weui-btn weui-btn_primary', href: 'javascript:', id: 'showTooltips' },
-            '\u6CE8\u518C'
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'tiaokuan' },
-          React.createElement(
-            'span',
-            { className: 'close', onClick: this.handleClick2 },
-            '\u5173\u95ED'
-          ),
-          React.createElement(
-            'h3',
-            { className: 'tiaokuan_title' },
-            '\u6761\u6B3E'
-          ),
-          React.createElement(
-            'div',
-            { className: 'tiaokuan_infor' },
-            '\u6761\u6B3E\u6B63\u6587'
-          )
-        )
-      );
-    }
-  }]);
+            );
+        }
+    }]);
 
-  return IoIo;
+    return Wrap;
 }(React.Component);
+// 返回到页面
 
-;
 
-ReactDOM.render(React.createElement(IoIo, null), document.getElementById("signup"));
+ReactDOM.render(React.createElement(Wrap, null), document.getElementById("my_profile"));
 
 /***/ })
 /******/ ]);

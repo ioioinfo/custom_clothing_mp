@@ -180,3 +180,33 @@ body,html{
 .chongzhi_fangshi{
   display: none;
 }
+/*条款*/
+.tiaokuan{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    right: 0%;
+    bottom: 0%;
+    background: #fff;
+    display: none;
+}
+.tiaokuan_title{
+    text-align: center;
+    padding: 17px;
+    color: #8B8B8B;
+}
+.tiaokuan_infor{
+    text-align: center;
+    color: #8b8b8b;
+    margin-top: 20px;
+}
+.close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #8b8b8b;
+    opacity: 0.4;
+    cursor: pointer;
+    font-size: 14px;
+}

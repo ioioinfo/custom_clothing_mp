@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 37);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21158,7 +21158,11 @@ module.exports = function() {
 /* 34 */,
 /* 35 */,
 /* 36 */,
-/* 37 */
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21174,216 +21178,26 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(6);
 var ReactDOM = __webpack_require__(17);
-var time;
-function time(num) {
-  var t = setInterval(function () {
-    num--;
-    $(".timenum").html(Math.ceil(num));
-    if (num <= 0) {
-      clearInterval(t);
-      $(".timenum").html('获取验证码');
-    }
-  }, 1000);
-}
 
 var IoIo = function (_React$Component) {
   _inherits(IoIo, _React$Component);
 
-  function IoIo(props) {
+  function IoIo() {
     _classCallCheck(this, IoIo);
 
-    var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
-
-    _this.handleClick = _this.handleClick.bind(_this);
-    _this.handleClick1 = _this.handleClick1.bind(_this);
-    _this.handleClick2 = _this.handleClick2.bind(_this);
-    // 初始化一个空对象
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).apply(this, arguments));
   }
 
   _createClass(IoIo, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      $('#phone').focus();
-      $("[name='checkbox']").prop("checked", true);
-      var windowHeight = $(window).height();
-      var signupTopHeight = $('.signup_top').height();
-      var marginHeight = windowHeight - signupTopHeight - 46;
-      $('.signup_button').css('margin-top', marginHeight);
-    }
-  }, {
-    key: 'handleClick',
-    value: function handleClick(e) {
-      var phone = $('#phone').val();
-      var isPhone = /^1(3|4|5|7|8)\d{9}$/;
-      if (!isPhone.test(phone)) {
-        alert('请输入正确的手机号');
-        return;
-      }
-      time(60);
-    }
-  }, {
-    key: 'handleClick1',
-    value: function handleClick1() {
-      $('.tiaokuan').show();
-    }
-  }, {
-    key: 'handleClick2',
-    value: function handleClick2() {
-      $('.tiaokuan').hide();
-    }
-  }, {
     key: 'render',
     value: function render() {
+      var style = { display: 'none' };
       return React.createElement(
         'div',
-        { className: 'signup_wrap' },
-        React.createElement(
-          'div',
-          { className: 'signup_top' },
-          React.createElement(
-            'div',
-            { className: 'page__hd signup_title_style' },
-            React.createElement(
-              'h1',
-              { className: 'page__title', id: 'animation' },
-              '\u6B22\u8FCE\u6765\u5230\u79C1\u4EBA\u8BA2\u5236'
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cells' },
-            React.createElement(
-              'div',
-              { className: 'weui-cell weui-cell_access' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement(
-                  'p',
-                  { className: 'signup_word_style' },
-                  '\u6CE8\u518C'
-                )
-              ),
-              React.createElement(
-                'a',
-                { className: 'weui-cell__ft account_style', href: 'login' },
-                '\u6709\u5E10\u53F7\uFF1F\u53BB\u767B\u5F55'
-              )
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cells weui-cells_form' },
-            React.createElement(
-              'div',
-              { className: 'weui-cell weui-cell_vcode' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u624B\u673A\u53F7'
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', type: 'tel', placeholder: '\u8BF7\u8F93\u5165\u624B\u673A\u53F7', id: 'phone' })
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__ft' },
-                React.createElement(
-                  'button',
-                  { className: 'weui-vcode-btn  timenum', onClick: this.handleClick },
-                  '\u83B7\u53D6\u9A8C\u8BC1\u7801'
-                )
-              )
-            ),
-            React.createElement(
-              'div',
-              { className: 'weui-cell' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u5BC6\u7801'
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' })
-              )
-            ),
-            React.createElement(
-              'div',
-              { className: 'weui-cell yanzhengma' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u9A8C\u8BC1\u7801'
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', type: 'number', pattern: '[0-9]*', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801' })
-              )
-            )
-          ),
-          React.createElement(
-            'label',
-            { className: 'weui-agree agree_style' },
-            React.createElement('input', { id: 'weuiAgree', type: 'checkbox', name: 'checkbox', className: 'weui-agree__checkbox' }),
-            React.createElement(
-              'span',
-              { className: 'weui-agree__text', onClick: this.handleClick1 },
-              '\u9009\u62E9\u6CE8\u518C\u4EE3\u8868\u60A8\u5DF2\u7ECF\u540C\u610F',
-              React.createElement(
-                'a',
-                { href: '#' },
-                '\u300A\u76F8\u5173\u6761\u6B3E\u300B'
-              )
-            )
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'signup_button' },
-          React.createElement(
-            'a',
-            { className: 'weui-btn weui-btn_primary', href: 'javascript:', id: 'showTooltips' },
-            '\u6CE8\u518C'
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'tiaokuan' },
-          React.createElement(
-            'span',
-            { className: 'close', onClick: this.handleClick2 },
-            '\u5173\u95ED'
-          ),
-          React.createElement(
-            'h3',
-            { className: 'tiaokuan_title' },
-            '\u6761\u6B3E'
-          ),
-          React.createElement(
-            'div',
-            { className: 'tiaokuan_infor' },
-            '\u6761\u6B3E\u6B63\u6587'
-          )
-        )
+        { className: 'project_list_wrap' },
+        React.createElement(Projectsearch, null),
+        React.createElement(Projectlist, null),
+        React.createElement(Top, null)
       );
     }
   }]);
@@ -21393,7 +21207,166 @@ var IoIo = function (_React$Component) {
 
 ;
 
-ReactDOM.render(React.createElement(IoIo, null), document.getElementById("signup"));
+var Projectsearch = function (_React$Component2) {
+  _inherits(Projectsearch, _React$Component2);
+
+  function Projectsearch(props) {
+    _classCallCheck(this, Projectsearch);
+
+    return _possibleConstructorReturn(this, (Projectsearch.__proto__ || Object.getPrototypeOf(Projectsearch)).call(this, props));
+  }
+
+  _createClass(Projectsearch, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'page__bd project_list_search' },
+        React.createElement(
+          'div',
+          { className: 'weui-search-bar', id: 'searchBar' },
+          React.createElement(
+            'form',
+            { className: 'weui-search-bar__form' },
+            React.createElement(
+              'div',
+              { className: 'weui-search-bar__box' },
+              React.createElement('i', { className: 'weui-icon-search' }),
+              React.createElement('input', { type: 'search', className: 'weui-search-bar__input', id: 'searchInput', required: '' })
+            )
+          ),
+          React.createElement(
+            'a',
+            { className: 'weui-search-bar__cancel-btn', id: 'searchCancel' },
+            '\u641C\u7D22'
+          )
+        )
+      );
+    }
+  }]);
+
+  return Projectsearch;
+}(React.Component);
+
+;
+
+var Projectlist = function (_React$Component3) {
+  _inherits(Projectlist, _React$Component3);
+
+  function Projectlist(props) {
+    _classCallCheck(this, Projectlist);
+
+    return _possibleConstructorReturn(this, (Projectlist.__proto__ || Object.getPrototypeOf(Projectlist)).call(this, props));
+  }
+
+  _createClass(Projectlist, [{
+    key: 'render',
+    value: function render() {
+      var style = { marginRight: '5px', display: 'block' };
+      return React.createElement(
+        'ul',
+        { className: 'project_list_ul' },
+        React.createElement(
+          'li',
+          null,
+          React.createElement(
+            'div',
+            { className: 'weui-cells' },
+            React.createElement(
+              'div',
+              { className: 'weui-cell font_style position_relative' },
+              React.createElement(
+                'div',
+                { className: 'weui-cell__hd project_list_img_wrap' },
+                React.createElement('img', { src: 'images/biyou.jpg', alt: '', style: style })
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__bd product_name' },
+                React.createElement(
+                  'p',
+                  { className: 'product_name_infor' },
+                  '\u65D7\u888D'
+                ),
+                React.createElement(
+                  'p',
+                  { className: 'product_price' },
+                  React.createElement(
+                    'span',
+                    null,
+                    '\uFFE5'
+                  ),
+                  '100'
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Projectlist;
+}(React.Component);
+
+;
+
+// 返回顶部
+
+var Top = function (_React$Component4) {
+  _inherits(Top, _React$Component4);
+
+  function Top(props) {
+    _classCallCheck(this, Top);
+
+    var _this4 = _possibleConstructorReturn(this, (Top.__proto__ || Object.getPrototypeOf(Top)).call(this, props));
+
+    _this4.handleClick = _this4.handleClick.bind(_this4);
+    return _this4;
+  }
+  // 点击返回顶部
+
+
+  _createClass(Top, [{
+    key: 'handleClick',
+    value: function handleClick(e) {
+      $('body,html').animate({ scrollTop: 0 }, 400);
+    }
+    // 页面发生变化的时候触发
+
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      $(window).scroll(function () {
+        var topHeight = $(window).scrollTop();
+        if (topHeight > 100) {
+          //当滚动条的位置处于距顶部1000像素以下时，就是大于1000象数时，跳转出现
+          $(".top").fadeIn(250);
+        } else {
+          //否则就消失
+          $(".top").fadeOut(250);
+        }
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var topHeight = $(window).scrollTop();
+
+      return React.createElement(
+        'div',
+        { className: 'top', onClick: this.handleClick },
+        React.createElement('img', { src: 'images/scroll-to-top-icon.png', alt: '' })
+      );
+    }
+  }]);
+
+  return Top;
+}(React.Component);
+
+;
+
+ReactDOM.render(React.createElement(IoIo, null), document.getElementById("order_list"));
 
 /***/ })
 /******/ ]);

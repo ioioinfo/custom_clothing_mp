@@ -49,18 +49,8 @@ class IoIo extends React.Component {
         <div className="signup_wrap">
           <div className="signup_top">
             <div className="page__hd signup_title_style">
-              <h1 className="page__title" id="animation">欢迎来到私人订制</h1>
+              <h1 className="page__title" id="animation">找回密码</h1>
             </div>
-
-            <div className="weui-cells">
-              <div className="weui-cell weui-cell_access">
-                  <div className="weui-cell__bd">
-                      <p className="signup_word_style">注册</p>
-                  </div>
-                  <a className="weui-cell__ft account_style" href="login">有帐号？去登录</a>
-              </div>
-            </div>
-
 
             <div className="weui-cells weui-cells_form">
 
@@ -75,40 +65,35 @@ class IoIo extends React.Component {
                       <button className="weui-vcode-btn  timenum" onClick={this.handleClick}>获取验证码</button>
                   </div>
               </div>
-              <div className="weui-cell">
-                  <div className="weui-cell__hd"><label className="weui-label">密码</label></div>
-                  <div className="weui-cell__bd">
-                      <input className="weui-input" placeholder="请输入密码"/>
-                  </div>
-              </div>
+
               <div className="weui-cell yanzhengma">
                   <div className="weui-cell__hd"><label className="weui-label">验证码</label></div>
                   <div className="weui-cell__bd">
                       <input className="weui-input" type="number" pattern="[0-9]*" placeholder="请输入验证码"/>
                   </div>
               </div>
-            </div>
 
-            <label className="weui-agree agree_style">
-              <input id="weuiAgree" type="checkbox" name="checkbox" className="weui-agree__checkbox"/>
-              <span className="weui-agree__text" onClick={this.handleClick1}>
-                  选择注册代表您已经同意<a href="#">《相关条款》</a>
-              </span>
-            </label>
+              <div className="weui-cell">
+                  <div className="weui-cell__hd"><label className="weui-label">新密码</label></div>
+                  <div className="weui-cell__bd">
+                      <input className="weui-input" placeholder="请输入新密码"/>
+                  </div>
+              </div>
+
+              <div className="weui-cell">
+                  <div className="weui-cell__hd"><label className="weui-label">再次输入密码</label></div>
+                  <div className="weui-cell__bd">
+                      <input className="weui-input" placeholder="请输入新密码"/>
+                  </div>
+              </div>
+
+
+            </div>
           </div>
 
           <div className="signup_button">
-            <a className="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">注册</a>
+            <a className="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">去登陆</a>
           </div>
-
-          <div className="tiaokuan">
-            <span className="close" onClick={this.handleClick2}>关闭</span>
-            <h3 className="tiaokuan_title">条款</h3>
-            <div className="tiaokuan_infor">
-                条款正文
-            </div>
-          </div>
-
         </div>
       );
     }
@@ -117,5 +102,5 @@ class IoIo extends React.Component {
 
 ReactDOM.render(
   <IoIo/>,
-  document.getElementById("signup")
+  document.getElementById("reset_password")
 );

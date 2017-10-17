@@ -96,6 +96,7 @@ class Wrap extends React.Component{
 
     return (
       <div className="record">
+        <h3 className="record_title">充值记录</h3>
         <div className="page__hd">
             <h1 className="page__title ammount"><span className="money_style">￥</span> 100</h1>
             <p className="page__desc">余额</p>

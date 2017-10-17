@@ -63,3 +63,33 @@ body{
 100%{opacity:1;
 -moz-transform:translateX(0)}
 }
+/*条款*/
+.tiaokuan{
+    position: fixed;
+    left: 5%;
+    top: 5%;
+    width: 90%;
+    right: 5%;
+    bottom: 5%;
+    background: #fff;
+    display: none;
+    border-bottom: 1px solid #8b8b8b;
+}
+.tiaokuan_title{
+    text-align: center;
+    padding: 17px;
+    color: #8B8B8B;
+}
+.tiaokuan_infor{
+    text-align: center;
+    color: #8b8b8b;
+    margin-top: 20px;
+}
+.close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #8b8b8b;
+    opacity: 0.4;
+    cursor: pointer;
+}

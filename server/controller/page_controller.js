@@ -168,6 +168,32 @@ exports.register = function(server, options, next) {
             }
         },
 
+        //重置密码
+        {
+            method: 'GET',
+            path: '/reset_password',
+            handler: function(request, reply) {
+              return reply.view("reset_password");
+            }
+        },
+
+        //我的资料
+        {
+            method: 'GET',
+            path: '/my_profile',
+            handler: function(request, reply) {
+              return reply.view("my_profile");
+            }
+        },
+        //我的资料
+        {
+            method: 'GET',
+            path: '/order_list',
+            handler: function(request, reply) {
+              return reply.view("order_list");
+            }
+        },
+
 
 
     ]);

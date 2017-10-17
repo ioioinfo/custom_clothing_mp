@@ -22,6 +22,9 @@ module.exports = {
         record: './app/record.jsx',
         signup: './app/signup.jsx',
         coupon: './app/coupon.jsx',
+        reset_password: './app/reset_password.jsx',
+        my_profile: './app/my_profile.jsx',
+        order_list: './app/order_list.jsx',
     },
     output: {
         path: __dirname,

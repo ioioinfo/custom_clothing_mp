@@ -45,6 +45,8 @@ class ChongzhiMiddle extends React.Component {
       super(props);
       this.handleClick=this.handleClick.bind(this);
       this.handleClick1=this.handleClick1.bind(this);
+      this.handleClick2=this.handleClick2.bind(this);
+      this.handleClick3=this.handleClick3.bind(this);
     }
     componentDidMount() {
       $('.chongzhi_middle_choice_infor p:first-child').addClass('chongzhijine_style');
@@ -57,6 +59,12 @@ class ChongzhiMiddle extends React.Component {
     handleClick1(selected1){
       $('.chongzhi_middle_choice_infor p').removeClass('chongzhijine_style');
       $('#chongzhijine'+selected1).addClass('chongzhijine_style');
+    }
+    handleClick2(){
+        $('.tiaokuan').show();
+    }
+    handleClick3(){
+        $('.tiaokuan').hide();
     }
     render() {
       var style = {display:'none'};
@@ -78,7 +86,7 @@ class ChongzhiMiddle extends React.Component {
               </p>
             </div>
           </div>
-          
+
           <div className="chongzhi_middle_choice">
             <div className="chongzhi_middle_choice_title">选择充值金额</div>
             <div className="chongzhi_middle_choice_infor">
@@ -125,8 +133,16 @@ class ChongzhiMiddle extends React.Component {
           </div>
 
           <div className="chongzhi_bottom">
-            <p>点击去充值，即默认同意<span className="chongzhi_bottom_span">《充值协议》</span></p>
+            <p>点击去充值，即默认同意<span className="chongzhi_bottom_span" onClick={this.handleClick2}>《充值协议》</span></p>
             <a href="javascript:;" className="weui-btn weui-btn_primary">去充值</a>
+          </div>
+
+          <div className="tiaokuan">
+            <span className="close"  onClick={this.handleClick3}>关闭</span>
+            <h3 className="tiaokuan_title">条款</h3>
+            <div className="tiaokuan_infor">
+                条款正文
+            </div>
           </div>
         </div>
       );
