@@ -25,6 +25,10 @@ module.exports = {
         reset_password: './app/reset_password.jsx',
         my_profile: './app/my_profile.jsx',
         order_list: './app/order_list.jsx',
+        order_detail: './app/order_detail.jsx',
+        mendian_list: './app/mendian_list.jsx',
+        company: './app/company.jsx',
+        contact: './app/contact.jsx',
     },
     output: {
         path: __dirname,
@@ -36,6 +40,10 @@ module.exports = {
 
         },
         extensions: ['.js','.jsx']
+    },
+    externals: {
+      'react': 'React',
+      'react-dom': 'ReactDOM'
     },
     module: {
         loaders: [

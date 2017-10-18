@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -79,7 +79,7 @@ module.exports = ReactDOM;
 
 /***/ }),
 
-/***/ 11:
+/***/ 13:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96,18 +96,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(1);
 
-// 框架
+var IoIo = function (_React$Component) {
+    _inherits(IoIo, _React$Component);
 
-var Wrap = function (_React$Component) {
-    _inherits(Wrap, _React$Component);
+    function IoIo(props) {
+        _classCallCheck(this, IoIo);
 
-    function Wrap(props) {
-        _classCallCheck(this, Wrap);
-
-        return _possibleConstructorReturn(this, (Wrap.__proto__ || Object.getPrototypeOf(Wrap)).call(this, props));
+        return _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
     }
 
-    _createClass(Wrap, [{
+    _createClass(IoIo, [{
         key: 'componentDidMount',
         value: function componentDidMount() {}
     }, {
@@ -115,136 +113,193 @@ var Wrap = function (_React$Component) {
         value: function render() {
             return React.createElement(
                 'div',
-                { className: 'my_profile_wrap' },
+                { className: 'order_detail_wrap' },
                 React.createElement(
-                    'h3',
-                    null,
-                    '\u6211\u7684\u8D44\u6599'
+                    'div',
+                    { className: 'order_detail_title' },
+                    '\u8BA2\u5355\u8BE6\u60C5'
+                ),
+                React.createElement(OrderDetailAddress, null),
+                React.createElement(OrderDetail, null),
+                React.createElement(OrderDetail, null),
+                React.createElement(
+                    'div',
+                    { className: 'call_me_wrap' },
+                    React.createElement('i', { className: 'fa fa-phone call_me' }),
+                    '\u8054\u7CFB\u6211\u4EEC'
+                ),
+                React.createElement(PayDetail, null)
+            );
+        }
+    }]);
+
+    return IoIo;
+}(React.Component);
+
+;
+//物流状态
+
+var OrderDetailAddress = function (_React$Component2) {
+    _inherits(OrderDetailAddress, _React$Component2);
+
+    function OrderDetailAddress() {
+        _classCallCheck(this, OrderDetailAddress);
+
+        return _possibleConstructorReturn(this, (OrderDetailAddress.__proto__ || Object.getPrototypeOf(OrderDetailAddress)).apply(this, arguments));
+    }
+
+    _createClass(OrderDetailAddress, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                { className: 'order_detail_address_wrap' },
+                React.createElement(
+                    'div',
+                    { className: 'address_icon_wrap' },
+                    React.createElement('i', { className: 'fa fa-clock-o address_icon' })
+                ),
+                React.createElement(
+                    'span',
+                    { className: 'address_word' },
+                    '\u7269\u6D41\u914D\u9001\u4E2D'
+                )
+            );
+        }
+    }]);
+
+    return OrderDetailAddress;
+}(React.Component);
+
+;
+
+//物流状态
+
+var PayDetail = function (_React$Component3) {
+    _inherits(PayDetail, _React$Component3);
+
+    function PayDetail() {
+        _classCallCheck(this, PayDetail);
+
+        return _possibleConstructorReturn(this, (PayDetail.__proto__ || Object.getPrototypeOf(PayDetail)).apply(this, arguments));
+    }
+
+    _createClass(PayDetail, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                { className: 'order_detail_pay_wrap' },
+                React.createElement(
+                    'div',
+                    { className: 'order_detail_pay_infor' },
+                    React.createElement(
+                        'div',
+                        null,
+                        '\u652F\u4ED8\u65B9\u5F0F'
+                    ),
+                    React.createElement(
+                        'div',
+                        null,
+                        '\u652F\u4ED8\u5B9D'
+                    )
                 ),
                 React.createElement(
                     'div',
-                    { className: 'my_profile_infor_type' },
+                    { className: 'order_detail_pay_infor' },
                     React.createElement(
-                        'span',
-                        { className: 'my_profile_title' },
-                        '\u8EAB\u9AD8\uFF1A'
+                        'div',
+                        null,
+                        '\u5546\u54C1\u4EF7\u683C'
                     ),
-                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
+                    React.createElement(
+                        'div',
+                        null,
+                        '\xA5 100.00'
+                    )
                 ),
                 React.createElement(
                     'div',
-                    { className: 'my_profile_infor_type' },
+                    { className: 'order_detail_pay_infor' },
                     React.createElement(
-                        'span',
-                        { className: 'my_profile_title' },
-                        '\u4F53\u91CD\uFF1A'
-                    ),
-                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'my_profile_infor_type' },
-                    React.createElement(
-                        'span',
-                        { className: 'my_profile_title' },
-                        '\u80F8\u56F4\uFF1A'
-                    ),
-                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'my_profile_infor_type' },
-                    React.createElement(
-                        'span',
-                        { className: 'my_profile_title' },
-                        '\u8170\u56F4\uFF1A'
-                    ),
-                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'my_profile_infor_type' },
-                    React.createElement(
-                        'span',
-                        { className: 'my_profile_title' },
-                        '\u81C0\u56F4\uFF1A'
-                    ),
-                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'my_profile_infor_type' },
-                    React.createElement(
-                        'span',
-                        { className: 'my_profile_title' },
-                        '\u80A9\u5BBD\uFF1A'
-                    ),
-                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'my_profile_infor_type' },
-                    React.createElement(
-                        'span',
-                        { className: 'my_profile_title' },
-                        '\u80F8\u56F4\uFF1A'
-                    ),
-                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'my_profile_infor_type' },
-                    React.createElement(
-                        'span',
-                        { className: 'my_profile_title' },
-                        '\u80F8\u56F4\uFF1A'
-                    ),
-                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'my_profile_infor_type' },
-                    React.createElement(
-                        'span',
-                        { className: 'my_profile_title' },
-                        '\u80F8\u56F4\uFF1A'
-                    ),
-                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'my_profile_infor_type' },
-                    React.createElement(
-                        'span',
-                        { className: 'my_profile_title' },
-                        '\u80F8\u56F4\uFF1A'
-                    ),
-                    React.createElement('input', { className: 'my_profile_input', type: 'text', name: 'xiongwei' })
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'button' },
-                    React.createElement(
-                        'button',
-                        { className: 'button_xiugai' },
-                        '\u4FEE\u6539'
+                        'div',
+                        null,
+                        '\u5176\u4ED6\u8D39\u7528'
                     ),
                     React.createElement(
-                        'button',
-                        { className: 'button_baocun' },
-                        '\u4FDD\u5B58'
+                        'div',
+                        null,
+                        '\xA5 0.00'
                     )
                 )
             );
         }
     }]);
 
-    return Wrap;
+    return PayDetail;
 }(React.Component);
-// 返回到页面
 
+;
 
-ReactDOM.render(React.createElement(Wrap, null), document.getElementById("my_profile"));
+// 订单x信息
+
+var OrderDetail = function (_React$Component4) {
+    _inherits(OrderDetail, _React$Component4);
+
+    function OrderDetail() {
+        _classCallCheck(this, OrderDetail);
+
+        return _possibleConstructorReturn(this, (OrderDetail.__proto__ || Object.getPrototypeOf(OrderDetail)).apply(this, arguments));
+    }
+
+    _createClass(OrderDetail, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                { className: 'product-infor', 'data-id': '00137208_C25' },
+                React.createElement(
+                    'div',
+                    { className: 'all' },
+                    React.createElement(
+                        'div',
+                        { className: 'product-infor-left' },
+                        React.createElement('img', { src: 'http://image.buy42.com/00137208C.jpg', alt: '' })
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'product-infor-middle' },
+                        React.createElement(
+                            'p',
+                            { className: 'p1' },
+                            'HUGO BOSS\u7EA2\u5916\u7EBF\u5065\u5EB7\u529F\u80FD\u88AB \u63D0\u9AD8\u7761\u7720\u8D28\u91CF \u5BB6\u5C45\u65E5\u7528'
+                        ),
+                        React.createElement(
+                            'p',
+                            { className: 'p2' },
+                            '\uFFE5 660'
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'product-infor-right' },
+                        React.createElement(
+                            'p',
+                            null,
+                            'x1'
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return OrderDetail;
+}(React.Component);
+
+;
+
+ReactDOM.render(React.createElement(IoIo, null), document.getElementById("order_detail"));
 
 /***/ })
 

@@ -52,6 +52,7 @@ class Projectlist extends React.Component {
                         <p className="product_name_infor">旗袍</p>
                         <p className="product_price"><span>￥</span>100</p>
                     </div>
+                    <div className="weui-cell__ft position_absolute2"><span id='number'>1</span> 件</div>
                 </div>
               </div>
             </li>
@@ -98,5 +99,5 @@ class Top extends React.Component {
 
 ReactDOM.render(
     <IoIo/>,
-  document.getElementById("order_list")
+    document.getElementById("order_list")
 );
