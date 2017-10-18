@@ -182,7 +182,7 @@ html,body{
 .login_bottom{
   text-align: center;
   color: #fff;
-  position: absolute;
+  position: fixed;
   bottom: 30px;
   left: 0;
   right: 0;

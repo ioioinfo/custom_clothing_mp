@@ -41,7 +41,10 @@ html,body{
   padding:2px 23px;
   border-radius: 18px;
   border: 1px solid #fff;
-  color: #fff;
+
+}
+.person_infor a{
+    color: #fff;
 }
 .person_center_number{
   padding: 13px 0;
@@ -62,7 +65,7 @@ html,body{
   text-align: center;
 }
 .person_center_number_infor{
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 300;
   text-align: center;
 }

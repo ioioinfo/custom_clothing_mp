@@ -60,25 +60,26 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports) {
 
 module.exports = React;
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports) {
 
 module.exports = ReactDOM;
 
 /***/ }),
-/* 2 */,
-/* 3 */,
-/* 4 */
+
+/***/ 14:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95,148 +96,162 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(1);
 
-var IoIo = function (_React$Component) {
-  _inherits(IoIo, _React$Component);
+var Warp = function (_React$Component) {
+  _inherits(Warp, _React$Component);
 
-  function IoIo(props) {
-    _classCallCheck(this, IoIo);
+  function Warp() {
+    _classCallCheck(this, Warp);
 
-    // 初始化一个空对象
-    var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
-
-    _this.handleSubmit = _this.handleSubmit.bind(_this);
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, (Warp.__proto__ || Object.getPrototypeOf(Warp)).apply(this, arguments));
   }
 
-  _createClass(IoIo, [{
+  _createClass(Warp, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'wrap' },
+        React.createElement(Header, null),
+        React.createElement(Middle, null),
+        React.createElement(
+          'div',
+          { className: 'down' },
+          '\u5230\u5E95\u4E86'
+        )
+      );
+    }
+  }]);
+
+  return Warp;
+}(React.Component);
+
+;
+// 头部
+
+var Header = function (_React$Component2) {
+  _inherits(Header, _React$Component2);
+
+  function Header() {
+    _classCallCheck(this, Header);
+
+    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+  }
+
+  _createClass(Header, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'head' },
+        React.createElement(
+          'span',
+          { className: 'title' },
+          '\u95E8\u5E97\u4FE1\u606F'
+        )
+      );
+    }
+  }]);
+
+  return Header;
+}(React.Component);
+
+;
+// 中间部分
+
+var Middle = function (_React$Component3) {
+  _inherits(Middle, _React$Component3);
+
+  // 2
+  function Middle(props) {
+    _classCallCheck(this, Middle);
+
+    return _possibleConstructorReturn(this, (Middle.__proto__ || Object.getPrototypeOf(Middle)).call(this, props));
+  }
+  // 3
+
+
+  _createClass(Middle, [{
     key: 'componentDidMount',
     value: function componentDidMount() {}
-  }, {
-    key: 'handleSubmit',
-    value: function handleSubmit(e) {
-      var data_email = $('#data_email').val();
-      var data_password = $('#data_password').val();
-      if (!data_email) {
-        $('#data_email').addClass('loding_border');
-        $('.error_message').css('display', 'block');
-        $('.error_message').attr('id', 'animation1');
-        // return;
-      } else if (!data_password) {
+    // 1
 
-        $('#data_email').removeClass('loding_border');
-        $('.error_message').css('display', 'none');
-        $('.error_message').removeAttr('id', 'animation1');
-
-        $('#data_password').addClass('loding_border');
-        $('.error_message1').css('display', 'block');
-        $('.error_message1').attr('id', 'animation1');
-        // return;
-      }
-      location.href = "person_center";
-      if ($('#loadingToast').css('display') != 'none') return;
-      $('#loadingToast').fadeIn(100);
-      setTimeout(function () {
-        $('#loadingToast').fadeOut(100);
-      }, 2000);
-
-      $('#data_password').removeClass('loding_border');
-      $('.error_message1').css('display', 'none');
-      $('.error_message1').removeAttr('id', 'animation1');
-    }
   }, {
     key: 'render',
     value: function render() {
-      var style = { display: 'none' };
       return React.createElement(
         'div',
-        { className: 'loding_wrap' },
+        { className: 'middle' },
+        React.createElement(News, null),
+        React.createElement(News, null),
+        React.createElement(News, null),
+        React.createElement(News, null)
+      );
+    }
+  }]);
+
+  return Middle;
+}(React.Component);
+
+;
+// 中间消息
+
+var News = function (_React$Component4) {
+  _inherits(News, _React$Component4);
+
+  function News() {
+    _classCallCheck(this, News);
+
+    return _possibleConstructorReturn(this, (News.__proto__ || Object.getPrototypeOf(News)).apply(this, arguments));
+  }
+
+  _createClass(News, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'news' },
         React.createElement(
-          'div',
-          { className: 'loding_com_namewrap', id: 'animation' },
+          'a',
+          { href: '#' },
           React.createElement(
             'div',
-            { className: 'loding_com_name' },
-            React.createElement(
-              'span',
-              null,
-              '\u4F51\u4F51\u79D1\u6280'
-            )
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'loding_middle' },
-          React.createElement(
-            'div',
-            { className: 'loding_middle_next' },
+            { className: 'newsInfor' },
             React.createElement(
               'div',
-              { className: 'loding_middle_email_wrap' },
-              React.createElement('input', { className: 'loding_middle_email_input', placeholder: '\u624B\u673A\u53F7', type: 'email', name: 'data[email]', id: 'data_email' }),
-              React.createElement('label', { className: 'loding_middle_email_name' }),
+              { className: 'newscontent' },
               React.createElement(
-                'span',
-                { className: 'error_message' },
-                '\u8BF7\u91CD\u65B0\u8F93\u5165\u7528\u6237\u540D',
-                React.createElement('i', { className: 'ico error-buble' })
-              )
-            ),
-            React.createElement(
-              'div',
-              { className: 'loding_middle_password_wrap' },
-              React.createElement('input', { className: 'loding_middle_password_input', placeholder: '\u5BC6\u7801', type: 'password', name: 'data[password]', id: 'data_password' }),
-              React.createElement('label', { className: 'loding_middle_password_name' }),
+                'p',
+                { className: 'newsimg' },
+                React.createElement('img', { src: 'images/biyou.jpg', alt: '' })
+              ),
               React.createElement(
-                'span',
-                { className: 'error_message1' },
-                '\u8BF7\u91CD\u65B0\u8F93\u5165\u5BC6\u7801',
-                React.createElement('i', { className: 'ico error-buble' })
+                'p',
+                { className: 'newsword' },
+                React.createElement(
+                  'span',
+                  null,
+                  '\u5584\u6DD8\u7F51\u25CF\u77F3\u95E8\u4E8C\u8DEF\u6148\u5584\u5546\u5E97'
+                ),
+                React.createElement(
+                  'span',
+                  null,
+                  '\u4E0A\u6D77\u5E02\u9759\u5B89\u533A\u65B0\u95F8\u8DEF1132\u53F7'
+                )
               )
-            ),
-            React.createElement('input', { type: 'submit', name: 'commit', value: '\u767B \u5F55', className: 'loding_middle_submit', onClick: this.handleSubmit })
-          )
-        ),
-        React.createElement(
-          'div',
-          { id: 'loadingToast', style: style },
-          React.createElement('div', { className: 'weui-mask_transparent' }),
-          React.createElement(
-            'div',
-            { className: 'weui-toast' },
-            React.createElement('i', { className: 'weui-loading weui-icon_toast' }),
-            React.createElement(
-              'p',
-              { className: 'weui-toast__content' },
-              '\u767B\u5F55\u52A0\u8F7D\u4E2D'
             )
-          )
-        ),
-        React.createElement(
-          'p',
-          { className: 'login_bottom' },
-          React.createElement(
-            'a',
-            { href: 'signup' },
-            '\u6CE8\u518C'
-          ),
-          '|',
-          React.createElement(
-            'a',
-            { href: 'reset_password' },
-            '\u5FD8\u8BB0\u5BC6\u7801\uFF1F'
           )
         )
       );
     }
   }]);
 
-  return IoIo;
+  return News;
 }(React.Component);
 
 ;
 
-ReactDOM.render(React.createElement(IoIo, null), document.getElementById("loding"));
+ReactDOM.render(React.createElement(Warp, null), document.getElementById("mendian_list"));
 
 /***/ })
-/******/ ]);
+
+/******/ });

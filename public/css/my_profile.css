@@ -33,6 +33,10 @@ body,html{
     padding: 14px 0 2px 0;
     text-indent: 7px;
 }
+button{
+    border: none;
+    background: #fff;
+}
 .button{
     text-align: right;
     margin-top: 27px;

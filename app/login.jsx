@@ -19,7 +19,7 @@ class IoIo extends React.Component {
         $('#data_email').addClass('loding_border');
         $('.error_message').css('display','block');
         $('.error_message').attr('id','animation1');
-        return;
+        // return;
       }else if (!data_password) {
 
         $('#data_email').removeClass('loding_border');
@@ -30,9 +30,9 @@ class IoIo extends React.Component {
         $('#data_password').addClass('loding_border');
         $('.error_message1').css('display','block');
         $('.error_message1').attr('id','animation1');
-        return;
+        // return;
       }
-
+      location.href="person_center";
       if ($('#loadingToast').css('display') != 'none') return;
           $('#loadingToast').fadeIn(100);
           setTimeout(function () {
@@ -56,9 +56,6 @@ class IoIo extends React.Component {
 
           <div className="loding_middle">
             <div className="loding_middle_next">
-              <div className="login-form-title">
-                <span className="login-form-project">私人订制</span>
-              </div>
 
               <div className="loding_middle_email_wrap">
                 <input className="loding_middle_email_input" placeholder="手机号" type="email" name="data[email]" id="data_email" />
@@ -67,7 +64,7 @@ class IoIo extends React.Component {
               </div>
 
               <div className="loding_middle_password_wrap">
-                <input className="loding_middle_password_input" placeholder="密码" type="密码" name="data[password]" id="data_password" />
+                <input className="loding_middle_password_input" placeholder="密码" type="password" name="data[password]" id="data_password" />
                 <label className="loding_middle_password_name"></label>
                 <span className="error_message1">请重新输入密码<i className="ico error-buble"></i></span>
               </div>
@@ -84,7 +81,7 @@ class IoIo extends React.Component {
               </div>
           </div>
 
-          <p className="login_bottom"><a href="signup">注册</a>|<a>忘记密码？</a></p>
+          <p className="login_bottom"><a href="signup">注册</a>|<a href="reset_password">忘记密码？</a></p>
         </div>
       );
     }

@@ -75,18 +75,19 @@ class IoIo extends React.Component {
                       <button className="weui-vcode-btn  timenum" onClick={this.handleClick}>获取验证码</button>
                   </div>
               </div>
-              <div className="weui-cell">
-                  <div className="weui-cell__hd"><label className="weui-label">密码</label></div>
-                  <div className="weui-cell__bd">
-                      <input className="weui-input" placeholder="请输入密码"/>
-                  </div>
-              </div>
               <div className="weui-cell yanzhengma">
                   <div className="weui-cell__hd"><label className="weui-label">验证码</label></div>
                   <div className="weui-cell__bd">
                       <input className="weui-input" type="number" pattern="[0-9]*" placeholder="请输入验证码"/>
                   </div>
               </div>
+              <div className="weui-cell">
+                  <div className="weui-cell__hd"><label className="weui-label">密码</label></div>
+                  <div className="weui-cell__bd">
+                      <input className="weui-input" placeholder="请输入密码"/>
+                  </div>
+              </div>
+
             </div>
 
             <label className="weui-agree agree_style">

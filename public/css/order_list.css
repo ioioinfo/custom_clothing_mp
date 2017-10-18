@@ -179,3 +179,8 @@ body{
   border: none;
   color: #fff;
 }
+.position_absolute2 {
+    position: absolute;
+    right: 10px;
+    top: 92px;
+}
