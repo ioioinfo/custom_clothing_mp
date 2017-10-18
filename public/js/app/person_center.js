@@ -104,7 +104,7 @@ var IoIo = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
 
-        _this.state = { persons: {} };
+        _this.state = { person_wx: {} };
         return _this;
     }
 
@@ -117,7 +117,7 @@ var IoIo = function (_React$Component) {
                 type: 'GET',
                 success: function (data) {
                     if (data.success) {
-                        this.setSetate = { persons: data.persons[0] };
+                        this.setState({ person_wx: data.person_wx });
                     } else {}
                 }.bind(this),
                 error: function (xhr, status, err) {}.bind(this)
@@ -127,8 +127,8 @@ var IoIo = function (_React$Component) {
         key: 'render',
         value: function render() {
             var img = "images/biyou.jpg";
-            if (this.state.persons.avatar_url) {
-                img = this.state.persons.avatar_url;
+            if (this.state.person_wx) {
+                img = this.state.person_wx.headimgurl;
             }
             return React.createElement(
                 'div',
@@ -144,7 +144,7 @@ var IoIo = function (_React$Component) {
                     React.createElement(
                         'p',
                         { className: 'person_center_head_name' },
-                        this.state.persons.nickname
+                        this.state.person_wx.nickname
                     ),
                     React.createElement(
                         'span',

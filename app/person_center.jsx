@@ -5,7 +5,7 @@ var ReactDOM = require('react-dom');
 class IoIo extends React.Component {
     constructor(props) {
       super(props);
-      this.state={persons:{}};
+      this.state={person_wx:{}};
     }
     componentDidMount() {
     $.ajax({
@@ -14,7 +14,7 @@ class IoIo extends React.Component {
        type: 'GET',
        success: function(data) {
          if (data.success) {
-             this.setSetate=({persons:data.persons[0]});
+             this.setState({person_wx:data.person_wx});
          }else {
 
          }
@@ -28,14 +28,14 @@ class IoIo extends React.Component {
 
     render() {
         var img = "images/biyou.jpg";
-        if (this.state.persons.avatar_url) {
-            img = this.state.persons.avatar_url;
+        if (this.state.person_wx) {
+            img = this.state.person_wx.headimgurl;
         }
       return (
         <div className="person_center">
           <div className="person_center_head">
             <span className="person_center_head_img"><img src={img}/></span>
-            <p className="person_center_head_name">{this.state.persons.nickname}</p>
+            <p className="person_center_head_name">{this.state.person_wx.nickname}</p>
             <span className="person_infor"><a href="my_profile">我的资料</a></span>
           </div>
           <div className="person_center_number">
