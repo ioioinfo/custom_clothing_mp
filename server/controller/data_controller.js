@@ -474,7 +474,7 @@ exports.register = function(server, options, next) {
 				// var person_id = "2c293d70-4506-11e7-ad37-e93548b3e6bc";
 				var person_id = get_cookie_person(request);
 				if (!person_id) {
-					return reply.redirect("/chat_login");
+					return reply.redirect("/login");
 				}
 				var ep =  eventproxy.create("persons","personsVip","person_info","person",
 					function(persons,personsVip,person_info,person){
@@ -500,7 +500,7 @@ exports.register = function(server, options, next) {
 				find_person_info(person_id, function(err, content){
 					if (!err) {
 						if (!content.row) {
-							return reply.redirect("/chat_login");
+							ep.emit("person_info", {});
 						}
 						var person_info = content.row;
 						ep.emit("person_info", person_info);

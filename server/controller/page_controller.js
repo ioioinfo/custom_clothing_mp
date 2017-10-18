@@ -157,7 +157,12 @@ exports.register = function(server, options, next) {
                         }
                     });
                 } else {
-                    return reply.view("login");
+                    var person_id = get_cookie_person(request);
+                    if (!person_id) {
+                        return reply.view("login");
+                    } else {
+                        return reply.view("person_center");
+                    }
                 }
             }
         },
