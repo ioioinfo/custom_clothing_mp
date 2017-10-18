@@ -115,7 +115,7 @@ var nav = function(server) {
         },
 
         //绑定客户微信信息
-        bind_person_wx: function(person_id,platform_id,openid,cb) {
+        bind_person_wx: function(platform_id,openid,person_id,cb) {
             var url = host + "person/bind_person_wx";
             var data = {person_id:person_id,platform_id:platform_id,openid:openid};
 

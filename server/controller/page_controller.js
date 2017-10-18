@@ -49,7 +49,7 @@ exports.register = function(server, options, next) {
                 if (!code) {
                     cb(null);
                 } else {
-                    wx_api.page_get_access_token(platform_id, code, function(err,openid) {
+                    wx_api.page_get_access_token(sys_option.platform_id, code, function(err,openid) {
                         console.log("page openid:" + openid);
                         cb(openid);
                     });
@@ -65,37 +65,34 @@ exports.register = function(server, options, next) {
 
 		if (request.state && request.state.cookie) {
 			state = request.state.cookie;
-			if (state[cookie_key]) {
-				openid = state[cookie_key];
+			if (state[sys_option.cookie_key]) {
+				openid = state[sys_option.cookie_key];
 			}
 		}
 		cb(openid);
     };
 
-    //查询手机号
-    var get_mobile = function(request,cb) {
-        page_get_openid(request,function(openid) {
-            if (!openid) {
-                cb(null);
-            } else {
-                person.get_wx_by_openid(platform_id,openid,function(err,rows) {
-                    if (rows && rows.length > 0) {
-                        var row = rows[0];
-
-                        //查询手机号
-                        person.get_mobile(row.person_id,function(err,rows) {
-                            if (rows && rows.length > 0) {
-                                cb(rows[0].mobile);
-                            } else {
-                                cb(null);
-                            }
-                        });
-                    } else {
-                        cb(null);
-                    }
-                });
-            }
-        });
+    //登入，合并设置cookie
+    var login_set_cookie = function(request,person_id){
+    	var state;
+    	if (request.state && request.state.cookie) {
+    		state = request.state.cookie;
+    		state.person_id = person_id;
+    	}else {
+    		state = {person_id:person_id};
+    	}
+    	return state;
+    };
+    //cooke person
+    var get_cookie_person = function(request){
+    	var person_id;
+    	if (request.state && request.state.cookie) {
+    		state = request.state.cookie;
+    		if (state.person_id) {
+    			person_id = state.person_id;
+    		}
+    	}
+    	return person_id;
     };
 
     server.route([
@@ -139,7 +136,22 @@ exports.register = function(server, options, next) {
                 if (is_in_wechat) {
                     cookie_get_openid(request, function(openid){
                         if (openid) {
-                            return reply.view("person_center");
+                            var person_id = get_cookie_person(request);
+                            if (!person_id) {
+                                //获取微信绑定账号
+                                person.get_wx_by_openid(sys_option.platform_id,openid,function(err,content) {
+                                    if (content.success && content.rows && content.rows.length > 0) {
+                                        var person_id = content.rows[0].person_id;
+
+                                        var state = login_set_cookie(request,person_id);
+                                        return reply.view("person_center").state('cookie', state, {ttl:10*365*24*60*60*1000});
+                                    } else {
+                                        return reply.view("login");
+                                    }
+                                });
+                            } else {
+                                return reply.view("person_center");
+                            }
                         } else {
                             return reply.redirect("/go2auth/wx_auth");
                         }
@@ -161,9 +173,9 @@ exports.register = function(server, options, next) {
                         cookie = {};
 					}
 					if (openid) {
-						cookie[cookie_key] = openid;
+						cookie[sys_option.cookie_key] = openid;
 					}
-					return reply.redirect('/person_center').state('cookie', cookie, cookie_options);
+					return reply.redirect('/person_center').state('cookie', cookie, sys_option.cookie_options);
 				});
 			}
 		},
