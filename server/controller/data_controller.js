@@ -150,6 +150,11 @@ var get_person_vip = function(person_id,cb){
 	var url = "http://139.196.148.40:18666/vip/get_by_person_id?person_id=" + person_id + "&org_code=" + org_code;
 	do_get_method(url,cb);
 };
+//发现vip
+var get_wx_by_person = function(person_id,cb){
+	var url = "http://139.196.148.40:18003/person/get_wx_by_person?person_id=" + person_id + "&platform_id=" + sys_option.platform_id;
+	do_get_method(url,cb);
+};
 //门店列表
 var get_store_list = function(org_code,cb){
 	var url = "http://211.149.248.241:19999/store/list?org_code=";
@@ -476,17 +481,17 @@ exports.register = function(server, options, next) {
 				if (!person_id) {
 					return reply.redirect("/login");
 				}
-				var ep =  eventproxy.create("persons","personsVip","person_info","person",
-					function(persons,personsVip,person_info,person){
-					return reply({"success":true,"persons":persons,"personsVip":personsVip,"person_info":person_info,"person":person});
+				var ep =  eventproxy.create("person_wx","personsVip","person_info","person",
+					function(person_wx,personsVip,person_info,person){
+					return reply({"success":true,"person_wx":person_wx,"personsVip":personsVip,"person_info":person_info,"person":person});
 				});
 				var person_ids = [person_id];
-				find_persons(JSON.stringify(person_ids), function(err, content){
+				get_wx_by_person(person_id, function(err, content){
 					if (!err) {
-						var persons = content.rows;
-						ep.emit("persons", persons);
+						var person_wx = content.row;
+						ep.emit("person_wx", person_wx);
 					}else {
-						ep.emit("persons", []);
+						ep.emit("person_wx", {});
 					}
 				});
 				find_personsVip(JSON.stringify(person_ids), function(err, content){
