@@ -131,7 +131,11 @@ var IoIo = function (_React$Component) {
           React.createElement(
             'span',
             { className: 'person_infor' },
-            '\u6211\u7684\u8D44\u6599'
+            React.createElement(
+              'a',
+              { href: 'my_profile' },
+              '\u6211\u7684\u8D44\u6599'
+            )
           )
         ),
         React.createElement(
@@ -143,7 +147,7 @@ var IoIo = function (_React$Component) {
             React.createElement(
               'p',
               { className: 'person_center_number_infor' },
-              '0',
+              '10000.00',
               React.createElement(
                 'span',
                 null,
@@ -208,7 +212,7 @@ var PersonCenterMiddle = function (_React$Component2) {
         { className: 'weui-cells' },
         React.createElement(
           'a',
-          { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
+          { className: 'weui-cell weui-cell_access', href: 'order_detail' },
           React.createElement(
             'div',
             { className: 'weui-cell__hd' },
@@ -224,18 +228,18 @@ var PersonCenterMiddle = function (_React$Component2) {
             React.createElement(
               'p',
               null,
-              '\u6682\u5B9A\u83DC\u5355\u4E00'
+              '\u6211\u7684\u8BA2\u5355'
             )
           ),
           React.createElement(
             'div',
             { className: 'weui-cell__ft' },
-            '\u8BF4\u660E\u6587\u5B57'
+            '1'
           )
         ),
         React.createElement(
           'a',
-          { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
+          { className: 'weui-cell weui-cell_access', href: 'company' },
           React.createElement(
             'div',
             { className: 'weui-cell__hd' },
@@ -251,14 +255,14 @@ var PersonCenterMiddle = function (_React$Component2) {
             React.createElement(
               'p',
               null,
-              '\u6682\u5B9A\u83DC\u5355\u4E8C'
+              '\u516C\u53F8\u7B80\u4ECB'
             )
           ),
           React.createElement('div', { className: 'weui-cell__ft' })
         ),
         React.createElement(
           'a',
-          { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
+          { className: 'weui-cell weui-cell_access', href: 'mendian_list' },
           React.createElement(
             'div',
             { className: 'weui-cell__hd' },
@@ -274,7 +278,7 @@ var PersonCenterMiddle = function (_React$Component2) {
             React.createElement(
               'p',
               null,
-              '\u6682\u5B9A\u83DC\u5355\u4E09'
+              '\u95E8\u5E97\u5217\u8868'
             )
           ),
           React.createElement('div', { className: 'weui-cell__ft' })

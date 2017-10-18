@@ -17,7 +17,7 @@ class IoIo extends React.Component {
             <OrderDetailAddress/>
             <OrderDetail/>
             <OrderDetail/>
-            <div className="call_me_wrap"><i className="fa fa-phone call_me"></i>联系我们</div>
+            <div className="call_me_wrap"><i className="fa fa-phone call_me"></i><a href="contact">联系我们</a></div>
             <PayDetail/>
         </div>
       );

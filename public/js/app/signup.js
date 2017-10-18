@@ -226,24 +226,6 @@ var IoIo = function (_React$Component) {
             ),
             React.createElement(
               'div',
-              { className: 'weui-cell' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                React.createElement(
-                  'label',
-                  { className: 'weui-label' },
-                  '\u5BC6\u7801'
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' })
-              )
-            ),
-            React.createElement(
-              'div',
               { className: 'weui-cell yanzhengma' },
               React.createElement(
                 'div',
@@ -258,6 +240,24 @@ var IoIo = function (_React$Component) {
                 'div',
                 { className: 'weui-cell__bd' },
                 React.createElement('input', { className: 'weui-input', type: 'number', pattern: '[0-9]*', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801' })
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'weui-cell' },
+              React.createElement(
+                'div',
+                { className: 'weui-cell__hd' },
+                React.createElement(
+                  'label',
+                  { className: 'weui-label' },
+                  '\u5BC6\u7801'
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'weui-cell__bd' },
+                React.createElement('input', { className: 'weui-input', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' })
               )
             )
           ),

@@ -121,7 +121,7 @@ var IoIo = function (_React$Component) {
         $('#data_email').addClass('loding_border');
         $('.error_message').css('display', 'block');
         $('.error_message').attr('id', 'animation1');
-        return;
+        // return;
       } else if (!data_password) {
 
         $('#data_email').removeClass('loding_border');
@@ -131,9 +131,9 @@ var IoIo = function (_React$Component) {
         $('#data_password').addClass('loding_border');
         $('.error_message1').css('display', 'block');
         $('.error_message1').attr('id', 'animation1');
-        return;
+        // return;
       }
-
+      location.href = "person_center";
       if ($('#loadingToast').css('display') != 'none') return;
       $('#loadingToast').fadeIn(100);
       setTimeout(function () {
@@ -172,15 +172,6 @@ var IoIo = function (_React$Component) {
             { className: 'loding_middle_next' },
             React.createElement(
               'div',
-              { className: 'login-form-title' },
-              React.createElement(
-                'span',
-                { className: 'login-form-project' },
-                '\u79C1\u4EBA\u8BA2\u5236'
-              )
-            ),
-            React.createElement(
-              'div',
               { className: 'loding_middle_email_wrap' },
               React.createElement('input', { className: 'loding_middle_email_input', placeholder: '\u624B\u673A\u53F7', type: 'email', name: 'data[email]', id: 'data_email' }),
               React.createElement('label', { className: 'loding_middle_email_name' }),
@@ -194,7 +185,7 @@ var IoIo = function (_React$Component) {
             React.createElement(
               'div',
               { className: 'loding_middle_password_wrap' },
-              React.createElement('input', { className: 'loding_middle_password_input', placeholder: '\u5BC6\u7801', type: '\u5BC6\u7801', name: 'data[password]', id: 'data_password' }),
+              React.createElement('input', { className: 'loding_middle_password_input', placeholder: '\u5BC6\u7801', type: 'password', name: 'data[password]', id: 'data_password' }),
               React.createElement('label', { className: 'loding_middle_password_name' }),
               React.createElement(
                 'span',
@@ -232,7 +223,7 @@ var IoIo = function (_React$Component) {
           '|',
           React.createElement(
             'a',
-            null,
+            { href: 'reset_password' },
             '\u5FD8\u8BB0\u5BC6\u7801\uFF1F'
           )
         )

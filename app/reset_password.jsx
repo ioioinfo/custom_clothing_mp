@@ -76,23 +76,15 @@ class IoIo extends React.Component {
               <div className="weui-cell">
                   <div className="weui-cell__hd"><label className="weui-label">新密码</label></div>
                   <div className="weui-cell__bd">
-                      <input className="weui-input" placeholder="请输入新密码"/>
+                      <input type="text" className="weui-input" placeholder="请输入新密码"/>
                   </div>
               </div>
-
-              <div className="weui-cell">
-                  <div className="weui-cell__hd"><label className="weui-label">再次输入密码</label></div>
-                  <div className="weui-cell__bd">
-                      <input className="weui-input" placeholder="请输入新密码"/>
-                  </div>
-              </div>
-
 
             </div>
           </div>
 
           <div className="signup_button">
-            <a className="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">去登陆</a>
+            <a className="weui-btn weui-btn_primary" href="login" id="showTooltips">下一步</a>
           </div>
         </div>
       );
