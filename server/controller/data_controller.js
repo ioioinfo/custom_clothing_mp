@@ -337,23 +337,30 @@ exports.register = function(server, options, next) {
 				if (!data.username||!data.password) {
 					return reply({"success":false,"message":"params wrong"});
 				}
-				do_login(data, function(err,content){
-					if (!err) {
-						if (!content.success) {
-							return reply({"success":false,"message":"password wrong"});
-						}
-						var person_id = content.row.person_id;
-						if (!person_id) {
-							return reply({"success":false,"message":"no account"});
-						}
+				var mobile = data.username;
+				get_by_mobile(mobile,function(err,row){
+                    if (!err) {
+						do_login(data, function(err,content){
+							if (!err) {
+								if (!content.success) {
+									return reply({"success":false,"message":"password wrong"});
+								}
+								var person_id = content.row.person_id;
+								if (!person_id) {
+									return reply({"success":false,"message":"no account"});
+								}
 
-						var state = login_set_cookie(request,person_id);
+								var state = login_set_cookie(request,person_id);
 
-						return reply({"success":true,"service_info":service_info}).state('cookie', state, {ttl:10*365*24*60*60*1000});
-					}else {
-						return reply({"success":false,"message":content.message});
-					}
-				});
+								return reply({"success":true,"service_info":service_info}).state('cookie', state, {ttl:10*365*24*60*60*1000});
+							}else {
+								return reply({"success":false,"message":content.message});
+							}
+						});
+                    }else {
+                        return reply({"success":false,"message":"no account"});
+                    }
+                });
 			}
 		},
         //获取验证
