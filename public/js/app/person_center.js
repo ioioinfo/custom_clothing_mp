@@ -97,220 +97,238 @@ var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(1);
 
 var IoIo = function (_React$Component) {
-  _inherits(IoIo, _React$Component);
+    _inherits(IoIo, _React$Component);
 
-  function IoIo(props) {
-    _classCallCheck(this, IoIo);
+    function IoIo(props) {
+        _classCallCheck(this, IoIo);
 
-    return _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
-    // 初始化一个空对象
-  }
+        var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
 
-  _createClass(IoIo, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
-  }, {
-    key: 'render',
-    value: function render() {
-      return React.createElement(
-        'div',
-        { className: 'person_center' },
-        React.createElement(
-          'div',
-          { className: 'person_center_head' },
-          React.createElement(
-            'span',
-            { className: 'person_center_head_img' },
-            React.createElement('img', { src: 'images/biyou.jpg' })
-          ),
-          React.createElement(
-            'p',
-            { className: 'person_center_head_name' },
-            'BiYou'
-          ),
-          React.createElement(
-            'span',
-            { className: 'person_infor' },
-            React.createElement(
-              'a',
-              { href: 'my_profile' },
-              '\u6211\u7684\u8D44\u6599'
-            )
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'person_center_number' },
-          React.createElement(
-            'div',
-            { className: 'person_center_number_left pull-left' },
-            React.createElement(
-              'p',
-              { className: 'person_center_number_infor' },
-              '10000.00',
-              React.createElement(
-                'span',
-                null,
-                '\u5143'
-              )
-            ),
-            React.createElement(
-              'p',
-              null,
-              '\u4F59\u989D'
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'person_center_number_right pull-right' },
-            React.createElement(
-              'p',
-              { className: 'person_center_number_infor' },
-              '0',
-              React.createElement(
-                'span',
-                null,
-                '\u4EF6'
-              )
-            ),
-            React.createElement(
-              'p',
-              null,
-              '\u5DF2\u8D2D'
-            )
-          )
-        ),
-        React.createElement(PersonCenterMiddle, null)
-      );
+        _this.state = { persons: {} };
+        return _this;
     }
-  }]);
 
-  return IoIo;
+    _createClass(IoIo, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            $.ajax({
+                url: "/member_info",
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
+                    if (data.success) {
+                        this.setSetate = { persons: data.persons[0] };
+                    } else {}
+                }.bind(this),
+                error: function (xhr, status, err) {}.bind(this)
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var img = "images/biyou.jpg";
+            if (this.state.persons.avatar_url) {
+                img = this.state.persons.avatar_url;
+            }
+            return React.createElement(
+                'div',
+                { className: 'person_center' },
+                React.createElement(
+                    'div',
+                    { className: 'person_center_head' },
+                    React.createElement(
+                        'span',
+                        { className: 'person_center_head_img' },
+                        React.createElement('img', { src: img })
+                    ),
+                    React.createElement(
+                        'p',
+                        { className: 'person_center_head_name' },
+                        this.state.persons.nickname
+                    ),
+                    React.createElement(
+                        'span',
+                        { className: 'person_infor' },
+                        React.createElement(
+                            'a',
+                            { href: 'my_profile' },
+                            '\u6211\u7684\u8D44\u6599'
+                        )
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'person_center_number' },
+                    React.createElement(
+                        'div',
+                        { className: 'person_center_number_left pull-left' },
+                        React.createElement(
+                            'p',
+                            { className: 'person_center_number_infor' },
+                            '10000.00',
+                            React.createElement(
+                                'span',
+                                null,
+                                '\u5143'
+                            )
+                        ),
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u4F59\u989D'
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'person_center_number_right pull-right' },
+                        React.createElement(
+                            'p',
+                            { className: 'person_center_number_infor' },
+                            '0',
+                            React.createElement(
+                                'span',
+                                null,
+                                '\u4EF6'
+                            )
+                        ),
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u5DF2\u8D2D'
+                        )
+                    )
+                ),
+                React.createElement(PersonCenterMiddle, null)
+            );
+        }
+    }]);
+
+    return IoIo;
 }(React.Component);
 
 ;
 
 var PersonCenterMiddle = function (_React$Component2) {
-  _inherits(PersonCenterMiddle, _React$Component2);
+    _inherits(PersonCenterMiddle, _React$Component2);
 
-  function PersonCenterMiddle(props) {
-    _classCallCheck(this, PersonCenterMiddle);
+    function PersonCenterMiddle(props) {
+        _classCallCheck(this, PersonCenterMiddle);
 
-    return _possibleConstructorReturn(this, (PersonCenterMiddle.__proto__ || Object.getPrototypeOf(PersonCenterMiddle)).call(this, props));
-    // 初始化一个空对象
-  }
-
-  _createClass(PersonCenterMiddle, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
-  }, {
-    key: 'render',
-    value: function render() {
-      var style = { color: '#fff', marginRight: '5px', display: 'block', padding: '3px 6px' };
-      return React.createElement(
-        'div',
-        { className: 'weui-cells' },
-        React.createElement(
-          'a',
-          { className: 'weui-cell weui-cell_access', href: 'order_detail' },
-          React.createElement(
-            'div',
-            { className: 'weui-cell__hd' },
-            React.createElement(
-              'span',
-              { style: style, className: 'icon_style1' },
-              React.createElement('i', { className: 'fa fa-camera-retro' })
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cell__bd' },
-            React.createElement(
-              'p',
-              null,
-              '\u6211\u7684\u8BA2\u5355'
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cell__ft' },
-            '1'
-          )
-        ),
-        React.createElement(
-          'a',
-          { className: 'weui-cell weui-cell_access', href: 'company' },
-          React.createElement(
-            'div',
-            { className: 'weui-cell__hd' },
-            React.createElement(
-              'span',
-              { style: style, className: 'icon_style2' },
-              React.createElement('i', { className: 'fa fa-balance-scale' })
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cell__bd' },
-            React.createElement(
-              'p',
-              null,
-              '\u516C\u53F8\u7B80\u4ECB'
-            )
-          ),
-          React.createElement('div', { className: 'weui-cell__ft' })
-        ),
-        React.createElement(
-          'a',
-          { className: 'weui-cell weui-cell_access', href: 'mendian_list' },
-          React.createElement(
-            'div',
-            { className: 'weui-cell__hd' },
-            React.createElement(
-              'span',
-              { style: style, className: 'icon_style3' },
-              React.createElement('i', { className: 'fa fa-camera-retro' })
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cell__bd' },
-            React.createElement(
-              'p',
-              null,
-              '\u95E8\u5E97\u5217\u8868'
-            )
-          ),
-          React.createElement('div', { className: 'weui-cell__ft' })
-        ),
-        React.createElement(
-          'a',
-          { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
-          React.createElement(
-            'div',
-            { className: 'weui-cell__hd' },
-            React.createElement(
-              'span',
-              { style: style, className: 'icon_style4' },
-              React.createElement('i', { className: 'fa fa-balance-scale' })
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'weui-cell__bd' },
-            React.createElement(
-              'p',
-              null,
-              '\u6682\u5B9A\u83DC\u5355\u56DB'
-            )
-          ),
-          React.createElement('div', { className: 'weui-cell__ft' })
-        )
-      );
+        return _possibleConstructorReturn(this, (PersonCenterMiddle.__proto__ || Object.getPrototypeOf(PersonCenterMiddle)).call(this, props));
+        // 初始化一个空对象
     }
-  }]);
 
-  return PersonCenterMiddle;
+    _createClass(PersonCenterMiddle, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {}
+    }, {
+        key: 'render',
+        value: function render() {
+            var style = { color: '#fff', marginRight: '5px', display: 'block', padding: '3px 6px' };
+            return React.createElement(
+                'div',
+                { className: 'weui-cells' },
+                React.createElement(
+                    'a',
+                    { className: 'weui-cell weui-cell_access', href: 'order_detail' },
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__hd' },
+                        React.createElement(
+                            'span',
+                            { style: style, className: 'icon_style1' },
+                            React.createElement('i', { className: 'fa fa-camera-retro' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__bd' },
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u6211\u7684\u8BA2\u5355'
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__ft' },
+                        '1'
+                    )
+                ),
+                React.createElement(
+                    'a',
+                    { className: 'weui-cell weui-cell_access', href: 'company' },
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__hd' },
+                        React.createElement(
+                            'span',
+                            { style: style, className: 'icon_style2' },
+                            React.createElement('i', { className: 'fa fa-balance-scale' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__bd' },
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u516C\u53F8\u7B80\u4ECB'
+                        )
+                    ),
+                    React.createElement('div', { className: 'weui-cell__ft' })
+                ),
+                React.createElement(
+                    'a',
+                    { className: 'weui-cell weui-cell_access', href: 'mendian_list' },
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__hd' },
+                        React.createElement(
+                            'span',
+                            { style: style, className: 'icon_style3' },
+                            React.createElement('i', { className: 'fa fa-camera-retro' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__bd' },
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u95E8\u5E97\u5217\u8868'
+                        )
+                    ),
+                    React.createElement('div', { className: 'weui-cell__ft' })
+                ),
+                React.createElement(
+                    'a',
+                    { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__hd' },
+                        React.createElement(
+                            'span',
+                            { style: style, className: 'icon_style4' },
+                            React.createElement('i', { className: 'fa fa-balance-scale' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__bd' },
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u6682\u5B9A\u83DC\u5355\u56DB'
+                        )
+                    ),
+                    React.createElement('div', { className: 'weui-cell__ft' })
+                )
+            );
+        }
+    }]);
+
+    return PersonCenterMiddle;
 }(React.Component);
 
 ;

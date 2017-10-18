@@ -5,18 +5,37 @@ var ReactDOM = require('react-dom');
 class IoIo extends React.Component {
     constructor(props) {
       super(props);
-      // 初始化一个空对象
+      this.state={persons:{}};
     }
     componentDidMount() {
+    $.ajax({
+       url: "/member_info",
+       dataType: 'json',
+       type: 'GET',
+       success: function(data) {
+         if (data.success) {
+             this.setSetate=({persons:data.persons[0]});
+         }else {
+
+         }
+
+       }.bind(this),
+       error: function(xhr, status, err) {
+       }.bind(this)
+   });
 
     }
 
     render() {
+        var img = "images/biyou.jpg";
+        if (this.state.persons.avatar_url) {
+            img = this.state.persons.avatar_url;
+        }
       return (
         <div className="person_center">
           <div className="person_center_head">
-            <span className="person_center_head_img"><img src="images/biyou.jpg"/></span>
-            <p className="person_center_head_name">BiYou</p>
+            <span className="person_center_head_img"><img src={img}/></span>
+            <p className="person_center_head_name">{this.state.persons.nickname}</p>
             <span className="person_infor"><a href="my_profile">我的资料</a></span>
           </div>
           <div className="person_center_number">
