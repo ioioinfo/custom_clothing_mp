@@ -18,7 +18,7 @@ var eventproxy = require('eventproxy');
 const util = require('util');
 const uu_request = require('../utils/uu_request');
 
-var host = "http://211.149.248.241:18003/";
+var host = "http://139.196.148.40:18003/";
 
 var nav = function(server) {
     return {
@@ -38,37 +38,37 @@ var nav = function(server) {
                 }
             });
         },
-        
+
         //保存用户信息
         save_person: function(username,person_name,mobile,data_source,cb) {
             var url = host + "save_person";
             var data = {username:username,person_name:person_name,mobile,data_source:data_source};
-            
+
             uu_request.request(url, data, function(err, response, body) {
                 cb(err,body);
             });
         },
-        
+
         //保存工作
         save_job: function(person_id,company,department_name,is_xiaoshou,cb) {
             var url = host + "person/save_job";
             var data = {person_id:person_id,company:company,department_name:department_name,is_xiaoshou:is_xiaoshou};
-            
+
             uu_request.request(url, data, function(err, response, body) {
                 cb(err,body);
             });
         },
-        
+
         //保存合同
         save_contract: function(person_id,hetongbianhao,name,signed_date,cb) {
             var url = host + "person/save_contract";
             var data = {person_id:person_id,hetongbianhao:hetongbianhao,name:name,signed_date:signed_date};
-            
+
             uu_request.request(url, data, function(err, response, body) {
                 cb(err,body);
             });
         },
-        
+
         //获取合同信息
         get_contract: function(person_id,cb) {
             var url = host + "person/get_contract?person_id=" + person_id;
@@ -86,7 +86,7 @@ var nav = function(server) {
                 }
             });
         },
-        
+
         //获取手机
         get_mobile: function(person_id,cb) {
             var url = host + "person/get_mobile?person_id=" + person_id;
@@ -113,27 +113,27 @@ var nav = function(server) {
                 cb(err,body);
             });
         },
-        
+
         //绑定客户微信信息
         bind_person_wx: function(person_id,platform_id,openid,cb) {
             var url = host + "person/bind_person_wx";
             var data = {person_id:person_id,platform_id:platform_id,openid:openid};
-            
+
             uu_request.request(url, data, function(err, response, body) {
                 cb(err,body);
             });
         },
-        
+
         //更新用户二维码
         update_person_wx_qrcodeurl: function(platform_id,person_id,qrcodeurl,cb) {
             var url = host + "person/update_person_wx_qrcodeurl";
             var data = {person_id:person_id,platform_id:platform_id,qrcodeurl:qrcodeurl};
-            
+
             uu_request.request(url, data, function(err, response, body) {
                 cb(err,body);
             });
         },
-        
+
         unsubscribe: function(platform_id,openid,cb) {
             var url = host + "person/unsubscribe";
             var data = {platform_id:platform_id,openid:openid};
@@ -141,7 +141,7 @@ var nav = function(server) {
                 cb(err,body);
             });
         },
-        
+
         //获取用户微信来源
         get_latest_wx_source: function(platform_id,openid,cb) {
             var url = host + "source/get_latest?platform_id=" + platform_id + "&openid=" + openid;

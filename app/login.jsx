@@ -50,7 +50,12 @@ class IoIo extends React.Component {
                     $('.error_message1').css('display','none');
                     $('.error_message1').removeAttr('id','animation1');
            }else {
-               alert(data.message);
+               var message = data.message;
+               if (message == 'no account') {
+                   alert('用户名不存在');
+               }else if (message == 'login error') {
+                   alert('用户名或密码错误');
+               }
            }
 
          }.bind(this),
