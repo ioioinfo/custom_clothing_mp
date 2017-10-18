@@ -20,7 +20,7 @@ var eventproxy = require('eventproxy');
 const sys_option = require('../config/sys_option');
 const uu_request = require('../utils/uu_request');
 var org_code = "ioio";
-var platform_code = "ec_mobile";
+var platform_code = "weilingshou";
 
 var moduel_prefix = sys_option.product_name + '_data';
 //所有get调用接口方法
@@ -91,6 +91,7 @@ var login_set_cookie = function(request,person_id){
 //得到验证码
 var get_vertify = function(mobile,cb){
 	var url = "http://139.196.148.40:11111/api/mobile_sms?mobile="+mobile;
+	url = url + "&send_type=ali_sms&platform_code="+platform_code;
 	do_get_method(url,cb);
 };
 //注册
@@ -178,6 +179,12 @@ var get_ec_orders = function(person_id,cb){
 	var url = "http://127.0.0.1:18010/get_ec_orders?person_id="+person_id;
 	do_get_method(url,cb);
 };
+//根据手机查询账号是否存在
+var get_by_mobile = function(mobile,cb){
+	var url = "http://139.196.148.40:18003/person/get_by_mobile?mobile=";
+	url = url + mobile;
+	do_get_method(url,cb);
+}
 exports.register = function(server, options, next) {
     var service_info = sys_option.desc;
     var platform_id = sys_option.platform_id;
@@ -358,9 +365,15 @@ exports.register = function(server, options, next) {
                 if (!mobile) {
                     return reply({"success":false,"message":"param wrong"});
                 }
-                get_vertify(mobile,function(err,content){
+				get_by_mobile(mobile,function(err,row){
                     if (!err) {
-                        return reply({"success":true,"message":"ok"});
+						get_vertify(mobile,function(err,content){
+		                    if (!err) {
+		                        return reply({"success":true,"message":"ok"});
+		                    }else {
+		                        return reply({"success":false,"message":content.message});
+		                    }
+		                });
                     }else {
                         return reply({"success":false,"message":content.message});
                     }
