@@ -27,7 +27,7 @@ var moduel_prefix = sys_option.product_name + '_wx';
 
 exports.register = function(server, options, next) {
     var service_info = sys_option.desc;
-    var host = "http://4s.ioioinfo.com/";
+    var host = "http://weilingshou.ioioinfo.com/";
 
     var platform_id = sys_option.platform_id;
 

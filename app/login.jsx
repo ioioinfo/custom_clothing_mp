@@ -19,7 +19,7 @@ class IoIo extends React.Component {
         $('#data_email').addClass('loding_border');
         $('.error_message').css('display','block');
         $('.error_message').attr('id','animation1');
-        // return;
+        return;
       }else if (!data_password) {
 
         $('#data_email').removeClass('loding_border');
@@ -30,18 +30,34 @@ class IoIo extends React.Component {
         $('#data_password').addClass('loding_border');
         $('.error_message1').css('display','block');
         $('.error_message1').attr('id','animation1');
-        // return;
+        return;
       }
-      location.href="person_center";
-      if ($('#loadingToast').css('display') != 'none') return;
-          $('#loadingToast').fadeIn(100);
-          setTimeout(function () {
-              $('#loadingToast').fadeOut(100);
-          }, 2000);
+      $.ajax({
+         url: "/do_login",
+         dataType: 'json',
+         type: 'POST',
+         data:{"username":data_email,"password":data_password},
+         success: function(data) {
+           if (data.success) {
+                location.href  = "person_center";
+                if ($('#loadingToast').css('display') != 'none') return;
+                    $('#loadingToast').fadeIn(100);
+                    setTimeout(function () {
+                        $('#loadingToast').fadeOut(100);
+                    }, 2000);
 
-          $('#data_password').removeClass('loding_border');
-          $('.error_message1').css('display','none');
-          $('.error_message1').removeAttr('id','animation1');
+                    $('#data_password').removeClass('loding_border');
+                    $('.error_message1').css('display','none');
+                    $('.error_message1').removeAttr('id','animation1');
+           }else {
+               alert(data.message);
+           }
+
+         }.bind(this),
+         error: function(xhr, status, err) {
+         }.bind(this)
+     });
+
       }
 
     render() {
