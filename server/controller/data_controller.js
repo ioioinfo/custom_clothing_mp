@@ -77,6 +77,19 @@ var get_cookie_id = function(request){
 	}
 	return cookie_id;
 };
+//页面获取微信id
+var cookie_get_openid = function(request,cb) {
+	var state;
+	var openid = "";
+
+	if (request.state && request.state.cookie) {
+		state = request.state.cookie;
+		if (state[sys_option.cookie_key]) {
+			openid = state[sys_option.cookie_key];
+		}
+	}
+	cb(openid);
+};
 //登入，合并设置cookie
 var login_set_cookie = function(request,person_id){
 	var state;
@@ -350,9 +363,18 @@ exports.register = function(server, options, next) {
 									return reply({"success":false,"message":"no account"});
 								}
 
-								var state = login_set_cookie(request,person_id);
+								// 绑定微信账号
+                                cookie_get_openid(request,function(openid) {
+                                    if (openid) {
+                                        //关联微信信息
+                                        person.bind_person_wx(sys_option.platform_id,openid,person_id,function(err,content) {
+                                            console.log("bind person wx:" + person_id + "," + openid);
+                                        });
+                                    }
 
-								return reply({"success":true,"service_info":service_info}).state('cookie', state, {ttl:10*365*24*60*60*1000});
+                                    var state = login_set_cookie(request,person_id);
+                                    return reply({"success":true,"service_info":service_info}).state('cookie', state, {ttl:10*365*24*60*60*1000});
+                                });
 							}else {
 								return reply({"success":false,"message":content.message});
 							}
