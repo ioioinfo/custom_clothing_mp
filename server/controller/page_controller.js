@@ -58,6 +58,20 @@ exports.register = function(server, options, next) {
         }
     };
 
+    //页面获取微信id
+	var cookie_get_openid = function(request,cb) {
+		var state;
+		var openid = "";
+
+		if (request.state && request.state.cookie) {
+			state = request.state.cookie;
+			if (state[cookie_key]) {
+				openid = state[cookie_key];
+			}
+		}
+		cb(openid);
+    };
+
     //查询手机号
     var get_mobile = function(request,cb) {
         page_get_openid(request,function(openid) {
@@ -118,9 +132,41 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/person_center',
             handler: function(request, reply) {
-              return reply.view("person_center");;
+                //判断是否在微信中浏览
+                var user_agent = request.headers["user-agent"].toLowerCase();
+
+                var is_in_wechat = /(micromessenger|webbrowser)/.test(user_agent);
+                if (is_in_wechat) {
+                    cookie_get_openid(request, function(openid){
+                        if (openid) {
+                            return reply.view("person_center");
+                        } else {
+                            return reply.redirect("/go2auth/wx_auth");
+                        }
+                    });
+                } else {
+                    return reply.view("login");
+                }
             }
         },
+
+        //微信openid
+		{
+			method: 'GET',
+			path: '/wx_auth',
+			handler: function(request, reply){
+				page_get_openid(request,function(openid) {
+					var cookie = request.state.cookie;
+					if (!cookie) {
+                        cookie = {};
+					}
+					if (openid) {
+						cookie[cookie_key] = openid;
+					}
+					return reply.redirect('/person_center').state('cookie', cookie, cookie_options);
+				});
+			}
+		},
 
         //充值
         {
