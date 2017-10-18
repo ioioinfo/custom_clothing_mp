@@ -25,6 +25,10 @@ module.exports = {
         reset_password: './app/reset_password.jsx',
         my_profile: './app/my_profile.jsx',
         order_list: './app/order_list.jsx',
+        contact: './app/contact.jsx',
+        company: './app/company.jsx',
+        mendian_list: './app/mendian_list.jsx',
+        order_detail: './app/order_detail.jsx',
     },
     output: {
         path: __dirname,

@@ -193,7 +193,40 @@ exports.register = function(server, options, next) {
               return reply.view("order_list");
             }
         },
+        //联系我们
+        {
+            method: 'GET',
+            path: '/contact',
+            handler: function(request, reply) {
+              return reply.view("contact");
+            }
+        },
 
+        //公司简介
+        {
+            method: 'GET',
+            path: '/company',
+            handler: function(request, reply) {
+              return reply.view("company");
+            }
+        },
+        //门店列表
+        {
+            method: 'GET',
+            path: '/mendian_list',
+            handler: function(request, reply) {
+              return reply.view("mendian_list");
+            }
+        },
+
+        //门店列表
+        {
+            method: 'GET',
+            path: '/order_detail',
+            handler: function(request, reply) {
+              return reply.view("order_detail");
+            }
+        },
 
 
     ]);
