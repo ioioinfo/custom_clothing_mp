@@ -155,6 +155,11 @@ var get_person_vip = function(person_id,cb){
 	var url = "http://139.196.148.40:18666/vip/get_by_person_id?person_id=" + person_id + "&org_code=" + org_code;
 	do_get_method(url,cb);
 };
+//充值记录列表
+var list_vip_amount_history = function(vip_id,cb){
+	var url = "http://139.196.148.40:18008/list_vip_amount_history?vip_id=" + vip_id + "&sob_id=" + org_code;
+	do_get_method(url,cb);
+};
 //发现vip
 var get_wx_by_person = function(person_id,cb){
 	var url = "http://139.196.148.40:18003/person/get_wx_by_person?person_id=" + person_id + "&platform_id=" + sys_option.platform_id;
@@ -810,6 +815,34 @@ exports.register = function(server, options, next) {
 				});
 			}
 		},
+		//充值记录
+		{
+			method: 'GET',
+			path: '/list_vip_amount_history',
+			handler: function(request, reply){
+				// var person_id = "2c293d70-4506-11e7-ad37-e93548b3e6bc";
+				var person_id = get_cookie_person(request);
+				if (!person_id) {
+					return reply.redirect("/chat_login");
+				}
+				get_person_vip(person_id, function(err, content){
+					if (!err) {
+						var vip_id = content.row.vip_id;
+						list_vip_amount_history(vip_id, function(err, content){
+							if (!err) {
+								var rows = content.rows;
+								return reply({"success":true,"rows":rows});
+							}else {
+								return reply({"success":false,"message":content.message});
+							}
+						});
+					}else {
+						return reply({"success":false,"message":content.message});
+					}
+				});
+			}
+		},
+
 
 
     ]);
