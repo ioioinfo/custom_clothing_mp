@@ -6,6 +6,12 @@ body{
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   position: relative;
 }
+a{
+    color: #000;
+}
+.weui-cells{
+    margin-top: 0;
+}
 /*返回顶部*/
 .top{
     position: fixed;
@@ -39,11 +45,11 @@ body{
   border-bottom: 1px solid #dcdcdc;
 
 }
-.project_list_ul{
-  margin: 55px 16px 84px 16px;
+.project_list_top{
+  margin: 55px 0;
 }
-.project_list_ul li{
-  margin-bottom: 12px;
+.project_list_ul{
+    margin-bottom: 7px;
 }
 .project_list_img_wrap{
   width: 25.072%;
@@ -183,4 +189,18 @@ body{
     position: absolute;
     right: 10px;
     top: 92px;
+}
+.order_time{
+    font-size: 12px;
+    margin-top: 7px;
+    padding: 4px 15px;
+    background: #fff;
+    border-bottom: 1px solid #EEEFF5;
+    display: -webkit-flex; /* Safari */
+    -webkit-justify-content: space-between; /* Safari 6.1+ */
+    display: flex;
+    justify-content: space-between;
+}
+.red{
+    color: red;
 }

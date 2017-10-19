@@ -248,12 +248,12 @@ exports.register = function(server, options, next) {
               return reply.view("my_profile");
             }
         },
-        //我的资料
+        //订单列表
         {
             method: 'GET',
             path: '/order_list',
             handler: function(request, reply) {
-              return reply.view("order_list");
+                return reply.view("order_list");
             }
         },
         // 订单详情
@@ -261,7 +261,8 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/order_detail',
             handler: function(request, reply) {
-              return reply.view("order_detail");
+                var order_id = request.query.order_id;
+              return reply.view("order_detail",{order_id:order_id});
             }
         },
 

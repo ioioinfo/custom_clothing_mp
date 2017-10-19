@@ -1,11 +1,64 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+import { Provider, connect } from 'react-redux'
+import { createStore } from 'redux'
+
+
+function product(state, action) {
+  switch (action.type) {
+  case 'ORDER_DETAIL':
+    {
+      $.ajax({
+         url: "/order_detail_data?order_id="+order_id,
+         dataType: 'json',
+         type: 'GET',
+         success: function(data) {
+           if (data.success) {
+             store.dispatch({ type: 'GET_DATA', data: data});
+           }else {
+           }
+         }.bind(this),
+         error: function(xhr, status, err) {
+         }.bind(this)
+      });
+
+      return state;
+    }
+  case 'GET_DATA':
+  {
+    var data = action.data;
+    var details = [];
+    if (data.details[order_id]) {
+        details = data.details[order_id];
+    }
+    return {items:data.order,products:data.products,details:details,logistics_info:data.logistics_info,pay_info:data.pay_info[0]};
+  }
+
+  default:
+    return state
+  }
+}
+
+let store = createStore(product,{item:{},details:[],products:{},logistics_info:{},pay_info:{}});
+
+const mapStateToProps = (state) => {
+    return {
+        item: state.item,
+        products: state.products,
+        details: state.details,
+        logistics_info: state.logistics_info,
+        pay_info: state.pay_info,
+    }
+}
+
+
 class IoIo extends React.Component {
     constructor(props) {
       super(props);
     }
     componentDidMount() {
+        store.dispatch({ type: 'ORDER_DETAIL'});
     }
 
     render() {
@@ -15,8 +68,9 @@ class IoIo extends React.Component {
                 订单详情
             </div>
             <OrderDetailAddress/>
-            <OrderDetail/>
-            <OrderDetail/>
+            {this.props.details.map((item,index)=>(
+                <OrderDetail product={item} key={index} />
+            ))}
             <div className="call_me_wrap"><i className="fa fa-phone call_me"></i><a href="contact">联系我们</a></div>
             <PayDetail/>
         </div>
@@ -24,32 +78,31 @@ class IoIo extends React.Component {
     }
 };
 //物流状态
-class OrderDetailAddress extends React.Component {
+class OrderDetailAddressClass extends React.Component {
     render() {
       return (
         <div className="order_detail_address_wrap">
             <div className="address_icon_wrap">
                 <i className="fa fa-clock-o address_icon"></i>
             </div>
-            <span className="address_word">物流配送中</span>
-
+            <span className="address_word">{this.props.logistics_info.detail_desc}</span>
         </div>
       );
     }
 };
 
 //物流状态
-class PayDetail extends React.Component {
+class PayDetailClass extends React.Component {
     render() {
       return (
         <div className="order_detail_pay_wrap">
             <div className="order_detail_pay_infor">
                 <div>支付方式</div>
-                <div>支付宝</div>
+                <div>{this.props.pay_info.pay_way}</div>
             </div>
             <div className="order_detail_pay_infor">
                 <div>商品价格</div>
-                <div>¥ 100.00</div>
+                <div>¥ {this.props.pay_info.pay_amount}</div>
             </div>
             <div className="order_detail_pay_infor">
                 <div>其他费用</div>
@@ -61,17 +114,17 @@ class PayDetail extends React.Component {
 };
 
 // 订单x信息
-class OrderDetail extends React.Component {
+class OrderDetailClass extends React.Component {
     render() {
       return (
           <div className="product-infor" data-id="00137208_C25">
       	        <div className="all">
       	          <div className="product-infor-left">
-      				<img src="http://image.buy42.com/00137208C.jpg" alt=""/>
+      				<img src={this.props.products[this.props.product.product_id].img.location} alt=""/>
       			  </div>
       	          <div className="product-infor-middle">
-      	            <p className="p1">HUGO BOSS红外线健康功能被 提高睡眠质量 家居日用</p>
-      	            <p className="p2">￥ 660</p>
+      	            <p className="p1">{this.props.products[this.props.product.product_id].product_name}</p>
+      	            <p className="p2">￥ {this.props.products[this.props.product.product_id].product_sale_price}</p>
       	          </div>
       	          <div className="product-infor-right">
       	            <p>x1</p>
@@ -81,8 +134,14 @@ class OrderDetail extends React.Component {
       );
     }
 };
+const ReduxIoIo = connect(mapStateToProps)(IoIo);
+const OrderDetailAddress = connect(mapStateToProps)(OrderDetailAddressClass);
+const PayDetail = connect(mapStateToProps)(PayDetailClass);
+const OrderDetail = connect(mapStateToProps)(OrderDetailClass);
 
 ReactDOM.render(
-  <IoIo/>,
+    <Provider store={store}>
+        <ReduxIoIo/>
+    </Provider>,
   document.getElementById("order_detail")
 );

@@ -118,6 +118,7 @@ var IoIo = function (_React$Component) {
     _this.handleClick = _this.handleClick.bind(_this);
     _this.handleClick1 = _this.handleClick1.bind(_this);
     _this.handleClick2 = _this.handleClick2.bind(_this);
+    _this.handleClick3 = _this.handleClick3.bind(_this);
     // 初始化一个空对象
     _this.state = {};
     return _this;
@@ -142,17 +143,57 @@ var IoIo = function (_React$Component) {
         alert('请输入正确的手机号');
         return;
       }
-      time(60);
+      $.ajax({
+        url: "/get_vertify",
+        dataType: 'json',
+        type: 'POST',
+        data: { "phone": phone },
+        success: function (data) {
+          if (data.success) {
+            time(60);
+          } else {}
+        }.bind(this),
+        error: function (xhr, status, err) {}.bind(this)
+      });
     }
   }, {
     key: 'handleClick1',
-    value: function handleClick1() {
+    value: function handleClick1(e) {
       $('.tiaokuan').show();
     }
   }, {
     key: 'handleClick2',
-    value: function handleClick2() {
+    value: function handleClick2(e) {
       $('.tiaokuan').hide();
+    }
+  }, {
+    key: 'handleClick3',
+    value: function handleClick3(e) {
+      var mobile = $('#phone').val();
+      var password = $('#password').val();
+      if (!mobile) {
+        alert('请输入正确的验证码');
+        return;
+      }
+      if (!password) {
+        alert('请输入密码');
+        return;
+      }
+      $.ajax({
+        url: "/do_register",
+        dataType: 'json',
+        type: 'POST',
+        data: { "username": mobile, "mobile": mobile, "password": password },
+        success: function (data) {
+          if (data.success) {
+            location.href = "login";
+          } else {
+            var message = "user already exists";
+            alert('用户已存在');
+          }
+        }.bind(this),
+        error: function (xhr, status, err) {}.bind(this)
+      });
     }
   }, {
     key: 'render',
@@ -239,7 +280,7 @@ var IoIo = function (_React$Component) {
               React.createElement(
                 'div',
                 { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', type: 'number', pattern: '[0-9]*', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801' })
+                React.createElement('input', { className: 'weui-input', type: 'number', pattern: '[0-9]*', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801', id: 'mobile' })
               )
             ),
             React.createElement(
@@ -257,7 +298,7 @@ var IoIo = function (_React$Component) {
               React.createElement(
                 'div',
                 { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' })
+                React.createElement('input', { className: 'weui-input', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801', id: 'password' })
               )
             )
           ),
@@ -282,7 +323,7 @@ var IoIo = function (_React$Component) {
           { className: 'signup_button' },
           React.createElement(
             'a',
-            { className: 'weui-btn weui-btn_primary', href: 'javascript:', id: 'showTooltips' },
+            { className: 'weui-btn weui-btn_primary', href: 'javascript:', id: 'showTooltips', onClick: this.handleClick3 },
             '\u6CE8\u518C'
           )
         ),

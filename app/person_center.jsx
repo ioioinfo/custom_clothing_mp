@@ -69,7 +69,7 @@ class PersonCenterMiddle extends React.Component {
       var style = {color:'#fff',marginRight:'5px',display:'block',padding:'3px 6px' };
       return (
         <div className="weui-cells">
-            <a className="weui-cell weui-cell_access" href="order_detail">
+            <a className="weui-cell weui-cell_access" href="order_list">
                 <div className="weui-cell__hd"><span style={style} className="icon_style1"><i className="fa fa-camera-retro"></i></span></div>
                 <div className="weui-cell__bd">
                     <p>我的订单</p>

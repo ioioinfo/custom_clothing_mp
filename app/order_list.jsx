@@ -1,14 +1,69 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+import { Provider, connect } from 'react-redux'
+import { createStore } from 'redux'
+
+
+function product(state, action) {
+  switch (action.type) {
+  case 'ORDER_LIST':
+    {
+      $.ajax({
+         url: "/order_center_data",
+         dataType: 'json',
+         type: 'GET',
+         success: function(data) {
+           if (data.success) {
+             store.dispatch({ type: 'GET_DATA', data: data});
+           }else {
+           }
+         }.bind(this),
+         error: function(xhr, status, err) {
+         }.bind(this)
+      });
+
+      return state;
+    }
+  case 'GET_DATA':
+  {
+    var data = action.data;
+    return {items:data.orders,products:data.products,details:data.details};
+  }
+
+  default:
+    return state
+  }
+}
+
+let store = createStore(product,{items:[],details:{},products:{}});
+
+const mapStateToProps = (state) => {
+    return {
+        items: state.items,
+        products: state.products,
+        details: state.details,
+
+    }
+}
+
 
 class IoIo extends React.Component {
+    componentDidMount() {
+        store.dispatch({ type: 'ORDER_LIST'});
+
+    }
     render() {
       var style = {display:'none'};
       return (
         <div className="project_list_wrap">
           <Projectsearch/>
-          <Projectlist/>
+          <div className="project_list_top">
+            {this.props.items.map((item,index)=>(
+                <Projectlist item={item} index={index}/>
+            ))}
+
+          </div>
           <Top/>
         </div>
       );
@@ -35,29 +90,51 @@ class Projectsearch extends React.Component {
       );
     }
 };
-class Projectlist extends React.Component {
+class ProjectlistClass extends React.Component {
     constructor(props) {
       super(props);
 
     }
     render() {
       var style = {marginRight:'5px' ,display:'block'};
+      var details = [];
+      if (this.props.details[this.props.item.order_id]) {
+          details = this.props.details[this.props.item.order_id];
+      }
+      var order_id = this.props.item.order_id;
       return (
-        <ul className="project_list_ul">
-            <li>
-              <div className="weui-cells">
-                <div className="weui-cell font_style position_relative">
-                    <div className="weui-cell__hd project_list_img_wrap"><img src="images/biyou.jpg"  alt="" style={style}/></div>
-                    <div className="weui-cell__bd product_name">
-                        <p className="product_name_infor">旗袍</p>
-                        <p className="product_price"><span>￥</span>100</p>
-                    </div>
-                    <div className="weui-cell__ft position_absolute2"><span id='number'>1</span> 件</div>
-                </div>
-              </div>
-            </li>
+        <a href={"order_detail?order_id="+order_id}>
+            <ul className="project_list_ul">
+                <div className="order_time"><p>{this.props.item.created_at}</p><p className="red">{this.props.item.order_status}</p></div>
+                {details.map((item,index)=>(
+                    <ProjectlistList  item={item} index={index}/>
+                ))}
+            </ul>
+        </a>
+      );
+    }
+};
 
-        </ul>
+class ProjectlistListClass extends React.Component {
+    render() {
+      var style = {marginRight:'5px' ,display:'block'};
+      var img = 'images/no.jpg';
+        if (this.props.products[this.props.item.product_id].img) {
+            img = this.props.products[this.props.item.product_id].img.location;
+        }
+      return (
+          <li>
+            <div className="weui-cells">
+              <div className="weui-cell font_style position_relative">
+                  <div className="weui-cell__hd project_list_img_wrap"><img src={img}  alt="" style={style}/></div>
+                  <div className="weui-cell__bd product_name">
+                      <p className="product_name_infor">{this.props.products[this.props.item.product_id].product_name}</p>
+                      <p className="product_price"><span>￥</span>{this.props.products[this.props.item.product_id].product_sale_price}</p>
+                  </div>
+                  <div className="weui-cell__ft position_absolute2"><span id='number'>{this.props.products[this.props.item.product_id].is_sale}</span> 件</div>
+              </div>
+            </div>
+          </li>
       );
     }
 };
@@ -96,8 +173,12 @@ class Top extends React.Component {
   }
 };
 
-
+const ReduxIoIo = connect(mapStateToProps)(IoIo);
+const Projectlist = connect(mapStateToProps)(ProjectlistClass);
+const ProjectlistList = connect(mapStateToProps)(ProjectlistListClass);
 ReactDOM.render(
-    <IoIo/>,
+    <Provider store={store}>
+        <ReduxIoIo/>
+    </Provider>,
     document.getElementById("order_list")
 );

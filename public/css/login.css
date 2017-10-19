@@ -182,10 +182,6 @@ html,body{
 .login_bottom{
   text-align: center;
   color: #fff;
-  position: fixed;
-  bottom: 30px;
-  left: 0;
-  right: 0;
 }
 .login_bottom a{
   margin: 0 17px;

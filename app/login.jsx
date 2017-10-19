@@ -10,7 +10,9 @@ class IoIo extends React.Component {
       this.state = {};
     }
     componentDidMount() {
-
+        var windowHeight = $(window).height();
+        var inforHeight = $('.loding_middle').height();
+        $(".login_bottom").css("margin-top",windowHeight - inforHeight - 200);    
     }
     handleSubmit(e){
       var data_email = $('#data_email').val();

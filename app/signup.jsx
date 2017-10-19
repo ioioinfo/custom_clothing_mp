@@ -18,6 +18,7 @@ class IoIo extends React.Component {
       this.handleClick = this.handleClick.bind(this);
       this.handleClick1 = this.handleClick1.bind(this);
       this.handleClick2 = this.handleClick2.bind(this);
+      this.handleClick3 = this.handleClick3.bind(this);
       // 初始化一个空对象
       this.state = {};
     }
@@ -36,13 +37,55 @@ class IoIo extends React.Component {
           alert('请输入正确的手机号');
           return;
       }
-      time(60);
+      $.ajax({
+         url: "/get_vertify",
+         dataType: 'json',
+         type: 'POST',
+         data:{"phone":phone},
+         success: function(data) {
+           if (data.success) {
+             time(60);
+           }else {
+           }
+         }.bind(this),
+         error: function(xhr, status, err) {
+         }.bind(this)
+      });
+
     }
-    handleClick1(){
+    handleClick1(e){
         $('.tiaokuan').show();
     }
-    handleClick2(){
+    handleClick2(e){
         $('.tiaokuan').hide();
+    }
+    handleClick3(e){
+        var mobile = $('#phone').val();
+        var password = $('#password').val();
+        if (!mobile) {
+            alert('请输入正确的验证码');
+            return;
+        }
+        if (!password) {
+            alert('请输入密码');
+            return;
+        }
+        $.ajax({
+           url: "/do_register",
+           dataType: 'json',
+           type: 'POST',
+           data:{"username":mobile,"mobile":mobile,"password":password},
+           success: function(data) {
+             if (data.success) {
+               location.href="login";
+             }else {
+                 var message = "user already exists";
+                 alert('用户已存在');
+             }
+           }.bind(this),
+           error: function(xhr, status, err) {
+           }.bind(this)
+        });
     }
     render() {
       return (
@@ -78,13 +121,13 @@ class IoIo extends React.Component {
               <div className="weui-cell yanzhengma">
                   <div className="weui-cell__hd"><label className="weui-label">验证码</label></div>
                   <div className="weui-cell__bd">
-                      <input className="weui-input" type="number" pattern="[0-9]*" placeholder="请输入验证码"/>
+                      <input className="weui-input" type="number" pattern="[0-9]*" placeholder="请输入验证码" id="mobile"/>
                   </div>
               </div>
               <div className="weui-cell">
                   <div className="weui-cell__hd"><label className="weui-label">密码</label></div>
                   <div className="weui-cell__bd">
-                      <input className="weui-input" placeholder="请输入密码"/>
+                      <input className="weui-input" placeholder="请输入密码" id="password"/>
                   </div>
               </div>
 
@@ -99,7 +142,7 @@ class IoIo extends React.Component {
           </div>
 
           <div className="signup_button">
-            <a className="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">注册</a>
+            <a className="weui-btn weui-btn_primary" href="javascript:" id="showTooltips" onClick={this.handleClick3}>注册</a>
           </div>
 
           <div className="tiaokuan">

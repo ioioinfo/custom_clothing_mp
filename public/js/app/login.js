@@ -111,7 +111,11 @@ var IoIo = function (_React$Component) {
 
   _createClass(IoIo, [{
     key: 'componentDidMount',
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      var windowHeight = $(window).height();
+      var inforHeight = $('.loding_middle').height();
+      $(".login_bottom").css("margin-top", windowHeight - inforHeight - 200);
+    }
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
