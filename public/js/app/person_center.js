@@ -104,7 +104,7 @@ var IoIo = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
 
-        _this.state = { person_wx: {} };
+        _this.state = { person_wx: {}, person: {} };
         return _this;
     }
 
@@ -117,7 +117,7 @@ var IoIo = function (_React$Component) {
                 type: 'GET',
                 success: function (data) {
                     if (data.success) {
-                        this.setState({ person_wx: data.person_wx });
+                        this.setState({ person_wx: data.person_wx, person: data.person });
                     } else {}
                 }.bind(this),
                 error: function (xhr, status, err) {}.bind(this)
@@ -165,7 +165,7 @@ var IoIo = function (_React$Component) {
                         React.createElement(
                             'p',
                             { className: 'person_center_number_infor' },
-                            '10000.00',
+                            this.state.person.amount,
                             React.createElement(
                                 'span',
                                 null,

@@ -165,14 +165,29 @@ var Middle = function (_React$Component3) {
   function Middle(props) {
     _classCallCheck(this, Middle);
 
-    return _possibleConstructorReturn(this, (Middle.__proto__ || Object.getPrototypeOf(Middle)).call(this, props));
+    var _this3 = _possibleConstructorReturn(this, (Middle.__proto__ || Object.getPrototypeOf(Middle)).call(this, props));
+
+    _this3.state = { store_list: [] };
+    return _this3;
   }
   // 3
 
 
   _createClass(Middle, [{
     key: 'componentDidMount',
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      $.ajax({
+        url: "/get_store_list",
+        dataType: 'json',
+        type: 'GET',
+        success: function (data) {
+          if (data.success) {
+            this.setState({ store_list: data.store_list });
+          } else {}
+        }.bind(this),
+        error: function (xhr, status, err) {}.bind(this)
+      });
+    }
     // 1
 
   }, {
@@ -181,10 +196,9 @@ var Middle = function (_React$Component3) {
       return React.createElement(
         'div',
         { className: 'middle' },
-        React.createElement(News, null),
-        React.createElement(News, null),
-        React.createElement(News, null),
-        React.createElement(News, null)
+        this.state.store_list.map(function (item, index) {
+          return React.createElement(News, { item: item, key: index });
+        })
       );
     }
   }]);
@@ -207,6 +221,7 @@ var News = function (_React$Component4) {
   _createClass(News, [{
     key: 'render',
     value: function render() {
+      var img = "images/no.jpg";
       return React.createElement(
         'div',
         { className: 'news' },
@@ -222,7 +237,7 @@ var News = function (_React$Component4) {
               React.createElement(
                 'p',
                 { className: 'newsimg' },
-                React.createElement('img', { src: 'images/biyou.jpg', alt: '' })
+                React.createElement('img', { src: img, alt: '' })
               ),
               React.createElement(
                 'p',
@@ -230,12 +245,12 @@ var News = function (_React$Component4) {
                 React.createElement(
                   'span',
                   null,
-                  '\u5584\u6DD8\u7F51\u25CF\u77F3\u95E8\u4E8C\u8DEF\u6148\u5584\u5546\u5E97'
+                  this.props.item.points[0].point_name
                 ),
                 React.createElement(
                   'span',
                   null,
-                  '\u4E0A\u6D77\u5E02\u9759\u5B89\u533A\u65B0\u95F8\u8DEF1132\u53F7'
+                  this.props.item.points[0].province + this.props.item.points[0].district + this.props.item.points[0].detail_address
                 )
               )
             )

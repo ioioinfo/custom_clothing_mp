@@ -27,33 +27,51 @@ class Middle extends React.Component {
   // 2
   constructor(props) {
       super(props);
+      this.state={store_list:[]}
   }
   // 3
   componentDidMount() {
+      $.ajax({
+         url: "/get_store_list",
+         dataType: 'json',
+         type: 'GET',
+         success: function(data) {
+           if (data.success) {
+               this.setState({store_list:data.store_list});
+           }else {
+
+           }
+
+         }.bind(this),
+         error: function(xhr, status, err) {
+         }.bind(this)
+     });
   }
   // 1
   render() {
       return (
         <div className="middle">
-            <News/>
-            <News/>
-            <News/>
-            <News/>
+            {this.state.store_list.map((item,index) => (
+                <News item={item} key={index}/>
+            ))
+            }
         </div>
       );
   }
 };
 // 中间消息
 class News extends React.Component {
+
   render() {
+      var img = "images/no.jpg";
     return (
       <div className="news">
         <a href="#">
             <div className="newsInfor">
               <div className="newscontent">
-                <p className="newsimg"><img src="images/biyou.jpg" alt="" /></p>
-                <p className="newsword"><span>善淘网●石门二路慈善商店</span>
-                <span>上海市静安区新闸路1132号</span></p>
+                <p className="newsimg"><img src={img} alt="" /></p>
+                <p className="newsword"><span>{this.props.item.points[0].point_name}</span>
+                <span>{this.props.item.points[0].province+this.props.item.points[0].district+this.props.item.points[0].detail_address}</span></p>
               </div>
             </div>
          </a>

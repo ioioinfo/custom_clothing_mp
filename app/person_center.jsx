@@ -5,7 +5,7 @@ var ReactDOM = require('react-dom');
 class IoIo extends React.Component {
     constructor(props) {
       super(props);
-      this.state={person_wx:{}};
+      this.state={person_wx:{},person:{}};
     }
     componentDidMount() {
     $.ajax({
@@ -14,7 +14,7 @@ class IoIo extends React.Component {
        type: 'GET',
        success: function(data) {
          if (data.success) {
-             this.setState({person_wx:data.person_wx});
+             this.setState({person_wx:data.person_wx,person:data.person});
          }else {
 
          }
@@ -40,7 +40,7 @@ class IoIo extends React.Component {
           </div>
           <div className="person_center_number">
             <div className="person_center_number_left pull-left">
-              <p className="person_center_number_infor">10000.00<span>元</span></p>
+              <p className="person_center_number_infor">{this.state.person.amount}<span>元</span></p>
               <p>余额</p>
             </div>
             <div className="person_center_number_right pull-right">
