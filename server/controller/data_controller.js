@@ -66,6 +66,11 @@ var do_login = function(data, cb){
 	var url = "http://139.196.148.40:18666/user/login_check";
 	do_post_method(url,data,cb);
 };
+//得到单个订单
+var get_ec_order = function(order_id,cb){
+	var url = "http://127.0.0.1:18010/get_ec_order?order_id="+order_id;
+	do_get_method(url,cb);
+};
 //获取当前cookie cookie_id
 var get_cookie_id = function(request){
 	var cookie_id;
@@ -186,6 +191,11 @@ var trade_weixinpay = function(data,cb){
 	var url = "http://139.196.148.40:18008/wx_mp_pay";
 	do_post_method(url,data,cb);
 };
+//做验证
+var do_vertify = function(data,cb){
+	var url = "http://139.196.148.40:11111/api/dy_login";
+	do_post_method(url,data,cb);
+};
 //根据状态查询订单
 var search_order_byStatus = function(person_id,status,cb){
 	var url = "http://127.0.0.1:18010/search_order_byStatus?person_id=";
@@ -203,6 +213,22 @@ var get_by_mobile = function(mobile,cb){
 	url = url + mobile;
 	do_get_method(url,cb);
 }
+//查询物流信息
+var get_logistics_info = function(order_id,cb){
+	var url = "http://127.0.0.1:18010/search_laster_logistics?order_id="+order_id;
+	do_get_method(url,cb);
+};
+//开票信息
+var get_invoice_info = function(person_id,order_ids,cb){
+	var url = "http://127.0.0.1:18010/search_ec_invoices?order_id=";
+	url = url + order_ids + "&person_id=" + person_id;
+	do_get_method(url,cb);
+};
+//物流公司查询 http://211.149.248.241:18013/logistics/companies
+var companies = function(cb){
+	var url = "http://211.149.248.241:18013/logistics/companies";
+	do_get_method(url,cb);
+};
 exports.register = function(server, options, next) {
     var service_info = sys_option.desc;
     var platform_id = sys_option.platform_id;
@@ -414,6 +440,29 @@ exports.register = function(server, options, next) {
                 });
             }
         },
+		//手机验证
+		{
+			method: 'POST',
+			path: '/do_vertify',
+			handler: function(request, reply){
+				var mobile = request.payload.mobile;
+				var password = request.payload.password;
+				if (!mobile || !password) {
+					return reply({"success":false,"message":"param wrong"});
+				}
+				var data = {
+					"mobile" : mobile,
+					"password" : password
+				};
+				do_vertify(data,function(err,content){
+					if (!err) {
+						return reply({"success":true,"message":"ok"});
+					}else {
+						return reply({"success":false,"message":content.message});
+					}
+				})
+			}
+		},
         //微信注册功能
         {
             method: 'POST',
@@ -422,37 +471,48 @@ exports.register = function(server, options, next) {
                 var data = {};
                 data.mobile = request.payload.mobile;
                 data.password = request.payload.password;
-                data.username = request.payload.username;
+                data.username = request.payload.mobile;
+				data.verify = request.payload.verify;
                 data.org_code = org_code;
                 data.platform_code = platform_code;
-                if (!data.password || !data.username || !data.mobile) {
+                if (!data.password || !data.verify || !data.mobile) {
                     return reply({"success":false,"message":"param wrong","service_info":service_info});
                 }
-                do_register(data,function(err,result){
-                    if (!err) {
-                        var info = {};
-                        info.person_id = result.person_id;
-                        info.scope_code = org_code;
-                        info.person_name = data.username;
-                        info.mobile = data.mobile;
-                        do_vip(info,function(err,result){
-                            if (true) {
-                                var state = login_set_cookie(request,info.person_id);
-                                register_activity({"person_id":info.person_id},function(err,content){
-                                    if (!err) {
-                                        return reply({"success":true,"message":"ok","service_info":service_info}).state('cookie', state, {ttl:10*365*24*60*60*1000});
-                                    }else {
-                                        return reply({"success":false,"message":content.message,"service_info":service_info});
-                                    }
-                                });
-                            }else {
-                                return reply({"success":false,"message":result.message,"service_info":service_info});
-                            }
-                        })
-                    }else {
-                        return reply({"success":false,"message":result.message,"service_info":service_info});
-                    }
-                });
+				var data1 = {
+					"mobile" : data.mobile,
+					"password" : data.verify
+				};
+				do_vertify(data1,function(err,content){
+					if (!err) {
+						do_register(data,function(err,result){
+		                    if (!err) {
+		                        var info = {};
+		                        info.person_id = result.person_id;
+		                        info.scope_code = org_code;
+		                        info.person_name = data.username;
+		                        info.mobile = data.mobile;
+		                        do_vip(info,function(err,result){
+		                            if (true) {
+		                                var state = login_set_cookie(request,info.person_id);
+		                                register_activity({"person_id":info.person_id},function(err,content){
+		                                    if (!err) {
+		                                        return reply({"success":true,"message":"ok","service_info":service_info}).state('cookie', state, {ttl:10*365*24*60*60*1000});
+		                                    }else {
+		                                        return reply({"success":false,"message":content.message,"service_info":service_info});
+		                                    }
+		                                });
+		                            }else {
+		                                return reply({"success":false,"message":result.message,"service_info":service_info});
+		                            }
+		                        })
+		                    }else {
+		                        return reply({"success":false,"message":result.message,"service_info":service_info});
+		                    }
+		                });
+					}else {
+						return reply({"success":false,"message":content.message});
+					}
+				})
             }
         },
 		//充值比例
@@ -665,7 +725,91 @@ exports.register = function(server, options, next) {
 				}
 			}
 		},
+		//订单详情
+		{
+			method: 'GET',
+			path: '/order_detail_data',
+			handler: function(request, reply){
+				// var person_id = "2c293d70-4506-11e7-ad37-e93548b3e6bc";
+				var person_id = get_cookie_person(request);
+				if (!person_id) {
+					return reply.redirect("/chat_login");
+				}
+				var order_id = request.query.order_id;
+				if (!order_id) {
+					return reply({"success":false,"message":"order_id null"});
+				}
+				var ep =  eventproxy.create("order","details","products","logistics_info","invoices","delivery_time","pay_info","order_list","companies",function(order,details,products,logistics_info,invoices,delivery_time,pay_info,order_list,companies){
+						var order_map = {};
+						for (var i = 0; i < order_list.length; i++) {
+							order_map[order_list[i].order_id]= order_list[i];
+						}
+						if (!order_map[order_id] || order_list.length ==0) {
+							return reply({"success":false,"message":"order_id no exist"});
+						}
+						var invoices_map = {};
+						for (var i = 0; i < invoices.length; i++) {
+							invoices_map[invoices[i].order_id] = invoices[i];
+						}
+						var companies_map = {};
+						for (var i = 0; i < companies.length; i++) {
+							companies_map[companies[i].logi_code] = companies[i].logi_name;
+						}
+					return reply({"success":true,"order":order,"details":details,"products":products,"logistics_info":logistics_info,"invoices":invoices_map,"delivery_time":delivery_time,"pay_info":pay_info,"companies_map":companies_map});
+				});
 
+				get_ec_orders(person_id,function(err,results){
+					if (!err) {
+						if (results.orders.length>0) {
+							ep.emit("order_list", results.orders);
+						}else {
+							ep.emit("order_list", []);
+						}
+					}else {
+						ep.emit("order_list", []);
+					}
+				});
+
+				get_ec_order(order_id,function(err,results){
+					if (!err) {
+						ep.emit("order", results.orders[0]);
+						ep.emit("details", results.details);
+						ep.emit("products", results.products);
+						ep.emit("pay_info", results.pay_info);
+						ep.emit("delivery_time", results.delivery_time);
+					}else {
+						ep.emit("order", {});
+						ep.emit("details", {});
+						ep.emit("products", {});
+						ep.emit("pay_info", []);
+						ep.emit("delivery_time", "未发货");
+					}
+				});
+				get_logistics_info(order_id,function(err,results){
+					if (!err) {
+						ep.emit("logistics_info", results.row);
+					}else {
+						ep.emit("logistics_info", {});
+					}
+				});
+				var order_ids = [];
+				order_ids = JSON.stringify(order_ids.push(order_id));
+				get_invoice_info(person_id,order_ids,function(err,results){
+					if (!err) {
+						ep.emit("invoices", results.rows);
+					}else {
+						ep.emit("invoices", []);
+					}
+				});
+				companies(function(err,rows){
+					if (!err) {
+						ep.emit("companies", rows.rows);
+					}else {
+						ep.emit("companies", []);
+					}
+				});
+			}
+		},
 
 
     ]);
