@@ -641,11 +641,11 @@ exports.register = function(server, options, next) {
 			path: '/order_center_data',
 			handler: function(request, reply){
 				var status = request.query.status;
-				var person_id = "2c293d70-4506-11e7-ad37-e93548b3e6bc";
-				// var person_id = get_cookie_person(request);
-				// if (!person_id) {
-				// 	return reply.redirect("/chat_login");
-				// }
+				// var person_id = "2c293d70-4506-11e7-ad37-e93548b3e6bc";
+				var person_id = get_cookie_person(request);
+				if (!person_id) {
+					return reply.redirect("/chat_login");
+				}
 				if (status && status !="") {
 					search_order_byStatus(person_id,status,function(err,results){
 						if (!err) {
