@@ -21,6 +21,8 @@ const sys_option = require('../config/sys_option');
 const uu_request = require('../utils/uu_request');
 var org_code = "ioio";
 var platform_code = "weilingshou";
+var sob_id = "ioio";
+
 
 var moduel_prefix = sys_option.product_name + '_data';
 //所有get调用接口方法
