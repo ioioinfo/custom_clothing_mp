@@ -615,14 +615,14 @@ exports.register = function(server, options, next) {
 		},
 		//充值订单新建
 		{
-			method: 'GET',
+			method: 'POST',
 			path: '/add_member_order',
 			handler: function(request, reply){
 				var person_id = get_cookie_person(request);
-				var pay_way = request.query.pay_way;
-				var activity_id = request.query.activity_id;
-				var marketing_price = request.query.marketing_price;
-				var actual_price = request.query.actual_price;
+				var pay_way = request.payload.pay_way;
+				var activity_id = request.payload.activity_id;
+				var marketing_price = request.payload.marketing_price;
+				var actual_price = request.payload.actual_price;
 				if (!pay_way||!activity_id||!actual_price||!marketing_price) {
 					return reply({"success":false,"message":"params null"});
 				}
@@ -671,7 +671,7 @@ exports.register = function(server, options, next) {
 										}
 									});
 								}else {
-									var openid = request.query.openid;
+									var openid = request.payload.openid;
 									if (!openid) {
 										return reply({"success":false,"message":"openid null"});
 									}
