@@ -62,6 +62,7 @@ class IoIo extends React.Component {
     handleClick3(e){
         var mobile = $('#phone').val();
         var password = $('#password').val();
+        var verify = $('#verify').val();
         if (!mobile) {
             alert('请输入正确的验证码');
             return;
@@ -74,7 +75,7 @@ class IoIo extends React.Component {
            url: "/do_register",
            dataType: 'json',
            type: 'POST',
-           data:{"username":mobile,"mobile":mobile,"password":password},
+           data:{"verify":verify,"mobile":mobile,"password":password},
            success: function(data) {
              if (data.success) {
                location.href="login";
@@ -121,7 +122,7 @@ class IoIo extends React.Component {
               <div className="weui-cell yanzhengma">
                   <div className="weui-cell__hd"><label className="weui-label">验证码</label></div>
                   <div className="weui-cell__bd">
-                      <input className="weui-input" type="number" pattern="[0-9]*" placeholder="请输入验证码" id="mobile"/>
+                      <input className="weui-input" type="number" pattern="[0-9]*" placeholder="请输入验证码" id="verify"/>
                   </div>
               </div>
               <div className="weui-cell">

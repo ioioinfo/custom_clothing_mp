@@ -146,7 +146,7 @@ var Header = function (_React$Component2) {
         React.createElement(
           'span',
           { className: 'title' },
-          '\u95E8\u5E97\u4FE1\u606F'
+          '\u95E8\u5E97\u5217\u8868'
         )
       );
     }
@@ -222,6 +222,10 @@ var News = function (_React$Component4) {
     key: 'render',
     value: function render() {
       var img = "images/no.jpg";
+      if (this.props.item.pictures.length > 0) {
+        img = "http://shop.buy42.com/images/" + this.props.item.pictures[0].location;
+      }
+
       return React.createElement(
         'div',
         { className: 'news' },

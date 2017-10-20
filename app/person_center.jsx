@@ -27,7 +27,7 @@ class IoIo extends React.Component {
     }
 
     render() {
-        var img = "images/biyou.jpg";
+        var img = "images/head.jpeg";
         if (this.state.person_wx) {
             img = this.state.person_wx.headimgurl;
         }
@@ -39,10 +39,12 @@ class IoIo extends React.Component {
             <span className="person_infor"><a href="my_profile">我的资料</a></span>
           </div>
           <div className="person_center_number">
-            <div className="person_center_number_left pull-left">
-              <p className="person_center_number_infor">{this.state.person.amount}<span>元</span></p>
-              <p>余额</p>
-            </div>
+            <a href="record">
+                <div className="person_center_number_left pull-left">
+                  <p className="person_center_number_infor">{this.state.person.amount}<span>元</span></p>
+                  <p>余额</p>
+                </div>
+            </a>
             <div className="person_center_number_right pull-right">
               <p className="person_center_number_infor">0<span>件</span></p>
               <p>已购</p>
@@ -66,34 +68,34 @@ class PersonCenterMiddle extends React.Component {
     }
 
     render() {
-      var style = {color:'#fff',marginRight:'5px',display:'block',padding:'3px 6px' };
+      var style = {color:'#fff',marginRight:'5px',display:'block'};
       return (
         <div className="weui-cells">
             <a className="weui-cell weui-cell_access" href="order_list">
-                <div className="weui-cell__hd"><span style={style} className="icon_style1"><i className="fa fa-camera-retro"></i></span></div>
+                <div className="weui-cell__hd icon_wrap_style"><span style={style} className="icon_style1"><i className="fa fa-align-justify"></i></span></div>
                 <div className="weui-cell__bd">
                     <p>我的订单</p>
                 </div>
                 <div className="weui-cell__ft">1</div>
             </a>
             <a className="weui-cell weui-cell_access" href="company">
-                <div className="weui-cell__hd"><span style={style} className="icon_style2"><i className="fa fa-balance-scale"></i></span></div>
+                <div className="weui-cell__hd icon_wrap_style"><span style={style} className="icon_style2"><i className="fa fa-file-pdf-o"></i></span></div>
                 <div className="weui-cell__bd">
                     <p>公司简介</p>
                 </div>
                 <div className="weui-cell__ft"></div>
             </a>
             <a className="weui-cell weui-cell_access" href="mendian_list">
-                <div className="weui-cell__hd"><span style={style} className="icon_style3"><i className="fa fa-camera-retro"></i></span></div>
+                <div className="weui-cell__hd icon_wrap_style"><span style={style} className="icon_style3"><i className="fa fa-building-o"></i></span></div>
                 <div className="weui-cell__bd">
                     <p>门店列表</p>
                 </div>
                 <div className="weui-cell__ft"></div>
             </a>
-            <a className="weui-cell weui-cell_access" href="javascript:;">
-                <div className="weui-cell__hd"><span style={style} className="icon_style4"><i className="fa fa-balance-scale"></i></span></div>
+            <a className="weui-cell weui-cell_access" href="clothing_chongzhi">
+                <div className="weui-cell__hd icon_wrap_style"><span style={style} className="icon_style4"><i className="fa fa-credit-card-alt"></i></span></div>
                 <div className="weui-cell__bd">
-                    <p>暂定菜单四</p>
+                    <p>会员充值</p>
                 </div>
                 <div className="weui-cell__ft"></div>
             </a>

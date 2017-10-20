@@ -101,189 +101,109 @@ var ReactDOM = __webpack_require__(1);
 // 框架
 
 var Wrap = function (_React$Component) {
-  _inherits(Wrap, _React$Component);
+    _inherits(Wrap, _React$Component);
 
-  function Wrap(props) {
-    _classCallCheck(this, Wrap);
+    function Wrap(props) {
+        _classCallCheck(this, Wrap);
 
-    var _this = _possibleConstructorReturn(this, (Wrap.__proto__ || Object.getPrototypeOf(Wrap)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Wrap.__proto__ || Object.getPrototypeOf(Wrap)).call(this, props));
 
-    _this.state = { vip_item: {}, record_items: [] };
-    return _this;
-  }
-
-  _createClass(Wrap, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      $.ajax({
-        url: "/get_member_info",
-        dataType: 'json',
-        type: 'GET',
-        data: { "card_id": card_id },
-        success: function (data) {
-          if (data.rows.length > 0) {
-            this.setState({ vip_item: data.rows[0] });
-          } else {
-            $('.ammount').html('暂无金额');
-          }
-        }.bind(this),
-        error: function (xhr, status, err) {}.bind(this)
-      });
-
-      $.ajax({
-        url: "/member_consume_history",
-        dataType: 'json',
-        type: 'GET',
-        data: { "card_id": card_id },
-        success: function (data) {
-          var record_items = this.state.record_items;
-          for (var i = 0; i < data.cost.length; i++) {
-            var cost = data.cost[i];
-            cost.type = 1;
-            record_items.push(cost);
-          };
-          for (var i = 0; i < data.income.length; i++) {
-            var income = data.income[i];
-            income.type = 2;
-            record_items.push(income);
-          }
-
-          function compare(a, b) {
-            if (a.created_at < b.created_at) {
-              return -1;
-            }
-            if (a.created_at > b.created_at) {
-              return 1;
-            }
-            return 0;
-          }
-
-          record_items.sort(compare);
-
-          this.setState({ record_items: record_items });
-        }.bind(this),
-        error: function (xhr, status, err) {}.bind(this)
-      });
+        _this.state = { items: [] };
+        return _this;
     }
-  }, {
-    key: 'render',
-    value: function render() {
-      var record_items = this.state.record_items;
 
-      var list = [];
+    _createClass(Wrap, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            $.ajax({
+                url: "/list_vip_amount_history",
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
 
-      record_items.map(function (item) {
-        var type = item.type;
-        if (type == 1) {
-          list.push(React.createElement(
-            'div',
-            { className: 'weui-cells', key: item.id },
-            React.createElement(
-              'div',
-              { className: 'weui-cell' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                '+'
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd record_name' },
-                React.createElement(
-                  'p',
-                  null,
-                  '\u6D88\u8D39'
-                ),
-                React.createElement(
-                  'p',
-                  { className: 'record_time' },
-                  item.created_at
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__ft' },
-                '- ',
-                item.jine,
-                '\u5143'
-              )
-            )
-          ));
-        } else {
-          list.push(React.createElement(
-            'div',
-            { className: 'weui-cells', key: item.id },
-            React.createElement(
-              'div',
-              { className: 'weui-cell' },
-              React.createElement(
-                'div',
-                { className: 'weui-cell__hd' },
-                '+'
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__bd record_name' },
-                React.createElement(
-                  'p',
-                  null,
-                  '\u5145\u503C'
-                ),
-                React.createElement(
-                  'p',
-                  { className: 'record_time' },
-                  item.created_at
-                )
-              ),
-              React.createElement(
-                'div',
-                { className: 'weui-cell__ft' },
-                '+ ',
-                item.jine,
-                '\u5143'
-              )
-            )
-          ));
+                    this.setState({ items: data.rows });
+                }.bind(this),
+                error: function (xhr, status, err) {}.bind(this)
+            });
         }
-      });
+    }, {
+        key: 'render',
+        value: function render() {
 
-      return React.createElement(
-        'div',
-        { className: 'record' },
-        React.createElement(
-          'h3',
-          { className: 'record_title' },
-          '\u5145\u503C\u8BB0\u5F55'
-        ),
-        React.createElement(
-          'div',
-          { className: 'page__hd' },
-          React.createElement(
-            'h1',
-            { className: 'page__title ammount' },
-            React.createElement(
-              'span',
-              { className: 'money_style' },
-              '\uFFE5'
-            ),
-            ' 100'
-          ),
-          React.createElement(
-            'p',
-            { className: 'page__desc' },
-            '\u4F59\u989D'
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'record_list' },
-          list
-        )
-      );
+            return React.createElement(
+                'div',
+                { className: 'record' },
+                React.createElement(
+                    'div',
+                    { className: 'record_list' },
+                    this.state.items.map(function (item, index) {
+                        return React.createElement(List, { item: item, index: index });
+                    })
+                )
+            );
+        }
+    }]);
+
+    return Wrap;
+}(React.Component);
+
+var List = function (_React$Component2) {
+    _inherits(List, _React$Component2);
+
+    function List() {
+        _classCallCheck(this, List);
+
+        return _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).apply(this, arguments));
     }
-  }]);
 
-  return Wrap;
+    _createClass(List, [{
+        key: 'render',
+        value: function render() {
+            var pay_amount = this.props.item.pay_amount;
+            var way = '消费';
+            var style = { color: 'green', fontSize: '22px' };
+            if (pay_amount > 0) {
+                pay_amount = "+ " + this.props.item.pay_amount;
+                way = '充值';
+                style = { color: 'red', fontSize: '22px' };
+            }
+            return React.createElement(
+                'div',
+                { className: 'weui-cells', key: this.props.index },
+                React.createElement(
+                    'div',
+                    { className: 'weui-cell' },
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__hd', style: style },
+                        '*'
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__bd record_name' },
+                        React.createElement(
+                            'p',
+                            null,
+                            way
+                        ),
+                        React.createElement(
+                            'p',
+                            { className: 'record_time' },
+                            this.props.item.created_at_text
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__ft' },
+                        pay_amount,
+                        '\u5143'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return List;
 }(React.Component);
 // 返回到页面
 

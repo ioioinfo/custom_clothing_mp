@@ -126,7 +126,7 @@ var IoIo = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var img = "images/biyou.jpg";
+            var img = "images/head.jpeg";
             if (this.state.person_wx) {
                 img = this.state.person_wx.headimgurl;
             }
@@ -160,22 +160,26 @@ var IoIo = function (_React$Component) {
                     'div',
                     { className: 'person_center_number' },
                     React.createElement(
-                        'div',
-                        { className: 'person_center_number_left pull-left' },
+                        'a',
+                        { href: 'record' },
                         React.createElement(
-                            'p',
-                            { className: 'person_center_number_infor' },
-                            this.state.person.amount,
+                            'div',
+                            { className: 'person_center_number_left pull-left' },
                             React.createElement(
-                                'span',
+                                'p',
+                                { className: 'person_center_number_infor' },
+                                this.state.person.amount,
+                                React.createElement(
+                                    'span',
+                                    null,
+                                    '\u5143'
+                                )
+                            ),
+                            React.createElement(
+                                'p',
                                 null,
-                                '\u5143'
+                                '\u4F59\u989D'
                             )
-                        ),
-                        React.createElement(
-                            'p',
-                            null,
-                            '\u4F59\u989D'
                         )
                     ),
                     React.createElement(
@@ -224,7 +228,7 @@ var PersonCenterMiddle = function (_React$Component2) {
     }, {
         key: 'render',
         value: function render() {
-            var style = { color: '#fff', marginRight: '5px', display: 'block', padding: '3px 6px' };
+            var style = { color: '#fff', marginRight: '5px', display: 'block' };
             return React.createElement(
                 'div',
                 { className: 'weui-cells' },
@@ -233,11 +237,11 @@ var PersonCenterMiddle = function (_React$Component2) {
                     { className: 'weui-cell weui-cell_access', href: 'order_list' },
                     React.createElement(
                         'div',
-                        { className: 'weui-cell__hd' },
+                        { className: 'weui-cell__hd icon_wrap_style' },
                         React.createElement(
                             'span',
                             { style: style, className: 'icon_style1' },
-                            React.createElement('i', { className: 'fa fa-camera-retro' })
+                            React.createElement('i', { className: 'fa fa-align-justify' })
                         )
                     ),
                     React.createElement(
@@ -260,11 +264,11 @@ var PersonCenterMiddle = function (_React$Component2) {
                     { className: 'weui-cell weui-cell_access', href: 'company' },
                     React.createElement(
                         'div',
-                        { className: 'weui-cell__hd' },
+                        { className: 'weui-cell__hd icon_wrap_style' },
                         React.createElement(
                             'span',
                             { style: style, className: 'icon_style2' },
-                            React.createElement('i', { className: 'fa fa-balance-scale' })
+                            React.createElement('i', { className: 'fa fa-file-pdf-o' })
                         )
                     ),
                     React.createElement(
@@ -283,11 +287,11 @@ var PersonCenterMiddle = function (_React$Component2) {
                     { className: 'weui-cell weui-cell_access', href: 'mendian_list' },
                     React.createElement(
                         'div',
-                        { className: 'weui-cell__hd' },
+                        { className: 'weui-cell__hd icon_wrap_style' },
                         React.createElement(
                             'span',
                             { style: style, className: 'icon_style3' },
-                            React.createElement('i', { className: 'fa fa-camera-retro' })
+                            React.createElement('i', { className: 'fa fa-building-o' })
                         )
                     ),
                     React.createElement(
@@ -303,14 +307,14 @@ var PersonCenterMiddle = function (_React$Component2) {
                 ),
                 React.createElement(
                     'a',
-                    { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
+                    { className: 'weui-cell weui-cell_access', href: 'clothing_chongzhi' },
                     React.createElement(
                         'div',
-                        { className: 'weui-cell__hd' },
+                        { className: 'weui-cell__hd icon_wrap_style' },
                         React.createElement(
                             'span',
                             { style: style, className: 'icon_style4' },
-                            React.createElement('i', { className: 'fa fa-balance-scale' })
+                            React.createElement('i', { className: 'fa fa-credit-card-alt' })
                         )
                     ),
                     React.createElement(
@@ -319,7 +323,7 @@ var PersonCenterMiddle = function (_React$Component2) {
                         React.createElement(
                             'p',
                             null,
-                            '\u6682\u5B9A\u83DC\u5355\u56DB'
+                            '\u4F1A\u5458\u5145\u503C'
                         )
                     ),
                     React.createElement('div', { className: 'weui-cell__ft' })

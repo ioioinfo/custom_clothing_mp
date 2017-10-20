@@ -171,6 +171,7 @@ var IoIo = function (_React$Component) {
     value: function handleClick3(e) {
       var mobile = $('#phone').val();
       var password = $('#password').val();
+      var verify = $('#verify').val();
       if (!mobile) {
         alert('请输入正确的验证码');
         return;
@@ -183,7 +184,7 @@ var IoIo = function (_React$Component) {
         url: "/do_register",
         dataType: 'json',
         type: 'POST',
-        data: { "username": mobile, "mobile": mobile, "password": password },
+        data: { "verify": verify, "mobile": mobile, "password": password },
         success: function (data) {
           if (data.success) {
             location.href = "login";
@@ -280,7 +281,7 @@ var IoIo = function (_React$Component) {
               React.createElement(
                 'div',
                 { className: 'weui-cell__bd' },
-                React.createElement('input', { className: 'weui-input', type: 'number', pattern: '[0-9]*', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801', id: 'mobile' })
+                React.createElement('input', { className: 'weui-input', type: 'number', pattern: '[0-9]*', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801', id: 'verify' })
               )
             ),
             React.createElement(

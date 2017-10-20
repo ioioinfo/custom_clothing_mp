@@ -16,3 +16,6 @@
 .record_title{
     padding-left: 40px;
 }
+.weui-cells:before{
+    border: none;
+}

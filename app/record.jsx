@@ -5,106 +5,58 @@ var ReactDOM = require('react-dom');
 class Wrap extends React.Component{
   constructor(props){
     super(props);
-    this.state = {vip_item:{},record_items:[]};
+    this.state = {items:[]};
   }
   componentDidMount() {
-    $.ajax({
-           url: "/get_member_info",
-           dataType: 'json',
-           type: 'GET',
-           data:{"card_id":card_id},
-           success: function(data) {
-             if (data.rows.length > 0) {
-               this.setState({vip_item:data.rows[0]});
-             }else {
-               $('.ammount').html('暂无金额');
-             }
-           }.bind(this),
-           error: function(xhr, status, err) {
-           }.bind(this)
-      });
-
       $.ajax({
-             url: "/member_consume_history",
+             url: "/list_vip_amount_history",
              dataType: 'json',
              type: 'GET',
-             data:{"card_id":card_id},
              success: function(data) {
-               var record_items = this.state.record_items;
-                 for (var i = 0; i < data.cost.length; i++) {
-                   var cost = data.cost[i];
-                   cost.type = 1;
-                   record_items.push(cost);
-               };
-               for (var i = 0; i < data.income.length; i++) {
-                 var income = data.income[i];
-                 income.type = 2;
-                 record_items.push(income);
-               }
 
-                function compare(a,b) {
-                  if (a.created_at < b.created_at){
-                    return -1;
-                  }
-                  if (a.created_at > b.created_at) {
-                    return 1;
-                  }
-                  return 0;
-                }
-
-                record_items.sort(compare);
-
-               this.setState({record_items:record_items});
+               this.setState({items:data.rows});
              }.bind(this),
              error: function(xhr, status, err) {
              }.bind(this)
         });
   }
   render(){
-    var record_items = this.state.record_items;
-
-    var list = [];
-
-    record_items.map(function(item){
-      var type = item.type;
-      if(type == 1){
-        list.push(<div className="weui-cells" key={item.id}>
-            <div className="weui-cell">
-                <div className="weui-cell__hd">+</div>
-                <div className="weui-cell__bd record_name">
-                    <p>消费</p>
-                    <p className="record_time">{item.created_at}</p>
-                </div>
-                <div className="weui-cell__ft">- {item.jine}元</div>
-            </div>
-        </div>);
-      } else {
-        list.push(<div className="weui-cells" key={item.id}>
-            <div className="weui-cell">
-                <div className="weui-cell__hd">+</div>
-                <div className="weui-cell__bd record_name">
-                    <p>充值</p>
-                    <p className="record_time">{item.created_at}</p>
-                </div>
-                <div className="weui-cell__ft">+ {item.jine}元</div>
-            </div>
-        </div>);
-      }
-
-    });
-
 
     return (
       <div className="record">
-        <h3 className="record_title">充值记录</h3>
-        <div className="page__hd">
-            <h1 className="page__title ammount"><span className="money_style">￥</span> 100</h1>
-            <p className="page__desc">余额</p>
-        </div>
         <div className="record_list">
-        {list}
+            {this.state.items.map((item,index)=>(
+                <List item={item} index={index}/>
+            ))}
+
         </div>
       </div>
+    );
+  }
+}
+
+class List extends React.Component{
+
+  render(){
+      var pay_amount = this.props.item.pay_amount;
+      var way = '消费';
+      var style = {color:'green',fontSize:'22px'};
+      if (pay_amount > 0) {
+          pay_amount = "+ " +this.props.item.pay_amount;
+          way = '充值';
+          style = {color:'red',fontSize:'22px'};
+      }
+    return (
+        <div className="weui-cells" key={this.props.index}>
+            <div className="weui-cell">
+                <div className="weui-cell__hd" style={style}>*</div>
+                <div className="weui-cell__bd record_name">
+                    <p>{way}</p>
+                    <p className="record_time">{this.props.item.created_at_text}</p>
+                </div>
+                <div className="weui-cell__ft">{pay_amount}元</div>
+            </div>
+        </div>
     );
   }
 }

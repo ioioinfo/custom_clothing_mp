@@ -190,7 +190,18 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/clothing_chongzhi',
             handler: function(request, reply) {
-              return reply.view("clothing_chongzhi");;
+                var activity_id = "rc001";
+                var p_url = request.connection.info.protocol + '://' + request.info.host + request.url.path;
+
+                page_get_openid(request,function(openid) {
+                    if (openid) {
+                        wx_api.jsapi_ticket(sys_option.platform_id,p_url, function(err,info) {
+                                return reply.view("clothing_chongzhi",{info:info,openid:openid,"activity_id":activity_id});
+                        });
+                    } else {
+                        return reply("请在微信中访问。");
+                    }
+                });
             }
         },
 
@@ -200,7 +211,7 @@ exports.register = function(server, options, next) {
             method: 'GET',
             path: '/record',
             handler: function(request, reply) {
-              return reply.view("record");;
+              return reply.view("record");
             }
         },
 

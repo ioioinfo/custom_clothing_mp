@@ -17,7 +17,7 @@ class Header extends React.Component {
   render() {
       return (
           <div className="head">
-            <span className="title">门店信息</span>
+            <span className="title">门店列表</span>
           </div>
       );
   }
@@ -64,6 +64,10 @@ class News extends React.Component {
 
   render() {
       var img = "images/no.jpg";
+      if (this.props.item.pictures.length>0) {
+        img =  "http://shop.buy42.com/images/" +this.props.item.pictures[0].location;
+      }
+
     return (
       <div className="news">
         <a href="#">

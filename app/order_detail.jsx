@@ -40,11 +40,11 @@ function product(state, action) {
   }
 }
 
-let store = createStore(product,{item:{},details:[],products:{},logistics_info:{},pay_info:{}});
+let store = createStore(product,{items:{},details:[],products:{},logistics_info:{},pay_info:{}});
 
 const mapStateToProps = (state) => {
     return {
-        item: state.item,
+        items: state.items,
         products: state.products,
         details: state.details,
         logistics_info: state.logistics_info,
@@ -94,15 +94,24 @@ class OrderDetailAddressClass extends React.Component {
 //物流状态
 class PayDetailClass extends React.Component {
     render() {
+        var pay_info = {};
+        if(this.props.pay_info){
+            pay_info = this.props.pay_info;
+        }
+
       return (
         <div className="order_detail_pay_wrap">
             <div className="order_detail_pay_infor">
                 <div>支付方式</div>
-                <div>{this.props.pay_info.pay_way}</div>
+                <div>{pay_info.pay_way || ""}</div>
             </div>
             <div className="order_detail_pay_infor">
-                <div>商品价格</div>
-                <div>¥ {this.props.pay_info.pay_amount}</div>
+                <div>运费</div>
+                <div>¥{this.props.items.logistics_price}</div>
+            </div>
+            <div className="order_detail_pay_infor">
+                <div>支付金额</div>
+                <div>{pay_info.pay_amount?"¥" + pay_info.pay_amount: ""}</div>
             </div>
             <div className="order_detail_pay_infor">
                 <div>其他费用</div>

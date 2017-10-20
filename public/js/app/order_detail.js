@@ -141,11 +141,11 @@ function product(state, action) {
     }
 }
 
-var store = (0, _redux.createStore)(product, { item: {}, details: [], products: {}, logistics_info: {}, pay_info: {} });
+var store = (0, _redux.createStore)(product, { items: {}, details: [], products: {}, logistics_info: {}, pay_info: {} });
 
 var mapStateToProps = function mapStateToProps(state) {
     return {
-        item: state.item,
+        items: state.items,
         products: state.products,
         details: state.details,
         logistics_info: state.logistics_info,
@@ -251,6 +251,11 @@ var PayDetailClass = function (_React$Component3) {
     _createClass(PayDetailClass, [{
         key: 'render',
         value: function render() {
+            var pay_info = {};
+            if (this.props.pay_info) {
+                pay_info = this.props.pay_info;
+            }
+
             return React.createElement(
                 'div',
                 { className: 'order_detail_pay_wrap' },
@@ -265,7 +270,7 @@ var PayDetailClass = function (_React$Component3) {
                     React.createElement(
                         'div',
                         null,
-                        this.props.pay_info.pay_way
+                        pay_info.pay_way || ""
                     )
                 ),
                 React.createElement(
@@ -274,13 +279,27 @@ var PayDetailClass = function (_React$Component3) {
                     React.createElement(
                         'div',
                         null,
-                        '\u5546\u54C1\u4EF7\u683C'
+                        '\u8FD0\u8D39'
                     ),
                     React.createElement(
                         'div',
                         null,
-                        '\xA5 ',
-                        this.props.pay_info.pay_amount
+                        '\xA5',
+                        this.props.items.logistics_price
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'order_detail_pay_infor' },
+                    React.createElement(
+                        'div',
+                        null,
+                        '\u652F\u4ED8\u91D1\u989D'
+                    ),
+                    React.createElement(
+                        'div',
+                        null,
+                        pay_info.pay_amount ? "¥" + pay_info.pay_amount : ""
                     )
                 ),
                 React.createElement(

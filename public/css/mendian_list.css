@@ -99,8 +99,8 @@ a{
 }
 .newsword span{
   display: block;
-  height: 35px;
-  line-height: 35px;
+  height: 34px;
+  line-height: 18px;
 }
 .newsword span:last-child{
     font-size: 14px;
