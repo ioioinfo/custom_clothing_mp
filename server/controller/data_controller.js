@@ -711,7 +711,7 @@ exports.register = function(server, options, next) {
 											"return_url" : "http://weilingshou.ioioinfo.com/pay_success",
 											"callback_url" : "http://weilingshou.ioioinfo.com/receive_pay_notify",
 											"openid":openid,
-											"mp_platform_id":"shantao_dingyue"
+											"mp_platform_id":"weilingshou"
 										};
 										trade_weixinpay(info,function(err,content){
 											if (!err) {
