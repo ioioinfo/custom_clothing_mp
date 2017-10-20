@@ -673,33 +673,34 @@ exports.register = function(server, options, next) {
 										}
 									});
 								}else {
-									var openid = request.payload.openid;
-									if (!openid) {
-										return reply({"success":false,"message":"openid null"});
-									}
-									var info = {
-										"sob_id" : sob_id,
-										"platform_code" : platform_code,
-										"business_code" : "member_recharge",
-										"address" : "上海",
-										"order_id" : order_id,
-										"pay_amount" : actual_price,
-										"operator" : person_id,
-										"main_role_id" : person_id,
-										"subject" : "会员充值",
-										"body" : "会员充值",
-										"return_url" : "http://shop.buy42.com/pay_success",
-										"callback_url" : "http://211.149.248.241:18000/receive_pay_notify",
-										"openid":openid,
-										"mp_platform_id":"shantao_dingyue"
-									};
-									trade_weixinpay(info,function(err,content){
-										if (!err) {
-											var row = content.row;
-											return reply({"success":true,"row":row});
-										}else {
-											return reply({"success":false,"message":content.message});
+									page_get_openid(request,function(openid){
+										if (!openid) {
+											return reply({"success":false,"message":"openid null"});
 										}
+										var info = {
+											"sob_id" : sob_id,
+											"platform_code" : platform_code,
+											"business_code" : "member_recharge",
+											"address" : "上海",
+											"order_id" : order_id,
+											"pay_amount" : actual_price,
+											"operator" : person_id,
+											"main_role_id" : person_id,
+											"subject" : "会员充值",
+											"body" : "会员充值",
+											"return_url" : "http://shop.buy42.com/pay_success",
+											"callback_url" : "http://211.149.248.241:18000/receive_pay_notify",
+											"openid":openid,
+											"mp_platform_id":"shantao_dingyue"
+										};
+										trade_weixinpay(info,function(err,content){
+											if (!err) {
+												var row = content.row;
+												return reply({"success":true,"row":row});
+											}else {
+												return reply({"success":false,"message":content.message});
+											}
+										});
 									});
 								}
 							}else {
