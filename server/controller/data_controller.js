@@ -157,6 +157,11 @@ var get_person_vip = function(person_id,cb){
 	var url = "http://139.196.148.40:18666/vip/get_by_person_id?person_id=" + person_id + "&org_code=" + org_code;
 	do_get_method(url,cb);
 };
+//充值积分
+var vip_add_amount_begin = function(data,cb){
+	var url = "http://139.196.148.40:18008/vip_add_amount_begin";
+	do_post_method(url,data,cb);
+}
 //充值记录列表
 var list_vip_amount_history = function(vip_id,cb){
 	var url = "http://139.196.148.40:18008/list_vip_amount_history?vip_id=" + vip_id + "&sob_id=" + org_code;
@@ -203,6 +208,21 @@ var do_vertify = function(data,cb){
 	var url = "http://139.196.148.40:11111/api/dy_login";
 	do_post_method(url,data,cb);
 };
+//查询事件是否处理
+var search_deal_event = function(data,cb){
+	var url = "http://211.149.248.241:18010/search_deal_event";
+	do_post_method(url,data,cb);
+}
+//保存事件
+var save_event = function(data,cb){
+	var url = "http://211.149.248.241:18010/save_event";
+	do_post_method(url,data,cb);
+}
+//查询充值订单
+var get_recharge_order = function(order_id,cb){
+	var url = "http://211.149.248.241:18010/get_recharge_order?order_id="+order_id;
+	do_get_method(url,cb);
+}
 //根据状态查询订单
 var search_order_byStatus = function(person_id,status,cb){
 	var url = "http://127.0.0.1:18010/search_order_byStatus?person_id=";
@@ -661,8 +681,8 @@ exports.register = function(server, options, next) {
 										"main_role_id" : person_id,
 										"subject" : "会员充值",
 										"body" : "会员充值",
-										"return_url" : "http://shop.buy42.com/pay_success",
-										"callback_url" : "http://211.149.248.241:18000/receive_pay_notify"
+										"return_url" : "http://weilingshou.ioioinfo.com/pay_success",
+										"callback_url" : "http://weilingshou.ioioinfo.com/receive_pay_notify"
 									};
 									trade_alipay(info,function(err,content){
 										if (!err) {
@@ -688,8 +708,8 @@ exports.register = function(server, options, next) {
 											"main_role_id" : person_id,
 											"subject" : "会员充值",
 											"body" : "会员充值",
-											"return_url" : "http://shop.buy42.com/pay_success",
-											"callback_url" : "http://211.149.248.241:18000/receive_pay_notify",
+											"return_url" : "http://weilingshou.ioioinfo.com/pay_success",
+											"callback_url" : "http://weilingshou.ioioinfo.com/receive_pay_notify",
 											"openid":openid,
 											"mp_platform_id":"shantao_dingyue"
 										};
@@ -713,6 +733,88 @@ exports.register = function(server, options, next) {
 				});
 			}
 		},
+		//支付宝回调
+		{
+			method: 'POST',
+			path: '/receive_pay_notify',
+			handler: function(request, reply){
+				var success = request.payload.success;
+				var order_id = request.payload.order_id;
+				//实际保存
+				var info = {"id":order_id};
+				search_deal_event(info,function(err,rows){
+					if (!err) {
+						if (rows.row.length>0) {
+							//有处理的，保存当前事件
+							info.is_deal = 0;
+							save_event(info,function(err,content){
+								if (!err) {
+									return reply({"success":true,"message":"已经处理事件了"});
+								}else {
+									return reply({"success":false,"message":content.message,"service_info":service_info});
+								}
+							});
+						}else {
+							//修改订单状态
+							update_recharge_status(data,function(err,content){
+								if (!err) {
+									//回调函数到支付宝接口
+									info.is_deal = 1;
+									save_event(info,function(err,content){
+										if (!err) {
+											get_recharge_order(order_id,function(err,rows){
+												if (!err) {
+													var order = rows.rows[0];
+													var person_id = order.person_id;
+													get_person_vip(person_id,function(err,content){
+														if (!err) {
+															var vip = content.row;
+															var payment ={
+																"sob_id":"ioio",
+																"address":"上海宝山",
+																"pay_amount":order.actual_price,
+																"effect_amount":order.marketing_price,
+																"operator":1,
+																"main_role_name":vip.vip_name,
+																"main_role_id":vip.vip_id,
+																"pay_type":order.pay_way,
+																"platform_code":"drp_admin"
+															};
+															vip_add_amount_begin(payment,function(err,content){
+																if (!err) {
+																	//回调阿里接口
+																	return reply({"success":true,"message":"订单事件处理完"});
+																}else {
+																	return reply({"success":false,"messsage":content.messsage});
+																}
+															});
+														}else {
+															return reply({"success":false,"messsage":content.messsage});
+														}
+													});
+
+												}else {
+													return reply({"success":false,"message":rows.message,"service_info":service_info});
+												}
+											});
+
+										}else {
+											return reply({"success":false,"message":content.message,"service_info":service_info});
+										}
+									});
+								}else {
+									return reply({"success":false,"message":content.message,"service_info":service_info});
+								}
+							});
+						}
+					}else {
+						return reply({"success":false,"message":row.message,"service_info":service_info});
+					}
+				});
+
+			}
+		},
+
 		//订单中心
 		{
 			method: 'GET',
