@@ -60,480 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 55);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-module.exports = React;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = ReactDOM;
-
-/***/ }),
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _reactRedux = __webpack_require__(35);
-
-var _redux = __webpack_require__(27);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(1);
-
-function product(state, action) {
-  switch (action.type) {
-    case 'CHONGZHI_FANLI':
-      {
-        var activity_id = action.activity_id;
-        $.ajax({
-          url: "/get_recharge_campaign?activity_id=" + activity_id,
-          dataType: 'json',
-          type: 'GET',
-          success: function (data) {
-            if (data.success) {
-              store.dispatch({ type: 'GET_DATA', data: data, activity_id: activity_id });
-            } else {}
-          }.bind(this),
-          error: function (xhr, status, err) {}.bind(this)
-        });
-
-        return state;
-      }
-    case 'GET_DATA':
-      {
-        var data = action.data;
-        var activity_id = action.activity_id;
-        return { chongzhi_list: data.rates, activity_id: activity_id };
-      }
-    case 'BUILD_ORDER':
-      {
-        var activity_id = state.activity_id;
-        var marketing_price = action.marketing_price;
-        $.ajax({
-          url: "/add_member_order",
-          dataType: 'json',
-          type: 'POST',
-          data: { 'pay_way': pay_way, 'activity_id': activity_id, 'marketing_price': marketing_price, 'actual_price': actual_price },
-          success: function (data) {
-            if (data.success) {
-              if (pay_way == "weinxin_pay") {
-                var row = data.row;
-
-                wx.chooseWXPay({
-                  timestamp: row.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-                  nonceStr: row.nonce_str, // 支付签名随机串，不长于 32 位
-                  package: 'prepay_id=' + row.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-                  signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-                  paySign: row.sign, // 支付签名
-                  success: function success(res) {
-                    // 支付成功后的回调函数
-                    alert("支付成功");
-                  }
-                });
-              } else {}
-            } else {
-              alert(data.message);
-            }
-          }.bind(this),
-          error: function (xhr, status, err) {}.bind(this)
-        });
-
-        return state;
-      }
-
-    default:
-      return state;
-  }
-}
-
-var store = (0, _redux.createStore)(product, { chongzhi_list: [], activity_id: "", marketing_price: "" });
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    chongzhi_list: state.chongzhi_list,
-    activity_id: state.activity_id
-  };
-};
-
-var IoIo = function (_React$Component) {
-  _inherits(IoIo, _React$Component);
-
-  function IoIo(props) {
-    _classCallCheck(this, IoIo);
-
-    var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
-
-    _this.state = {};
-    return _this;
-  }
-
-  _createClass(IoIo, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
-  }, {
-    key: 'render',
-    value: function render() {
-      var style = { display: 'none' };
-      return React.createElement(
-        'div',
-        { className: 'chongzhi_wrap' },
-        React.createElement(ChongzhiHead, null),
-        React.createElement(ChongzhiMiddle, null)
-      );
-    }
-  }]);
-
-  return IoIo;
-}(React.Component);
-
-;
-
-var ChongzhiHead = function (_React$Component2) {
-  _inherits(ChongzhiHead, _React$Component2);
-
-  function ChongzhiHead(props) {
-    _classCallCheck(this, ChongzhiHead);
-
-    return _possibleConstructorReturn(this, (ChongzhiHead.__proto__ || Object.getPrototypeOf(ChongzhiHead)).call(this, props));
-  }
-
-  _createClass(ChongzhiHead, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
-  }, {
-    key: 'render',
-    value: function render() {
-      var style = { display: 'none' };
-      return React.createElement(
-        'div',
-        { className: 'chongzhi_head' },
-        React.createElement(
-          'p',
-          { className: 'padding' },
-          '\u5728\u7EBF\u5145\u503C'
-        ),
-        React.createElement(
-          'span',
-          { className: 'chongzhi_head_infor' },
-          React.createElement('i', { className: 'fa fa-info-circle chongzhi_head_back_icon' })
-        )
-      );
-    }
-  }]);
-
-  return ChongzhiHead;
-}(React.Component);
-
-;
-
-var ChongzhiMiddleClass = function (_React$Component3) {
-  _inherits(ChongzhiMiddleClass, _React$Component3);
-
-  function ChongzhiMiddleClass(props) {
-    _classCallCheck(this, ChongzhiMiddleClass);
-
-    var _this3 = _possibleConstructorReturn(this, (ChongzhiMiddleClass.__proto__ || Object.getPrototypeOf(ChongzhiMiddleClass)).call(this, props));
-
-    _this3.handleClick = _this3.handleClick.bind(_this3);
-    _this3.handleClick1 = _this3.handleClick1.bind(_this3);
-    _this3.handleClick2 = _this3.handleClick2.bind(_this3);
-    _this3.handleClick3 = _this3.handleClick3.bind(_this3);
-    _this3.handleClick4 = _this3.handleClick4.bind(_this3);
-    return _this3;
-  }
-
-  _createClass(ChongzhiMiddleClass, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      store.dispatch({ type: 'CHONGZHI_FANLI', activity_id: 'rc001' });
-    }
-  }, {
-    key: 'handleClick',
-    value: function handleClick(selected, pay_way1) {
-      $('.chongzhi_fangshi').hide();
-      $('#chongzhi_fangshi' + selected).css("display", "block");
-      pay_way = pay_way1;
-    }
-  }, {
-    key: 'handleClick1',
-    value: function handleClick1(selected1, price) {
-      $('.chongzhi_middle_choice_infor p').removeClass('chongzhijine_style');
-      $('#chongzhijine' + selected1).addClass('chongzhijine_style');
-      $('#price').html(price);
-      actual_price = price;
-    }
-  }, {
-    key: 'handleClick2',
-    value: function handleClick2(e) {
-      $('.tiaokuan').show();
-    }
-  }, {
-    key: 'handleClick3',
-    value: function handleClick3(e) {
-      $('.tiaokuan').hide();
-    }
-  }, {
-    key: 'handleClick4',
-    value: function handleClick4(e) {
-      var marketing_price = $('#price').html();
-      if (pay_way == "") {
-        alert('请选择微信支付');
-        return;
-      }
-      store.dispatch({ type: 'BUILD_ORDER', activity_id: 'rc001', marketing_price: marketing_price });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this4 = this;
-
-      var first = "0.00";
-      if (this.props.chongzhi_list.length > 0) {
-        first = this.props.chongzhi_list[0].price;
-        actual_price = this.props.chongzhi_list[0].price1;
-      }
-      var style = { display: 'none' };
-      return React.createElement(
-        'div',
-        { className: 'chongzhi_middle' },
-        React.createElement(
-          'div',
-          { className: 'chongzhi_middle_account' },
-          React.createElement(
-            'div',
-            { className: 'chongzhi_middle_account_left chongzhi_middle_account_infor' },
-            React.createElement(
-              'p',
-              { className: 'chongzhi_middle_account_number' },
-              '\u603B\u91D1\u989D\uFF1A',
-              React.createElement('br', null),
-              React.createElement(
-                'span',
-                null,
-                '3000.00'
-              )
-            )
-          ),
-          React.createElement(
-            'div',
-            { className: 'chongzhi_middle_account_right chongzhi_middle_account_infor' },
-            React.createElement(
-              'p',
-              { className: 'chongzhi_middle_account_right_money' },
-              React.createElement('span', { className: 'chongzhi_middle_account_right_money_dian1' }),
-              '\u672C\u91D1',
-              React.createElement(
-                'span',
-                { className: 'chongzhi_middle_account_right_money_number' },
-                '0.00'
-              )
-            ),
-            React.createElement(
-              'p',
-              { className: 'chongzhi_middle_account_right_money' },
-              React.createElement('span', { className: 'chongzhi_middle_account_right_money_dian2' }),
-              '\u589E\u989D',
-              React.createElement(
-                'span',
-                { className: 'chongzhi_middle_account_right_money_number' },
-                '0.00'
-              )
-            )
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'chongzhi_middle_choice' },
-          React.createElement(
-            'div',
-            { className: 'chongzhi_middle_choice_title' },
-            '\u9009\u62E9\u5145\u503C\u91D1\u989D'
-          ),
-          React.createElement(
-            'div',
-            { className: 'chongzhi_middle_choice_infor' },
-            this.props.chongzhi_list.map(function (item, index) {
-              return React.createElement(
-                'p',
-                { className: 0 == index ? "chongzhijine_style" : "", key: index, id: "chongzhijine" + (index + 1), onClick: _this4.handleClick1.bind(_this4, index + 1, item.price) },
-                item.price1,
-                ' \u5143'
-              );
-            })
-          ),
-          React.createElement(
-            'div',
-            { className: 'chongzhi_middle_choice_jiesuan' },
-            '\u5B9E\u9645\u5230\u8D26',
-            React.createElement(
-              'span',
-              { id: 'price' },
-              first
-            ),
-            '\u5143'
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'chongzhi_middle_kind' },
-          React.createElement(
-            'a',
-            { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
-            React.createElement(
-              'div',
-              { className: 'weui-cell__hd chongzhi_middle_kind_img_right' },
-              React.createElement('img', { src: 'images/zhifu_zhifubao.png', alt: '', className: 'chongzhi_middle_kind_img' })
-            ),
-            React.createElement(
-              'div',
-              { className: 'weui-cell__bd weui-cell_primary' },
-              React.createElement(
-                'p',
-                null,
-                '\u652F\u4ED8\u5B9D(\u6682\u672A\u5F00\u901A)'
-              )
-            ),
-            React.createElement(
-              'span',
-              { className: 'chongzhi_fangshi', id: 'chongzhi_fangshi1' },
-              React.createElement('i', { className: 'fa fa-check-circle chongzhi_middle_kind_icon' })
-            )
-          ),
-          React.createElement(
-            'a',
-            { className: 'weui-cell weui-cell_access', href: 'javascript:;', onClick: this.handleClick.bind(this, 2, 'weinxin_pay') },
-            React.createElement(
-              'div',
-              { className: 'weui-cell__hd chongzhi_middle_kind_img_right' },
-              React.createElement('img', { src: 'images/zhifu_weixin.png', alt: '', className: 'chongzhi_middle_kind_img' })
-            ),
-            React.createElement(
-              'div',
-              { className: 'weui-cell__bd weui-cell_primary' },
-              React.createElement(
-                'p',
-                null,
-                '\u5FAE\u4FE1'
-              )
-            ),
-            React.createElement(
-              'span',
-              { className: 'chongzhi_fangshi', id: 'chongzhi_fangshi2' },
-              React.createElement('i', { className: 'fa fa-check-circle chongzhi_middle_kind_icon' })
-            )
-          ),
-          React.createElement(
-            'span',
-            { className: 'weui-cell weui-cell_access' },
-            React.createElement(
-              'div',
-              { className: 'weui-cell__hd chongzhi_middle_kind_img_right' },
-              React.createElement('img', { src: 'images/zhifu_yinhangka.png', alt: '', className: 'chongzhi_middle_kind_img' })
-            ),
-            React.createElement(
-              'div',
-              { className: 'weui-cell__bd weui-cell_primary' },
-              React.createElement(
-                'p',
-                null,
-                '\u94F6\u884C\u5361(\u6682\u672A\u5F00\u901A)'
-              )
-            ),
-            React.createElement(
-              'span',
-              { className: 'chongzhi_fangshi', id: 'chongzhi_fangshi3' },
-              React.createElement('i', { className: 'fa fa-check-circle chongzhi_middle_kind_icon' })
-            )
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'chongzhi_bottom' },
-          React.createElement(
-            'p',
-            null,
-            '\u70B9\u51FB\u53BB\u5145\u503C\uFF0C\u5373\u9ED8\u8BA4\u540C\u610F',
-            React.createElement(
-              'span',
-              { className: 'chongzhi_bottom_span', onClick: this.handleClick2 },
-              '\u300A\u5145\u503C\u534F\u8BAE\u300B'
-            )
-          ),
-          React.createElement(
-            'span',
-            { className: 'weui-btn weui-btn_primary', onClick: this.handleClick4 },
-            '\u53BB\u5145\u503C'
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'tiaokuan' },
-          React.createElement(
-            'span',
-            { className: 'close', onClick: this.handleClick3 },
-            '\u5173\u95ED'
-          ),
-          React.createElement(
-            'h3',
-            { className: 'tiaokuan_title' },
-            '\u6761\u6B3E'
-          ),
-          React.createElement(
-            'div',
-            { className: 'tiaokuan_infor' },
-            '\u6761\u6B3E\u6B63\u6587'
-          )
-        )
-      );
-    }
-  }]);
-
-  return ChongzhiMiddleClass;
-}(React.Component);
-
-;
-
-var ChongzhiMiddle = (0, _reactRedux.connect)(mapStateToProps)(ChongzhiMiddleClass);
-
-ReactDOM.render(React.createElement(
-  _reactRedux.Provider,
-  { store: store },
-  React.createElement(IoIo, null)
-), document.getElementById("chongzhi"));
-
-/***/ }),
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -723,7 +254,19 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 18 */
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = React;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = ReactDOM;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -765,7 +308,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 19 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -822,10 +365,10 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 module.exports = invariant;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -844,7 +387,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 21 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -872,13 +415,13 @@ function warning(message) {
 }
 
 /***/ }),
-/* 22 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(39);
 
 
 
@@ -944,7 +487,7 @@ function isPlainObject(value) {
 
 
 /***/ }),
-/* 23 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -969,17 +512,17 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(37)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(22)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(40)();
+  module.exports = __webpack_require__(25)();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -993,7 +536,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 
-var emptyFunction = __webpack_require__(18);
+var emptyFunction = __webpack_require__(3);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -1045,16 +588,16 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = warning;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 25 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return subscriptionShape; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return storeShape; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_prop_types__);
 
 
@@ -1072,19 +615,19 @@ var storeShape = __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.shape({
 });
 
 /***/ }),
-/* 26 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = connectAdvanced;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_Subscription__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_Subscription__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__ = __webpack_require__(10);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1374,20 +917,20 @@ selectorFactory) {
     return __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics___default()(Connect, WrappedComponent);
   };
 }
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 27 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(31);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(16);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createStore", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "combineReducers", function() { return __WEBPACK_IMPORTED_MODULE_1__combineReducers__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "bindActionCreators", function() { return __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__["a"]; });
@@ -1411,17 +954,17 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 }
 
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionTypes; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = createStore;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_symbol_observable__);
 
 
@@ -1673,11 +1216,11 @@ var ActionTypes = {
 }
 
 /***/ }),
-/* 29 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(33);
 
 
 /** Built-in value references. */
@@ -1687,7 +1230,7 @@ var Symbol = __WEBPACK_IMPORTED_MODULE_0__root_js__["a" /* default */].Symbol;
 
 
 /***/ }),
-/* 30 */
+/* 15 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1714,7 +1257,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 31 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1742,7 +1285,7 @@ function warning(message) {
 }
 
 /***/ }),
-/* 32 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1781,14 +1324,14 @@ function compose() {
 }
 
 /***/ }),
-/* 33 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = wrapMapToPropsConstant;
 /* unused harmony export getDependsOnOwnProps */
 /* harmony export (immutable) */ __webpack_exports__["b"] = wrapMapToPropsFunc;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(19);
 
 
 function wrapMapToPropsConstant(getConstant) {
@@ -1856,16 +1399,16 @@ function wrapMapToPropsFunc(mapToProps, methodName) {
     return proxy;
   };
 }
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 34 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = verifyPlainObject;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(6);
 
 
 
@@ -1876,14 +1419,14 @@ function verifyPlainObject(value, displayName, methodName) {
 }
 
 /***/ }),
-/* 35 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(29);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createProvider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
@@ -1895,17 +1438,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 36 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = createProvider;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_PropTypes__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_warning__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_PropTypes__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_warning__ = __webpack_require__(6);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -1978,10 +1521,10 @@ function createProvider() {
 }
 
 /* harmony default export */ __webpack_exports__["b"] = (createProvider());
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 37 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1994,13 +1537,13 @@ function createProvider() {
 
 
 
-var emptyFunction = __webpack_require__(18);
-var invariant = __webpack_require__(19);
-var warning = __webpack_require__(24);
-var assign = __webpack_require__(38);
+var emptyFunction = __webpack_require__(3);
+var invariant = __webpack_require__(4);
+var warning = __webpack_require__(9);
+var assign = __webpack_require__(23);
 
-var ReactPropTypesSecret = __webpack_require__(20);
-var checkPropTypes = __webpack_require__(39);
+var ReactPropTypesSecret = __webpack_require__(5);
+var checkPropTypes = __webpack_require__(24);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -2528,10 +2071,10 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   return ReactPropTypes;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 38 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2628,7 +2171,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 39 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2642,9 +2185,9 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(19);
-  var warning = __webpack_require__(24);
-  var ReactPropTypesSecret = __webpack_require__(20);
+  var invariant = __webpack_require__(4);
+  var warning = __webpack_require__(9);
+  var ReactPropTypesSecret = __webpack_require__(5);
   var loggedTypeFailures = {};
 }
 
@@ -2692,10 +2235,10 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 
 module.exports = checkPropTypes;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 40 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2708,9 +2251,9 @@ module.exports = checkPropTypes;
 
 
 
-var emptyFunction = __webpack_require__(18);
-var invariant = __webpack_require__(19);
-var ReactPropTypesSecret = __webpack_require__(20);
+var emptyFunction = __webpack_require__(3);
+var invariant = __webpack_require__(4);
+var ReactPropTypesSecret = __webpack_require__(5);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -2760,7 +2303,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 41 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2832,7 +2375,7 @@ module.exports = function hoistNonReactStatics(targetComponent, sourceComponent,
 
 
 /***/ }),
-/* 42 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2888,10 +2431,10 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 43 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2990,17 +2533,17 @@ var Subscription = function () {
 
 
 /***/ }),
-/* 44 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export createConnect */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_connectAdvanced__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_shallowEqual__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapDispatchToProps__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapStateToProps__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mergeProps__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__selectorFactory__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_connectAdvanced__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_shallowEqual__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapDispatchToProps__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapStateToProps__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mergeProps__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__selectorFactory__ = __webpack_require__(49);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -3106,7 +2649,7 @@ function createConnect() {
 /* harmony default export */ __webpack_exports__["a"] = (createConnect());
 
 /***/ }),
-/* 45 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3143,15 +2686,15 @@ function shallowEqual(objA, objB) {
 }
 
 /***/ }),
-/* 46 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export whenMapDispatchToPropsIsFunction */
 /* unused harmony export whenMapDispatchToPropsIsMissing */
 /* unused harmony export whenMapDispatchToPropsIsObject */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wrapMapToProps__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wrapMapToProps__ = __webpack_require__(18);
 
 
 
@@ -3174,13 +2717,13 @@ function whenMapDispatchToPropsIsObject(mapDispatchToProps) {
 /* harmony default export */ __webpack_exports__["a"] = ([whenMapDispatchToPropsIsFunction, whenMapDispatchToPropsIsMissing, whenMapDispatchToPropsIsObject]);
 
 /***/ }),
-/* 47 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(36);
 
 
 
@@ -3212,11 +2755,11 @@ function baseGetTag(value) {
 
 
 /***/ }),
-/* 48 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(34);
 
 
 /** Detect free variable `self`. */
@@ -3229,7 +2772,7 @@ var root = __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__["a" /* default */] || fr
 
 
 /***/ }),
-/* 49 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3238,14 +2781,14 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 /* harmony default export */ __webpack_exports__["a"] = (freeGlobal);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(30)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(15)))
 
 /***/ }),
-/* 50 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(14);
 
 
 /** Used for built-in method references. */
@@ -3295,7 +2838,7 @@ function getRawTag(value) {
 
 
 /***/ }),
-/* 51 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3324,11 +2867,11 @@ function objectToString(value) {
 
 
 /***/ }),
-/* 52 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(38);
 
 
 /** Built-in value references. */
@@ -3338,7 +2881,7 @@ var getPrototype = Object(__WEBPACK_IMPORTED_MODULE_0__overArg_js__["a" /* defau
 
 
 /***/ }),
-/* 53 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3360,7 +2903,7 @@ function overArg(func, transform) {
 
 
 /***/ }),
-/* 54 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3396,14 +2939,14 @@ function isObjectLike(value) {
 
 
 /***/ }),
-/* 55 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(56);
+module.exports = __webpack_require__(41);
 
 
 /***/ }),
-/* 56 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3413,7 +2956,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ponyfill = __webpack_require__(58);
+var _ponyfill = __webpack_require__(43);
 
 var _ponyfill2 = _interopRequireDefault(_ponyfill);
 
@@ -3436,10 +2979,10 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2['default'])(root);
 exports['default'] = result;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(30), __webpack_require__(57)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15), __webpack_require__(42)(module)))
 
 /***/ }),
-/* 57 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -3467,7 +3010,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 58 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3496,14 +3039,14 @@ function symbolObservablePonyfill(root) {
 };
 
 /***/ }),
-/* 59 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = combineReducers;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(16);
 
 
 
@@ -3634,10 +3177,10 @@ function combineReducers(reducers) {
     return hasChanged ? nextState : state;
   };
 }
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 60 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3691,12 +3234,12 @@ function bindActionCreators(actionCreators, dispatch) {
 }
 
 /***/ }),
-/* 61 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = applyMiddleware;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(17);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -3747,13 +3290,13 @@ function applyMiddleware() {
 }
 
 /***/ }),
-/* 62 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export whenMapStateToPropsIsFunction */
 /* unused harmony export whenMapStateToPropsIsMissing */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__wrapMapToProps__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__wrapMapToProps__ = __webpack_require__(18);
 
 
 function whenMapStateToPropsIsFunction(mapStateToProps) {
@@ -3769,7 +3312,7 @@ function whenMapStateToPropsIsMissing(mapStateToProps) {
 /* harmony default export */ __webpack_exports__["a"] = ([whenMapStateToPropsIsFunction, whenMapStateToPropsIsMissing]);
 
 /***/ }),
-/* 63 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3777,7 +3320,7 @@ function whenMapStateToPropsIsMissing(mapStateToProps) {
 /* unused harmony export wrapMergePropsFunc */
 /* unused harmony export whenMergePropsIsFunction */
 /* unused harmony export whenMergePropsIsOmitted */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(19);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -3823,17 +3366,17 @@ function whenMergePropsIsOmitted(mergeProps) {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = ([whenMergePropsIsFunction, whenMergePropsIsOmitted]);
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 64 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* unused harmony export impureFinalPropsSelectorFactory */
 /* unused harmony export pureFinalPropsSelectorFactory */
 /* harmony export (immutable) */ __webpack_exports__["a"] = finalPropsSelectorFactory;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__verifySubselectors__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__verifySubselectors__ = __webpack_require__(50);
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 
@@ -3936,15 +3479,15 @@ function finalPropsSelectorFactory(dispatch, _ref2) {
 
   return selectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch, options);
 }
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 65 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = verifySubselectors;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warning__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warning__ = __webpack_require__(6);
 
 
 function verify(selector, methodName, displayName) {
@@ -3962,6 +3505,453 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
   verify(mapDispatchToProps, 'mapDispatchToProps', displayName);
   verify(mergeProps, 'mergeProps', displayName);
 }
+
+/***/ }),
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactRedux = __webpack_require__(20);
+
+var _redux = __webpack_require__(12);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(1);
+var ReactDOM = __webpack_require__(2);
+
+function product(state, action) {
+  switch (action.type) {
+    case 'CHONGZHI_FANLI':
+      {
+        var activity_id = action.activity_id;
+        $.ajax({
+          url: "/get_recharge_campaign?activity_id=" + activity_id,
+          dataType: 'json',
+          type: 'GET',
+          success: function (data) {
+            if (data.success) {
+              store.dispatch({ type: 'GET_DATA', data: data, activity_id: activity_id });
+            } else {}
+          }.bind(this),
+          error: function (xhr, status, err) {}.bind(this)
+        });
+
+        return state;
+      }
+    case 'GET_DATA':
+      {
+        var data = action.data;
+        var activity_id = action.activity_id;
+        return { chongzhi_list: data.rates, activity_id: activity_id };
+      }
+    case 'BUILD_ORDER':
+      {
+        var activity_id = state.activity_id;
+        var marketing_price = action.marketing_price;
+        $.ajax({
+          url: "/add_member_order",
+          dataType: 'json',
+          type: 'POST',
+          data: { 'pay_way': pay_way, 'activity_id': activity_id, 'marketing_price': marketing_price, 'actual_price': actual_price },
+          success: function (data) {
+            if (data.success) {
+              if (pay_way == "weinxin_pay") {
+                var row = data.row;
+
+                wx.chooseWXPay({
+                  timestamp: row.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                  nonceStr: row.nonce_str, // 支付签名随机串，不长于 32 位
+                  package: 'prepay_id=' + row.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                  signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                  paySign: row.sign, // 支付签名
+                  success: function success(res) {
+                    // 支付成功后的回调函数
+                    alert("支付成功");
+                  }
+                });
+              } else {}
+            } else {
+              alert(data.message);
+            }
+          }.bind(this),
+          error: function (xhr, status, err) {}.bind(this)
+        });
+
+        return state;
+      }
+
+    default:
+      return state;
+  }
+}
+
+var store = (0, _redux.createStore)(product, { chongzhi_list: [], activity_id: "", marketing_price: "" });
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    chongzhi_list: state.chongzhi_list,
+    activity_id: state.activity_id
+  };
+};
+
+var IoIo = function (_React$Component) {
+  _inherits(IoIo, _React$Component);
+
+  function IoIo(props) {
+    _classCallCheck(this, IoIo);
+
+    var _this = _possibleConstructorReturn(this, (IoIo.__proto__ || Object.getPrototypeOf(IoIo)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(IoIo, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      var style = { display: 'none' };
+      return React.createElement(
+        'div',
+        { className: 'chongzhi_wrap' },
+        React.createElement(ChongzhiHead, null),
+        React.createElement(ChongzhiMiddle, null)
+      );
+    }
+  }]);
+
+  return IoIo;
+}(React.Component);
+
+;
+
+var ChongzhiHead = function (_React$Component2) {
+  _inherits(ChongzhiHead, _React$Component2);
+
+  function ChongzhiHead(props) {
+    _classCallCheck(this, ChongzhiHead);
+
+    return _possibleConstructorReturn(this, (ChongzhiHead.__proto__ || Object.getPrototypeOf(ChongzhiHead)).call(this, props));
+  }
+
+  _createClass(ChongzhiHead, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      var style = { display: 'none' };
+      return React.createElement(
+        'div',
+        { className: 'chongzhi_head' },
+        React.createElement(
+          'p',
+          { className: 'padding' },
+          '\u5728\u7EBF\u5145\u503C'
+        ),
+        React.createElement(
+          'span',
+          { className: 'chongzhi_head_infor' },
+          React.createElement('i', { className: 'fa fa-info-circle chongzhi_head_back_icon' })
+        )
+      );
+    }
+  }]);
+
+  return ChongzhiHead;
+}(React.Component);
+
+;
+
+var ChongzhiMiddleClass = function (_React$Component3) {
+  _inherits(ChongzhiMiddleClass, _React$Component3);
+
+  function ChongzhiMiddleClass(props) {
+    _classCallCheck(this, ChongzhiMiddleClass);
+
+    var _this3 = _possibleConstructorReturn(this, (ChongzhiMiddleClass.__proto__ || Object.getPrototypeOf(ChongzhiMiddleClass)).call(this, props));
+
+    _this3.handleClick = _this3.handleClick.bind(_this3);
+    _this3.handleClick1 = _this3.handleClick1.bind(_this3);
+    _this3.handleClick2 = _this3.handleClick2.bind(_this3);
+    _this3.handleClick3 = _this3.handleClick3.bind(_this3);
+    _this3.handleClick4 = _this3.handleClick4.bind(_this3);
+    return _this3;
+  }
+
+  _createClass(ChongzhiMiddleClass, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      store.dispatch({ type: 'CHONGZHI_FANLI', activity_id: 'rc001' });
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick(selected, pay_way1) {
+      $('.chongzhi_fangshi').hide();
+      $('#chongzhi_fangshi' + selected).css("display", "block");
+      pay_way = pay_way1;
+    }
+  }, {
+    key: 'handleClick1',
+    value: function handleClick1(selected1, price) {
+      $('.chongzhi_middle_choice_infor p').removeClass('chongzhijine_style');
+      $('#chongzhijine' + selected1).addClass('chongzhijine_style');
+      $('#price').html(price);
+      actual_price = price;
+    }
+  }, {
+    key: 'handleClick2',
+    value: function handleClick2(e) {
+      $('.tiaokuan').show();
+    }
+  }, {
+    key: 'handleClick3',
+    value: function handleClick3(e) {
+      $('.tiaokuan').hide();
+    }
+  }, {
+    key: 'handleClick4',
+    value: function handleClick4(e) {
+      var marketing_price = $('#price').html();
+      if (pay_way == "") {
+        alert('请选择微信支付');
+        return;
+      }
+      store.dispatch({ type: 'BUILD_ORDER', activity_id: 'rc001', marketing_price: marketing_price });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      var first = "0.00";
+      if (this.props.chongzhi_list.length > 0) {
+        first = this.props.chongzhi_list[0].price;
+        actual_price = this.props.chongzhi_list[0].price1;
+      }
+      var style = { display: 'none' };
+      return React.createElement(
+        'div',
+        { className: 'chongzhi_middle' },
+        React.createElement(
+          'div',
+          { className: 'chongzhi_middle_account' },
+          React.createElement(
+            'div',
+            { className: 'chongzhi_middle_account_left chongzhi_middle_account_infor' },
+            React.createElement(
+              'p',
+              { className: 'chongzhi_middle_account_number' },
+              '\u603B\u91D1\u989D\uFF1A',
+              React.createElement('br', null),
+              React.createElement(
+                'span',
+                null,
+                '3000.00'
+              )
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'chongzhi_middle_account_right chongzhi_middle_account_infor' },
+            React.createElement(
+              'p',
+              { className: 'chongzhi_middle_account_right_money' },
+              React.createElement('span', { className: 'chongzhi_middle_account_right_money_dian1' }),
+              '\u672C\u91D1',
+              React.createElement(
+                'span',
+                { className: 'chongzhi_middle_account_right_money_number' },
+                '0.00'
+              )
+            ),
+            React.createElement(
+              'p',
+              { className: 'chongzhi_middle_account_right_money' },
+              React.createElement('span', { className: 'chongzhi_middle_account_right_money_dian2' }),
+              '\u589E\u989D',
+              React.createElement(
+                'span',
+                { className: 'chongzhi_middle_account_right_money_number' },
+                '0.00'
+              )
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'chongzhi_middle_choice' },
+          React.createElement(
+            'div',
+            { className: 'chongzhi_middle_choice_title' },
+            '\u9009\u62E9\u5145\u503C\u91D1\u989D'
+          ),
+          React.createElement(
+            'div',
+            { className: 'chongzhi_middle_choice_infor' },
+            this.props.chongzhi_list.map(function (item, index) {
+              return React.createElement(
+                'p',
+                { className: 0 == index ? "chongzhijine_style" : "", key: index, id: "chongzhijine" + (index + 1), onClick: _this4.handleClick1.bind(_this4, index + 1, item.price) },
+                item.price1,
+                ' \u5143'
+              );
+            })
+          ),
+          React.createElement(
+            'div',
+            { className: 'chongzhi_middle_choice_jiesuan' },
+            '\u5B9E\u9645\u5230\u8D26',
+            React.createElement(
+              'span',
+              { id: 'price' },
+              first
+            ),
+            '\u5143'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'chongzhi_middle_kind' },
+          React.createElement(
+            'a',
+            { className: 'weui-cell weui-cell_access', href: 'javascript:;' },
+            React.createElement(
+              'div',
+              { className: 'weui-cell__hd chongzhi_middle_kind_img_right' },
+              React.createElement('img', { src: 'images/zhifu_zhifubao.png', alt: '', className: 'chongzhi_middle_kind_img' })
+            ),
+            React.createElement(
+              'div',
+              { className: 'weui-cell__bd weui-cell_primary' },
+              React.createElement(
+                'p',
+                null,
+                '\u652F\u4ED8\u5B9D(\u6682\u672A\u5F00\u901A)'
+              )
+            ),
+            React.createElement(
+              'span',
+              { className: 'chongzhi_fangshi', id: 'chongzhi_fangshi1' },
+              React.createElement('i', { className: 'fa fa-check-circle chongzhi_middle_kind_icon' })
+            )
+          ),
+          React.createElement(
+            'a',
+            { className: 'weui-cell weui-cell_access', href: 'javascript:;', onClick: this.handleClick.bind(this, 2, 'weinxin_pay') },
+            React.createElement(
+              'div',
+              { className: 'weui-cell__hd chongzhi_middle_kind_img_right' },
+              React.createElement('img', { src: 'images/zhifu_weixin.png', alt: '', className: 'chongzhi_middle_kind_img' })
+            ),
+            React.createElement(
+              'div',
+              { className: 'weui-cell__bd weui-cell_primary' },
+              React.createElement(
+                'p',
+                null,
+                '\u5FAE\u4FE1'
+              )
+            ),
+            React.createElement(
+              'span',
+              { className: 'chongzhi_fangshi', id: 'chongzhi_fangshi2' },
+              React.createElement('i', { className: 'fa fa-check-circle chongzhi_middle_kind_icon' })
+            )
+          ),
+          React.createElement(
+            'span',
+            { className: 'weui-cell weui-cell_access' },
+            React.createElement(
+              'div',
+              { className: 'weui-cell__hd chongzhi_middle_kind_img_right' },
+              React.createElement('img', { src: 'images/zhifu_yinhangka.png', alt: '', className: 'chongzhi_middle_kind_img' })
+            ),
+            React.createElement(
+              'div',
+              { className: 'weui-cell__bd weui-cell_primary' },
+              React.createElement(
+                'p',
+                null,
+                '\u94F6\u884C\u5361(\u6682\u672A\u5F00\u901A)'
+              )
+            ),
+            React.createElement(
+              'span',
+              { className: 'chongzhi_fangshi', id: 'chongzhi_fangshi3' },
+              React.createElement('i', { className: 'fa fa-check-circle chongzhi_middle_kind_icon' })
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'chongzhi_bottom' },
+          React.createElement(
+            'p',
+            null,
+            '\u70B9\u51FB\u53BB\u5145\u503C\uFF0C\u5373\u9ED8\u8BA4\u540C\u610F',
+            React.createElement(
+              'span',
+              { className: 'chongzhi_bottom_span', onClick: this.handleClick2 },
+              '\u300A\u5145\u503C\u534F\u8BAE\u300B'
+            )
+          ),
+          React.createElement(
+            'span',
+            { className: 'weui-btn weui-btn_primary', onClick: this.handleClick4 },
+            '\u53BB\u5145\u503C'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'tiaokuan' },
+          React.createElement(
+            'span',
+            { className: 'close', onClick: this.handleClick3 },
+            '\u5173\u95ED'
+          ),
+          React.createElement(
+            'h3',
+            { className: 'tiaokuan_title' },
+            '\u6761\u6B3E'
+          ),
+          React.createElement(
+            'div',
+            { className: 'tiaokuan_infor' },
+            '\u6761\u6B3E\u6B63\u6587'
+          )
+        )
+      );
+    }
+  }]);
+
+  return ChongzhiMiddleClass;
+}(React.Component);
+
+;
+
+var ChongzhiMiddle = (0, _reactRedux.connect)(mapStateToProps)(ChongzhiMiddleClass);
+
+ReactDOM.render(React.createElement(
+  _reactRedux.Provider,
+  { store: store },
+  React.createElement(IoIo, null)
+), document.getElementById("chongzhi"));
 
 /***/ })
 /******/ ]);
