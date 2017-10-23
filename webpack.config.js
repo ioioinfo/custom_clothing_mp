@@ -29,6 +29,7 @@ module.exports = {
         mendian_list: './app/mendian_list.jsx',
         company: './app/company.jsx',
         contact: './app/contact.jsx',
+        history_list: './app/history_list.jsx',
     },
     output: {
         path: __dirname,

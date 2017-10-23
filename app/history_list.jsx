@@ -54,17 +54,17 @@ class IoIo extends React.Component {
 
     }
     render() {
+        var items = (<div className="no_order_list">没有订单</div>);
+        if (this.props.items.length>0) {
+            items = (<div className="project_list_top">
+              {this.props.items.map((item,index)=>(
+                  <Projectlist item={item} index={index}/>
+              ))}
+
+            </div>);
+        }
+
       var style = {display:'none'};
-      var items = (<div className="no_order_list">没有订单</div>);
-      if (this.props.items.length>0) {
-          items = (<div className="project_list_top">
-            {this.props.items.map((item,index)=>(
-                <Projectlist item={item} index={index}/>
-            ))}
-
-          </div>);
-      }
-
       return (
         <div className="project_list_wrap">
           <Projectsearch/>
@@ -185,5 +185,5 @@ ReactDOM.render(
     <Provider store={store}>
         <ReduxIoIo/>
     </Provider>,
-    document.getElementById("order_list")
+    document.getElementById("history_list")
 );

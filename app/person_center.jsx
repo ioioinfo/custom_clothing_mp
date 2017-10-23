@@ -78,7 +78,7 @@ class PersonCenterMiddle extends React.Component {
                 </div>
                 <div className="weui-cell__ft">1</div>
             </a>
-            <a className="weui-cell weui-cell_access" href="order_list">
+            <a className="weui-cell weui-cell_access" href="history_list">
                 <div className="weui-cell__hd icon_wrap_style"><span style={style} className="icon_style2"><i className="fa fa-list-ol"></i></span></div>
                 <div className="weui-cell__bd">
                     <p>历史订单</p>

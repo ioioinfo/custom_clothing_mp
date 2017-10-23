@@ -261,7 +261,7 @@ var PersonCenterMiddle = function (_React$Component2) {
                 ),
                 React.createElement(
                     'a',
-                    { className: 'weui-cell weui-cell_access', href: 'order_list' },
+                    { className: 'weui-cell weui-cell_access', href: 'history_list' },
                     React.createElement(
                         'div',
                         { className: 'weui-cell__hd icon_wrap_style' },

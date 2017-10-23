@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 61);
+/******/ 	return __webpack_require__(__webpack_require__.s = 66);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3517,7 +3517,12 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 /* 58 */,
 /* 59 */,
 /* 60 */,
-/* 61 */
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3595,7 +3600,6 @@ var IoIo = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var style = { display: 'none' };
       var items = React.createElement(
         'div',
         { className: 'no_order_list' },
@@ -3611,6 +3615,7 @@ var IoIo = function (_React$Component) {
         );
       }
 
+      var style = { display: 'none' };
       return React.createElement(
         'div',
         { className: 'project_list_wrap' },
@@ -3853,7 +3858,7 @@ ReactDOM.render(React.createElement(
   _reactRedux.Provider,
   { store: store },
   React.createElement(ReduxIoIo, null)
-), document.getElementById("order_list"));
+), document.getElementById("history_list"));
 
 /***/ })
 /******/ ]);

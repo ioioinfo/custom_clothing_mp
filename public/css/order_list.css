@@ -45,6 +45,10 @@ a{
   border-bottom: 1px solid #dcdcdc;
 
 }
+.no_order_list{
+    text-align: center;
+    margin-top: 175px;
+}
 .project_list_top{
   margin: 55px 0;
 }

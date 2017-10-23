@@ -267,6 +267,14 @@ exports.register = function(server, options, next) {
                 return reply.view("order_list");
             }
         },
+        //历史订单
+        {
+            method: 'GET',
+            path: '/history_list',
+            handler: function(request, reply) {
+                return reply.view("history_list");
+            }
+        },
         // 订单详情
         {
             method: 'GET',
