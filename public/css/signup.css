@@ -66,14 +66,14 @@ body{
 /*条款*/
 .tiaokuan{
     position: fixed;
-    left: 5%;
-    top: 5%;
-    width: 90%;
-    right: 5%;
-    bottom: 5%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 56px;
+    padding: 7px;
     background: #fff;
     display: none;
-    border-bottom: 1px solid #8b8b8b;
+    overflow: auto;
 }
 .tiaokuan_title{
     text-align: center;
@@ -81,7 +81,6 @@ body{
     color: #8B8B8B;
 }
 .tiaokuan_infor{
-    text-align: center;
     color: #8b8b8b;
     margin-top: 20px;
 }
