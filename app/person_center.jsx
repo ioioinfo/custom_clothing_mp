@@ -78,10 +78,10 @@ class PersonCenterMiddle extends React.Component {
                 </div>
                 <div className="weui-cell__ft">1</div>
             </a>
-            <a className="weui-cell weui-cell_access" href="company">
-                <div className="weui-cell__hd icon_wrap_style"><span style={style} className="icon_style2"><i className="fa fa-file-pdf-o"></i></span></div>
+            <a className="weui-cell weui-cell_access" href="order_list">
+                <div className="weui-cell__hd icon_wrap_style"><span style={style} className="icon_style2"><i className="fa fa-list-ol"></i></span></div>
                 <div className="weui-cell__bd">
-                    <p>公司简介</p>
+                    <p>历史订单</p>
                 </div>
                 <div className="weui-cell__ft"></div>
             </a>
@@ -96,6 +96,14 @@ class PersonCenterMiddle extends React.Component {
                 <div className="weui-cell__hd icon_wrap_style"><span style={style} className="icon_style4"><i className="fa fa-credit-card-alt"></i></span></div>
                 <div className="weui-cell__bd">
                     <p>会员充值</p>
+                </div>
+                <div className="weui-cell__ft"></div>
+            </a>
+
+            <a className="weui-cell weui-cell_access" href="record">
+                <div className="weui-cell__hd icon_wrap_style"><span style={style} className="icon_style4"><i className="fa fa-file"></i></span></div>
+                <div className="weui-cell__bd">
+                    <p>消费历史</p>
                 </div>
                 <div className="weui-cell__ft"></div>
             </a>

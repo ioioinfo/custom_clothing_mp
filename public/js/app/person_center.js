@@ -261,14 +261,14 @@ var PersonCenterMiddle = function (_React$Component2) {
                 ),
                 React.createElement(
                     'a',
-                    { className: 'weui-cell weui-cell_access', href: 'company' },
+                    { className: 'weui-cell weui-cell_access', href: 'order_list' },
                     React.createElement(
                         'div',
                         { className: 'weui-cell__hd icon_wrap_style' },
                         React.createElement(
                             'span',
                             { style: style, className: 'icon_style2' },
-                            React.createElement('i', { className: 'fa fa-file-pdf-o' })
+                            React.createElement('i', { className: 'fa fa-list-ol' })
                         )
                     ),
                     React.createElement(
@@ -277,7 +277,7 @@ var PersonCenterMiddle = function (_React$Component2) {
                         React.createElement(
                             'p',
                             null,
-                            '\u516C\u53F8\u7B80\u4ECB'
+                            '\u5386\u53F2\u8BA2\u5355'
                         )
                     ),
                     React.createElement('div', { className: 'weui-cell__ft' })
@@ -324,6 +324,29 @@ var PersonCenterMiddle = function (_React$Component2) {
                             'p',
                             null,
                             '\u4F1A\u5458\u5145\u503C'
+                        )
+                    ),
+                    React.createElement('div', { className: 'weui-cell__ft' })
+                ),
+                React.createElement(
+                    'a',
+                    { className: 'weui-cell weui-cell_access', href: 'record' },
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__hd icon_wrap_style' },
+                        React.createElement(
+                            'span',
+                            { style: style, className: 'icon_style4' },
+                            React.createElement('i', { className: 'fa fa-file' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'weui-cell__bd' },
+                        React.createElement(
+                            'p',
+                            null,
+                            '\u6D88\u8D39\u5386\u53F2'
                         )
                     ),
                     React.createElement('div', { className: 'weui-cell__ft' })

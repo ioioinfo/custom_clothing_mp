@@ -126,7 +126,7 @@ class PayDetailClass extends React.Component {
 class OrderDetailClass extends React.Component {
     render() {
       return (
-          <div className="product-infor" data-id="00137208_C25">
+          <div className="product-infor" data-id="00137208_C25" >
       	        <div className="all">
       	          <div className="product-infor-left">
       				<img src={this.props.products[this.props.product.product_id].img.location} alt=""/>
