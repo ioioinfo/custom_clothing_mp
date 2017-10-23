@@ -74,6 +74,7 @@ body{
     background: #fff;
     display: none;
     overflow: auto;
+    z-index: 9999;
 }
 .tiaokuan_title{
     text-align: center;
