@@ -178,6 +178,11 @@ var get_store_list = function(org_code,cb){
 	url = url + org_code;
 	do_get_method(url,cb);
 };
+//根据id得到指定门店信息
+var get_by_id = function(store_id,cb){
+	var url = "http://211.149.248.241:19999/store/get_by_id?id="+store_id+"&org_code="+org_code;
+	do_get_method(url,cb);
+};
 //cooke person
 var get_cookie_person = function(request){
 	var person_id;
@@ -631,6 +636,25 @@ exports.register = function(server, options, next) {
 						return reply({"success":true,"store_list":store_list})
 					}else {
 						return reply({"success":false,"message":rows.message})
+					}
+				});
+			}
+		},
+		//门店详细信息
+		{
+			method: 'GET',
+			path: '/get_mendian_detail',
+			handler: function(request, reply){
+				var store_id = request.query.store_id;
+				if (!store_id) {
+					return reply({"success":false,"message":"store_id is null"})
+				}
+				get_by_id(store_id,function(err,row){
+					if (!err) {
+						var store = row.row;
+						return reply({"success":true,"message":"ok","store":JSON.stringify(store),"remark":store.remark});
+					}else {
+						return reply({"success":false,"message":row.message});
 					}
 				});
 			}
