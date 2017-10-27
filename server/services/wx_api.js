@@ -22,6 +22,17 @@ var host = "http://211.149.248.241:16005/";
 
 var nav = function(server) {
     return {
+        mp_verify: function(mp_key,cb) {
+            var url = host + "mp_verify?mp_key=" + mp_key;
+            uu_request.get(url, function(err, response, body) {
+                if (!err && response.statusCode === 200) {
+                    cb(err,body);
+                } else {
+                    cb(true,{message:"网络错误"});
+                }
+            });
+        },
+        
         get_token: function(platform_id,cb) {
             var url = host + "get_token?platform_id=" + platform_id;
             uu_request.get(url, function(err, response, body) {

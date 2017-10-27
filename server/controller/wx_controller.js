@@ -43,15 +43,6 @@ exports.register = function(server, options, next) {
 
         return shasum.digest('hex') === signature;
     };
-    
-    //微信验证码
-    var mp_verify = {};
-    
-    mp_verify["MliAnvQ9HnZhE5hX"] = "MliAnvQ9HnZhE5hX";
-    //弘仁微信
-    mp_verify["mRSVGKGzisaYbGb0"] = "mRSVGKGzisaYbGb0";
-    //微零售微信
-    mp_verify["FEop4J5NCKyiXIc8"] = "FEop4J5NCKyiXIc8";
 
     server.route([
         //微信验证
@@ -60,11 +51,13 @@ exports.register = function(server, options, next) {
             path: '/MP_verify_{mp_key}.txt',
             handler: function(request,reply) {
                 var mp_key = request.params.mp_key;
-                
-                if (mp_verify[mp_key]) {
-                    return reply(mp_verify[mp_key]);
+                if (!mp_key) {
+                    return reply("ioio");
                 }
-                return reply("ioio");
+                
+                wx_api.mp_verify(mp_key,function(err,body) {
+                    return reply(body);
+                });
             }
         },
 
