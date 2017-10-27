@@ -43,32 +43,28 @@ exports.register = function(server, options, next) {
 
         return shasum.digest('hex') === signature;
     };
+    
+    //微信验证码
+    var mp_verify = {};
+    
+    mp_verify["MliAnvQ9HnZhE5hX"] = "MliAnvQ9HnZhE5hX";
+    //弘仁微信
+    mp_verify["mRSVGKGzisaYbGb0"] = "mRSVGKGzisaYbGb0";
+    //微零售微信
+    mp_verify["FEop4J5NCKyiXIc8"] = "FEop4J5NCKyiXIc8";
 
     server.route([
         //微信验证
         {
             method: 'GET',
-            path: '/MP_verify_MliAnvQ9HnZhE5hX.txt',
+            path: '/MP_verify_{mp_key}.txt',
             handler: function(request,reply) {
-                return reply("MliAnvQ9HnZhE5hX");
-            }
-        },
-
-        //弘仁微信
-        {
-            method: 'GET',
-            path: '/MP_verify_mRSVGKGzisaYbGb0.txt',
-            handler: function(request,reply) {
-                return reply("mRSVGKGzisaYbGb0");
-            }
-        },
-
-        //微零售微信
-        {
-            method: 'GET',
-            path: '/MP_verify_FEop4J5NCKyiXIc8.txt',
-            handler: function(request,reply) {
-                return reply("FEop4J5NCKyiXIc8");
+                var mp_key = request.params.mp_key;
+                
+                if (mp_verify[mp_key]) {
+                    return reply(mp_verify[mp_key]);
+                }
+                return reply("ioio");
             }
         },
 
